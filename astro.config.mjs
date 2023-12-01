@@ -9,5 +9,9 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
   integrations: [react(), markdoc(), keystatic()],
   output: 'hybrid',
-  adapter: vercel()
+  adapter: vercel({
+    speedInsights: {
+      enabled: true,
+    }
+  })
 });
