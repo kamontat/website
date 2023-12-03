@@ -1,9 +1,10 @@
-name: Pull request
+name: Deployment
 
 on:
-  pull_request:
-    branches:
-      - main
+  push:
+
+env:
+  ASTRO_TELEMETRY_DISABLED: true
 
 jobs:
   main:
