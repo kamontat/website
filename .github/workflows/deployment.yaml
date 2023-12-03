@@ -20,7 +20,9 @@ jobs:
         with:
           node-version-file: "package.json"
           cache: "pnpm"
-      - name: Build Project Artifacts
+      - name: Pull environment information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build artifacts
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Deploy Project Artifacts
+      - name: Deploy artifacts
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
