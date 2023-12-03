@@ -3,16 +3,17 @@
 	"version": "0.1.0",
 	"license": "MIT",
 	"scripts": {
-		"dev": "astro dev --host 127.0.0.1",
 		"start": "astro dev",
 		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro",
-		"check": "prettier --check . --plugin=prettier-plugin-astro",
+		"check": "prettier --check . --plugin=prettier-plugin-astro && eslint --ext .js,.cjs,.mjs,.ts,.astro . && astro check",
 		"format": "prettier --write . --plugin=prettier-plugin-astro",
-		"lint": "eslint --ext .js,.ts,.astro src"
+		"stag:setup": "vercel pull --yes --environment=preview",
+		"stag:deploy": "vercel deploy --prebuilt",
+		"prod:setup": "vercel pull --yes --environment=production",
+		"prod:deploy": "vercel deploy --prebuilt --prod"
 	},
 	"dependencies": {
+		"@astrojs/check": "^0.3.1",
 		"@astrojs/markdoc": "0.7.2",
 		"@astrojs/react": "3.0.6",
 		"@astrojs/vercel": "5.2.0",
@@ -37,6 +38,6 @@
 	},
 	"packageManager": "pnpm@8.11.0",
 	"engines": {
-		"node": ">=18"
+		"node": ">=18 <20"
 	}
 }

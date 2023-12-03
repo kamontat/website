@@ -1,6 +1,6 @@
 /** @type {import("eslint").ESLint.ConfigData} */
 module.exports = {
-	extends: ["plugin:astro/recommended"],
+	extends: ["eslint:recommended", "plugin:astro/recommended"],
 	overrides: [
 		{
 			files: ["*.astro"],
@@ -17,6 +17,21 @@ module.exports = {
 		{
 			files: ["*.ts"],
 			parser: "@typescript-eslint/parser",
+		},
+		{
+			files: ["*.js", "*.cjs", "*.mjs"],
+			parserOptions: {
+				ecmaVersion: 6,
+				sourceType: "module",
+				ecmaFeatures: {
+					jsx: true,
+					modules: true,
+				},
+			},
+			env: {
+				node: true,
+				browser: true,
+			},
 		},
 	],
 };
