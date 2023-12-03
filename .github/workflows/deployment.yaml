@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  main:
     runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -20,6 +20,10 @@ jobs:
         with:
           node-version-file: "package.json"
           cache: "pnpm"
+      - name: Check project
+        run: pnpm check
+      - name: Lint project
+        run: pnpm lint
       - name: Pull environment information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build artifacts

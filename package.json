@@ -1,33 +1,42 @@
 {
-  "name": "@kcinth/website",
-  "version": "0.1.0",
-  "license": "MIT",
-  "scripts": {
-    "dev": "astro dev --host 127.0.0.1",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/markdoc": "0.7.2",
-    "@astrojs/react": "3.0.6",
-    "@astrojs/vercel": "5.2.0",
-    "@keystatic/astro": "2.0.0",
-    "@keystatic/core": "0.2.4",
-    "astro": "3.6.4",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "devDependencies": {
-    "@types/node": "18.19.1",
-    "@types/react": "18.2.41",
-    "@types/react-dom": "18.2.17",
-    "typescript": "5.3.2",
-    "vercel": "32.6.1"
-  },
-  "packageManager": "pnpm@8.11.0",
-  "engines": {
-    "node": ">=18"
-  }
+	"name": "@kcinth/website",
+	"version": "0.1.0",
+	"license": "MIT",
+	"scripts": {
+		"dev": "astro dev --host 127.0.0.1",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"check": "prettier --check . --plugin=prettier-plugin-astro",
+		"format": "prettier --write . --plugin=prettier-plugin-astro",
+		"lint": "eslint --ext .js,.ts,.astro src"
+	},
+	"dependencies": {
+		"@astrojs/markdoc": "0.7.2",
+		"@astrojs/react": "3.0.6",
+		"@astrojs/vercel": "5.2.0",
+		"@keystatic/astro": "2.0.0",
+		"@keystatic/core": "0.2.4",
+		"astro": "3.6.4",
+		"react": "18.2.0",
+		"react-dom": "18.2.0"
+	},
+	"devDependencies": {
+		"@types/node": "18.19.1",
+		"@types/react": "18.2.41",
+		"@types/react-dom": "18.2.17",
+		"@typescript-eslint/parser": "6.13.1",
+		"eslint": "8.55.0",
+		"eslint-plugin-astro": "0.30.0",
+		"eslint-plugin-jsx-a11y": "6.8.0",
+		"prettier": "3.1.0",
+		"prettier-plugin-astro": "0.12.2",
+		"typescript": "5.3.2",
+		"vercel": "32.6.1"
+	},
+	"packageManager": "pnpm@8.11.0",
+	"engines": {
+		"node": ">=18"
+	}
 }
