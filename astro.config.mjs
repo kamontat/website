@@ -15,3 +15,12 @@ export default defineConfig({
 		},
 	}),
 });
+
+// NOTE: https://github.com/withastro/astro/issues/7573#issuecomment-1817846646
+console.log(
+	process.env.VERCEL_ANALYTICS_ID,
+	process.env.PUBLIC_VERCEL_ANALYTICS_ID,
+);
+if (!process.env.VERCEL_ANALYTICS_ID) {
+	process.env.VERCEL_ANALYTICS_ID = process.env.PUBLIC_VERCEL_ANALYTICS_ID;
+}
