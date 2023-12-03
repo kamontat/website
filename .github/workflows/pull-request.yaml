@@ -27,8 +27,6 @@ jobs:
         run: pnpm install
       - name: Check project styles
         run: pnpm check
-      - name: Check project styles
-        run: pnpm check
       - name: Pull environment information
         run: pnpm stag:setup --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build artifacts
