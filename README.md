@@ -10,8 +10,8 @@ pnpm install
 
 To run:
 
-```
-pnpm run dev
+```bash
+pnpm dev
 ```
 
 - [Admin UI](http://localhost:4321/keystatic)
