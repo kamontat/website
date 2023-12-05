@@ -1,13 +1,13 @@
 /** @type {import("eslint").ESLint.ConfigData} */
 module.exports = {
-	extends: ["eslint:recommended", "plugin:astro/recommended"],
+	extends: ['eslint:recommended', 'plugin:astro/recommended'],
 	overrides: [
 		{
-			files: ["*.astro"],
-			parser: "astro-eslint-parser",
+			files: ['*.astro'],
+			parser: 'astro-eslint-parser',
 			parserOptions: {
-				parser: "@typescript-eslint/parser",
-				extraFileExtensions: [".astro"],
+				parser: '@typescript-eslint/parser',
+				extraFileExtensions: ['.astro'],
 			},
 			rules: {
 				// override/add rules settings here, such as:
@@ -15,14 +15,14 @@ module.exports = {
 			},
 		},
 		{
-			files: ["*.ts"],
-			parser: "@typescript-eslint/parser",
+			files: ['*.ts'],
+			parser: '@typescript-eslint/parser',
 		},
 		{
-			files: ["*.js", "*.cjs", "*.mjs"],
+			files: ['*.js', '*.cjs', '*.mjs'],
 			parserOptions: {
-				ecmaVersion: "latest",
-				sourceType: "module",
+				ecmaVersion: 'latest',
+				sourceType: 'module',
 				ecmaFeatures: {
 					modules: true,
 				},
@@ -33,4 +33,4 @@ module.exports = {
 			},
 		},
 	],
-};
+}
