@@ -40,6 +40,9 @@ dependencies:
     version: 18.2.0(react@18.2.0)
 
 devDependencies:
+  '@kcws/reset.css':
+    specifier: 0.21.2
+    version: 0.21.2
   '@types/node':
     specifier: 18.19.1
     version: 18.19.1
@@ -1290,6 +1293,11 @@ packages:
   /@juggle/resize-observer@3.4.0:
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
     dev: false
+
+  /@kcws/reset.css@0.21.2:
+    resolution: {integrity: sha512-Qz4rxLSyZKYLvHOeyYK/0zJEEv8pMGGgsdvGEa3Rw0dcof5xgQzONhIUHBmlF31EfMT87tq95Ss/WQCcJZUHhQ==}
+    engines: {node: '>=12'}
+    dev: true
 
   /@keystar/ui@0.4.4(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-fpOyHZPMhoEXnhbuc+2ERIBC5sjZUQ8QPChZNj5KgVuTqG0wijt2KXsesXkBYAeSNdUTaPj1atIK+5NeqYj6JA==}
