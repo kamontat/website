@@ -14,10 +14,19 @@ export default defineConfig({
 	integrations: [svelte(), markdoc(), sitemap(), keystatic(), react()],
 	adapter: vercel(),
 	output: "static",
+	vite: {
+		build: {
+			chunkSizeWarningLimit: 3000, // kB
+		},
+	},
 	redirects: {
 		"/go/facebook": {
 			status: 301,
 			destination: "https://facebook.com/kamontatc",
+		},
+		"/go/x": {
+			status: 301,
+			destination: "https://x.com/kamontatc",
 		},
 	},
 });
