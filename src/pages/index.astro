@@ -1,8 +1,10 @@
 ---
-import { createReader } from "@keystatic/core/reader";
+import { createGitHubReader } from "@keystatic/core/reader/github";
 import config from "../../keystatic.config";
 
-const reader = createReader(process.cwd(), config);
+const reader = createGitHubReader(config, {
+	repo: "kamontat/website",
+});
 const information = await reader.singletons.information.readOrThrow();
 ---
 
