@@ -5,8 +5,8 @@ export default config({
 		kind: "github",
 		repo: {
 			owner: "kamontat",
-			name: "website"
-		}
+			name: "website",
+		},
 	},
 	locale: "en-US",
 	singletons: {
