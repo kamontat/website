@@ -30,5 +30,10 @@ jobs:
         run: pnpm check
       - name: Build application
         run: pnpm build
+        env:
+          PUBLIC_KEYSTATIC_GITHUB_APP_SLUG: ${{ secrets.PUBLIC_KEYSTATIC_GITHUB_APP_SLUG }}
+          KEYSTATIC_SECRET: ${{ secrets.KEYSTATIC_SECRET }}
+          KEYSTATIC_GITHUB_CLIENT_ID: ${{ secrets.KEYSTATIC_GITHUB_CLIENT_ID }}
+          KEYSTATIC_GITHUB_CLIENT_SECRET: ${{ secrets.KEYSTATIC_GITHUB_CLIENT_SECRET }}
       - name: Deploy application
         run: pnpm deploy:prod --token=${{ secrets.VERCEL_TOKEN }}
