@@ -4,7 +4,7 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"preinstall": "astro telemetry disable",
+		"preinstall": "astro telemetry disable && vercel telemetry disable",
 		"prettier": "prettier .",
 		"eslint": "eslint --ext .js,.cjs,.mjs,.ts,.astro .",
 		"check:prettier": "pnpm prettier --check",
@@ -17,8 +17,8 @@
 		"dev": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"deploy:stag": "vercel deploy",
-		"deploy:prod": "vercel deploy --prod"
+		"deploy:stag": "vercel deploy --yes",
+		"deploy:prod": "vercel deploy --yes --prod"
 	},
 	"dependencies": {
 		"@astrojs/check": "0.9.4",
