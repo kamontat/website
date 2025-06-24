@@ -16,9 +16,8 @@
 		"format": "pnpm format:prettier && pnpm format:eslint",
 		"dev": "astro dev",
 		"build": "astro build",
-		"preview": "astro preview",
-		"deploy:stag": "vercel deploy --yes",
-		"deploy:prod": "vercel deploy --yes --prod"
+		"deploy:stag": "vercel deploy --yes --prebuilt --no-logs",
+		"deploy:prod": "vercel deploy --yes --prebuilt --no-logs --prod"
 	},
 	"dependencies": {
 		"@astrojs/check": "0.9.4",
