@@ -1,0 +1,32 @@
+pull_request_rules:
+  - name: Label queued pull requests
+    description: Toggle the queue label when a pull request is (un)queued.
+    conditions:
+      - queue-position > 0
+    actions:
+      label:
+        toggle:
+          - mergify/queued
+  - name: Label conflicting pull requests
+    description: Toggle the conflict label when got conflicted
+    conditions:
+      - conflict
+      - -closed
+    actions:
+      label:
+        toggle:
+          - status/conflict
+  - name: Queue the pull requests
+    description: Queue pull requests when CI is success
+    conditions:
+      - check-success=main
+      - -closed
+      - -conflict
+    actions:
+      queue:
+
+queue_rules:
+  - name: default
+    merge_method: squash
+    update_method: rebase
+    branch_protection_injection_mode: queue
