@@ -43,7 +43,7 @@ jobs:
         id: vercel
         run: |
           printf "url=" >> "$GITHUB_OUTPUT"
-          pnpm deploy:prod --token=${{ secrets.VERCEL_TOKEN }} >> "$GITHUB_OUTPUT"
+          pnpm --silent run deploy:prod --token=${{ secrets.VERCEL_TOKEN }} >> "$GITHUB_OUTPUT"
         env:
           KEYSTATIC_SECRET: ${{ secrets.KEYSTATIC_SECRET }}
           KEYSTATIC_GITHUB_CLIENT_ID: ${{ secrets.KEYSTATIC_GITHUB_CLIENT_ID }}
