@@ -41,4 +41,10 @@ jobs:
           KEYSTATIC_GITHUB_CLIENT_SECRET: ${{ secrets.KEYSTATIC_GITHUB_CLIENT_SECRET }}
       - name: Deploy application
         id: vercel
-        run: pnpm deploy:stag --token=${{ secrets.VERCEL_TOKEN }}
+        run: |
+          printf "url=" >> "$GITHUB_OUTPUT"
+          pnpm deploy:stag --token=${{ secrets.VERCEL_TOKEN }} >> "$GITHUB_OUTPUT"
+        env:
+          KEYSTATIC_SECRET: ${{ secrets.KEYSTATIC_SECRET }}
+          KEYSTATIC_GITHUB_CLIENT_ID: ${{ secrets.KEYSTATIC_GITHUB_CLIENT_ID }}
+          KEYSTATIC_GITHUB_CLIENT_SECRET: ${{ secrets.KEYSTATIC_GITHUB_CLIENT_SECRET }}

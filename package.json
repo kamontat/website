@@ -16,8 +16,8 @@
 		"format": "pnpm format:prettier && pnpm format:eslint",
 		"dev": "astro dev",
 		"build": "astro build",
-		"deploy:stag": "vercel deploy --yes --prebuilt --no-logs",
-		"deploy:prod": "vercel deploy --yes --prebuilt --no-logs --prod"
+		"deploy:stag": "vercel deploy --yes --prebuilt --no-logs --env KEYSTATIC_SECRET=$KEYSTATIC_SECRET --env KEYSTATIC_GITHUB_CLIENT_ID=$KEYSTATIC_GITHUB_CLIENT_ID --env KEYSTATIC_GITHUB_CLIENT_SECRET=$KEYSTATIC_GITHUB_CLIENT_SECRET",
+		"deploy:prod": "vercel deploy --yes --prebuilt --no-logs --env KEYSTATIC_SECRET=$KEYSTATIC_SECRET --env KEYSTATIC_GITHUB_CLIENT_ID=$KEYSTATIC_GITHUB_CLIENT_ID --env KEYSTATIC_GITHUB_CLIENT_SECRET=$KEYSTATIC_GITHUB_CLIENT_SECRET --prod"
 	},
 	"dependencies": {
 		"@astrojs/check": "0.9.4",

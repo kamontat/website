@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: staging
-      url: https://example.com
+      url: ${{ steps.vercel.outputs.url }}
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -40,4 +40,11 @@ jobs:
           KEYSTATIC_GITHUB_CLIENT_ID: ${{ secrets.KEYSTATIC_GITHUB_CLIENT_ID }}
           KEYSTATIC_GITHUB_CLIENT_SECRET: ${{ secrets.KEYSTATIC_GITHUB_CLIENT_SECRET }}
       - name: Deploy application
-        run: pnpm deploy:prod --token=${{ secrets.VERCEL_TOKEN }}
+        id: vercel
+        run: |
+          printf "url=" >> "$GITHUB_OUTPUT"
+          pnpm deploy:prod --token=${{ secrets.VERCEL_TOKEN }} >> "$GITHUB_OUTPUT"
+        env:
+          KEYSTATIC_SECRET: ${{ secrets.KEYSTATIC_SECRET }}
+          KEYSTATIC_GITHUB_CLIENT_ID: ${{ secrets.KEYSTATIC_GITHUB_CLIENT_ID }}
+          KEYSTATIC_GITHUB_CLIENT_SECRET: ${{ secrets.KEYSTATIC_GITHUB_CLIENT_SECRET }}
