@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 
 import svelte from "@astrojs/svelte";
 import markdoc from "@astrojs/markdoc";
@@ -17,6 +17,30 @@ export default defineConfig({
 	vite: {
 		build: {
 			chunkSizeWarningLimit: 3000, // kB
+		},
+	},
+	env: {
+		schema: {
+			PUBLIC_VERCEL_GIT_REPO_OWNER: envField.string({
+				access: "public",
+				context: "client",
+				default: import.meta.env.PUBLIC_VERCEL_GIT_REPO_OWNER,
+			}),
+			PUBLIC_VERCEL_GIT_REPO_SLUG: envField.string({
+				access: "public",
+				context: "client",
+				default: import.meta.env.PUBLIC_VERCEL_GIT_REPO_SLUG,
+			}),
+			PUBLIC_VERCEL_GIT_COMMIT_SHA: envField.string({
+				access: "public",
+				context: "client",
+				default: import.meta.env.PUBLIC_VERCEL_GIT_COMMIT_SHA,
+			}),
+			PUBLIC_VERCEL_GIT_COMMIT_MESSAGE: envField.string({
+				access: "public",
+				context: "client",
+				default: import.meta.env.PUBLIC_VERCEL_GIT_COMMIT_MESSAGE,
+			}),
 		},
 	},
 	redirects: {
