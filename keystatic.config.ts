@@ -1,41 +1,55 @@
 import { config, fields, collection, singleton } from "@keystatic/core";
+import { localised, localesRegex, } from "@utils/keystatic/locales";
 
 export default config({
 	storage: {
 		kind: "github",
 		repo: {
-			owner: "kamontat",
-			name: "website",
+			owner: import.meta.env.PUBLIC_VERCEL_GIT_REPO_OWNER,
+			name: import.meta.env.PUBLIC_VERCEL_GIT_REPO_SLUG,
 		},
 	},
 	locale: "en-US",
 	singletons: {
 		information: singleton({
 			label: "Information",
-			path: "src/data/information",
+			path: "src/contents/data/information",
 			schema: {
-				firstName: fields.text({ label: "First name" }),
-				lastName: fields.text({ label: "Last name" }),
+				firstName: localised(fields.text, { label: "First name" }),
+				lastName: localised(fields.text, { label: "Last name" }),
 			},
 		}),
 	},
 	collections: {
 		posts: collection({
 			label: "Posts",
-			slugField: "title",
-			path: "src/blog/posts/*",
+			slugField: "slug",
+			path: "src/contents/posts/**",
 			format: { contentField: "content" },
 			entryLayout: "content",
 			schema: {
-				title: fields.slug({ name: { label: "Title" } }),
-				pubDate: fields.date({ label: "Publish date" }),
-				modDate: fields.date({ label: "Modified date" }),
+				slug: fields.text({
+					label: "Slug",
+					validation: { isRequired: true, pattern: { regex: localesRegex } }
+				}),
+				title: fields.text({
+					label: "Title",
+					validation: { isRequired: true }
+				}),
+				pubDate: fields.date({
+					label: "Publish date",
+					defaultValue: { kind: "today" },
+					validation: { isRequired: true }
+				}),
+				modDate: fields.date({
+					label: "Modified date",
+				}),
 				content: fields.markdoc({
 					label: "Content",
 					extension: "mdoc",
 					options: {
 						image: {
-							directory: "src/blog/images",
+							directory: "src/contents/images",
 							publicPath: "../images/",
 						},
 					},
