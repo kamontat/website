@@ -6,13 +6,13 @@
 	"scripts": {
 		"preinstall": "astro telemetry disable && vercel telemetry disable",
 		"prettier": "prettier .",
-		"eslint": "eslint --ext .js,.cjs,.mjs,.ts,.astro .",
+		"eslint": "eslint .",
 		"check:prettier": "pnpm prettier --check",
 		"check:eslint": "pnpm eslint",
 		"check:astro": "astro check",
 		"check": "pnpm check:prettier && pnpm check:eslint && pnpm check:astro",
 		"format:prettier": "pnpm prettier --write",
-		"format:eslint": "pnpm eslint --fix",
+		"format:eslint": "pnpm eslint --fix .",
 		"format": "pnpm format:prettier && pnpm format:eslint",
 		"dev": "astro dev",
 		"build": "astro build",
@@ -31,10 +31,10 @@
 		"astro": "5.10.1",
 		"react": "19.1.0",
 		"react-dom": "19.1.0",
-		"svelte": "5.34.7",
-		"typescript": "5.8.3"
+		"svelte": "5.34.7"
 	},
 	"devDependencies": {
+		"@eslint/js": "9.29.0",
 		"@types/node": "24.0.3",
 		"@types/react": "latest",
 		"@types/react-dom": "19.1.6",
@@ -44,6 +44,8 @@
 		"eslint-plugin-jsx-a11y": "6.10.2",
 		"prettier": "3.6.0",
 		"prettier-plugin-astro": "0.14.1",
+		"typescript": "5.8.3",
+		"typescript-eslint": "8.35.0",
 		"vercel": "44.1.0"
 	},
 	"packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac",

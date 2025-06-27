@@ -1,12 +1,17 @@
-import { fields, type ObjectField } from "@keystatic/core"
+import {
+	fields,
+	type ComponentSchema,
+	type ObjectField,
+} from "@keystatic/core";
 
 export const locales = {
-	en: 'English',
-	th: 'Thai',
-} as const
-export const localesRegex = /(en|th)\/[\w\d-]+/
+	en: "English",
+	th: "Thai",
+} as const;
+export const localesRegex = /(en|th)\/[\w\d-]+/;
 
-export type Locale = keyof typeof locales
+export type Locale = keyof typeof locales;
+export type Function = (arg: object & { label: string }) => ComponentSchema;
 
 /**
  * Support basic i18n by repeating a given Keystatic field for each locale.
@@ -18,20 +23,20 @@ export type Locale = keyof typeof locales
  * @param fieldConfig The config
  * @returns The localised fields
  */
-function localised<F extends (...args: any) => any>(
+function localised<F extends Function>(
 	field: F,
-	...fieldParams: Parameters<F>
+	param: Parameters<F>[0],
 ): ObjectField<Record<Locale, ReturnType<F>>> {
-	const empty = {} as Record<Locale, ReturnType<F>>
+	const empty = {} as Record<Locale, ReturnType<F>>;
 	const object = Object.entries(locales).reduce((res, [key, value]) => {
 		res[key as Locale] = field({
-			...fieldParams[0],
-			label: `${fieldParams[0].label} - ${value}`
-		})
-		return res
-	}, empty)
+			...param,
+			label: `${param.label} - ${value}`,
+		}) as ReturnType<F>;
+		return res;
+	}, empty);
 
-	return fields.object(object)
+	return fields.object(object);
 }
 
-export { localised }
+export { localised };

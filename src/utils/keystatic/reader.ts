@@ -4,8 +4,8 @@ import { createReader } from "@keystatic/core/reader";
 
 import config from "@keystatic/config";
 
-const owner = import.meta.env.PUBLIC_VERCEL_GIT_REPO_OWNER
-const name = import.meta.env.PUBLIC_VERCEL_GIT_REPO_SLUG
+const owner = import.meta.env.PUBLIC_VERCEL_GIT_REPO_OWNER;
+const name = import.meta.env.PUBLIC_VERCEL_GIT_REPO_SLUG;
 
 export const getReader = () => {
 	if (config.storage.kind === "github") {
@@ -13,6 +13,6 @@ export const getReader = () => {
 			repo: `${owner}/${name}`,
 		});
 	} else {
-		return createReader(cwd(), config)
+		return createReader(cwd(), config);
 	}
-}
+};
