@@ -21,29 +21,33 @@ export default defineConfig({
 	},
 	env: {
 		schema: {
-			PUBLIC_VERCEL_GIT_REPO_OWNER: envField.string({
+			GITHUB_REPOSITORY: envField.string({
 				access: "public",
 				context: "client",
-				default: import.meta.env.PUBLIC_VERCEL_GIT_REPO_OWNER,
-				optional: true,
 			}),
-			PUBLIC_VERCEL_GIT_REPO_SLUG: envField.string({
+			GITHUB_SHA: envField.string({
 				access: "public",
 				context: "client",
-				default: import.meta.env.PUBLIC_VERCEL_GIT_REPO_SLUG,
-				optional: true,
 			}),
-			PUBLIC_VERCEL_GIT_COMMIT_SHA: envField.string({
+			PUBLIC_KEYSTATIC_GITHUB_APP_SLUG: envField.string({
 				access: "public",
 				context: "client",
-				default: import.meta.env.PUBLIC_VERCEL_GIT_COMMIT_SHA,
-				optional: true,
 			}),
-			PUBLIC_VERCEL_GIT_COMMIT_MESSAGE: envField.string({
-				access: "public",
-				context: "client",
-				default: import.meta.env.PUBLIC_VERCEL_GIT_COMMIT_MESSAGE,
-				optional: true,
+			KEYSTATIC_GITHUB_CLIENT_ID: envField.string({
+				access: "secret",
+				context: "server",
+			}),
+			KEYSTATIC_GITHUB_CLIENT_SECRET: envField.string({
+				access: "secret",
+				context: "server",
+			}),
+			KEYSTATIC_SECRET: envField.string({
+				access: "secret",
+				context: "server",
+			}),
+			VERCEL_TOKEN: envField.string({
+				access: "secret",
+				context: "server",
 			}),
 		},
 	},
