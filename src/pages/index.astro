@@ -1,8 +1,11 @@
 ---
 import { getReader } from "@utils/keystatic";
+import { locales, type Locale } from "@utils/keystatic/locales";
 
 const reader = getReader();
 const information = await reader.singletons.information.readOrThrow();
+
+const lang = Object.keys(locales)[0] as Locale;
 ---
 
 <html lang="en">
@@ -15,6 +18,8 @@ const information = await reader.singletons.information.readOrThrow();
 	</head>
 	<body>
 		<h1>Astro</h1>
-		<span>{information.firstName} {information.lastName}</span>
+		<span id="name">{information.firstName.en} {information.lastName.en}</span>
+		<br />
+		<span id="name">{information.firstName.th} {information.lastName.th}</span>
 	</body>
 </html>
