@@ -2,7 +2,7 @@ import { config, fields, collection, singleton } from "@keystatic/core";
 import { localised, localesRegex } from "@utils/keystatic/locales";
 import { GITHUB_REPOSITORY } from "astro:env/client";
 
-const [owner, name] = GITHUB_REPOSITORY.split("/")
+const [owner, name] = GITHUB_REPOSITORY.split("/");
 export default config({
 	storage: {
 		kind: "github",
