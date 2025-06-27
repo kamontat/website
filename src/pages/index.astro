@@ -1,11 +1,8 @@
 ---
 import { getReader } from "@utils/keystatic";
-import { locales, type Locale } from "@utils/keystatic/locales";
 
 const reader = getReader();
 const information = await reader.singletons.information.readOrThrow();
-
-const lang = Object.keys(locales)[0] as Locale;
 ---
 
 <html lang="en">
