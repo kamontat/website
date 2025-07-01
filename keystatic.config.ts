@@ -5,11 +5,14 @@ import { CI, GITHUB_REPOSITORY } from "astro:env/client";
 
 const [owner, name] = GITHUB_REPOSITORY.split("/");
 
-const storage = CI ? {
-	kind: "github", repo: { owner, name }
-} satisfies GitHubConfig["storage"] : {
-	kind: "local"
-} satisfies LocalConfig["storage"];
+const storage = CI
+	? ({
+			kind: "github",
+			repo: { owner, name },
+		} satisfies GitHubConfig["storage"])
+	: ({
+			kind: "local",
+		} satisfies LocalConfig["storage"]);
 
 export default config({
 	storage,
