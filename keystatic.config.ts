@@ -13,10 +13,23 @@ export default config({
 			label: "Information",
 			path: "src/contents/data/information",
 			schema: {
-				firstName: localised(fields.text, { label: "First name", validation: { isRequired: true } }),
-				lastName: localised(fields.text, { label: "Last name", validation: { isRequired: true } }),
-				nickName: localised(fields.text, { label: "Nickname", validation: { isRequired: true } }),
-				summary: localised(fields.text, { label: "Summary", multiline: true, validation: { isRequired: true } })
+				firstName: localised(fields.text, {
+					label: "First name",
+					validation: { isRequired: true },
+				}),
+				lastName: localised(fields.text, {
+					label: "Last name",
+					validation: { isRequired: true },
+				}),
+				nickName: localised(fields.text, {
+					label: "Nickname",
+					validation: { isRequired: true },
+				}),
+				summary: localised(fields.text, {
+					label: "Summary",
+					multiline: true,
+					validation: { isRequired: true },
+				}),
 			},
 		}),
 		links: singleton({
@@ -24,9 +37,9 @@ export default config({
 			path: "src/contents/data/links",
 			schema: {
 				facebook: fields.url({ label: "Facebook" }),
-				x: fields.url({ label: "X (Twitter)" })
-			}
-		})
+				x: fields.url({ label: "X (Twitter)" }),
+			},
+		}),
 	},
 	collections: {
 		posts: collection({
