@@ -1,12 +1,18 @@
+import type { LocalConfig, GitHubConfig } from "@keystatic/core";
 import { config, fields, collection, singleton } from "@keystatic/core";
 import { localised, localesRegex } from "@utils/keystatic/locales";
-// import { GITHUB_REPOSITORY } from "astro:env/client";
+import { CI, GITHUB_REPOSITORY } from "astro:env/client";
 
-// const [owner, name] = GITHUB_REPOSITORY.split("/");
+const [owner, name] = GITHUB_REPOSITORY.split("/");
+
+const storage = CI ? {
+	kind: "github", repo: { owner, name }
+} satisfies GitHubConfig["storage"] : {
+	kind: "local"
+} satisfies LocalConfig["storage"];
+
 export default config({
-	storage: {
-		kind: "local",
-	},
+	storage,
 	locale: "en-US",
 	singletons: {
 		information: singleton({

@@ -21,6 +21,11 @@ export default defineConfig({
 	},
 	env: {
 		schema: {
+			CI: envField.boolean({
+				access: "public",
+				context: "client",
+				default: false,
+			}),
 			GITHUB_REPOSITORY: envField.string({
 				access: "public",
 				context: "client",
