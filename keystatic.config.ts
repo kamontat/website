@@ -1,15 +1,11 @@
 import { config, fields, collection, singleton } from "@keystatic/core";
 import { localised, localesRegex } from "@utils/keystatic/locales";
-import { GITHUB_REPOSITORY } from "astro:env/client";
+// import { GITHUB_REPOSITORY } from "astro:env/client";
 
-const [owner, name] = GITHUB_REPOSITORY.split("/");
+// const [owner, name] = GITHUB_REPOSITORY.split("/");
 export default config({
 	storage: {
-		kind: "github",
-		repo: {
-			owner,
-			name,
-		},
+		kind: "local",
 	},
 	locale: "en-US",
 	singletons: {
@@ -17,10 +13,20 @@ export default config({
 			label: "Information",
 			path: "src/contents/data/information",
 			schema: {
-				firstName: localised(fields.text, { label: "First name" }),
-				lastName: localised(fields.text, { label: "Last name" }),
+				firstName: localised(fields.text, { label: "First name", validation: { isRequired: true } }),
+				lastName: localised(fields.text, { label: "Last name", validation: { isRequired: true } }),
+				nickName: localised(fields.text, { label: "Nickname", validation: { isRequired: true } }),
+				summary: localised(fields.text, { label: "Summary", multiline: true, validation: { isRequired: true } })
 			},
 		}),
+		links: singleton({
+			label: "Links",
+			path: "src/contents/data/links",
+			schema: {
+				facebook: fields.url({ label: "Facebook" }),
+				x: fields.url({ label: "X (Twitter)" })
+			}
+		})
 	},
 	collections: {
 		posts: collection({
