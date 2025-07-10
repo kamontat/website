@@ -7,7 +7,13 @@ import eslintPluginAstro from "eslint-plugin-astro";
 import unocss from "@unocss/eslint-config/flat";
 
 export default tseslint.config(
-	globalIgnores(["node_modules", "dist", ".vercel", ".astro"]),
+	globalIgnores([
+		"node_modules",
+		"dist",
+		".vercel",
+		".astro",
+		"postcss.config.cjs",
+	]),
 	eslint.configs.recommended,
 	tseslint.configs.eslintRecommended,
 	tseslint.configs.recommended,

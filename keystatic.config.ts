@@ -1,18 +1,19 @@
 import type { LocalConfig, GitHubConfig } from "@keystatic/core";
 import { config, fields, collection, singleton } from "@keystatic/core";
-import { localised, localesRegex } from "@utils/keystatic/locales";
+import { localised } from "@utils/keystatic/internal";
+import { localePathRegex } from "@utils/i18n";
 import { CI, GITHUB_REPOSITORY } from "astro:env/client";
 
 const [owner, name] = GITHUB_REPOSITORY.split("/");
 
 const storage = CI
 	? ({
-		kind: "github",
-		repo: { owner, name },
-	} satisfies GitHubConfig["storage"])
+			kind: "github",
+			repo: { owner, name },
+		} satisfies GitHubConfig["storage"])
 	: ({
-		kind: "local",
-	} satisfies LocalConfig["storage"]);
+			kind: "local",
+		} satisfies LocalConfig["storage"]);
 
 export default config({
 	storage,
@@ -26,7 +27,7 @@ export default config({
 					label: "Profile",
 					directory: "src/contents/images",
 					publicPath: "../images",
-					validation: { isRequired: false }
+					validation: { isRequired: false },
 				}),
 				firstName: localised(fields.text, {
 					label: "First name",
@@ -66,7 +67,7 @@ export default config({
 			schema: {
 				slug: fields.text({
 					label: "Slug",
-					validation: { isRequired: true, pattern: { regex: localesRegex } },
+					validation: { isRequired: true, pattern: { regex: localePathRegex } },
 				}),
 				title: fields.text({
 					label: "Title",
