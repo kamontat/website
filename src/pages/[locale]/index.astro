@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { readSingleton } from "@utils/keystatic";
+import { getLocales, getLocale } from "@utils/i18n";
+
+export function getStaticPaths() {
+	return getLocales().map((locale) => ({ params: { locale } }));
+}
+
+const locale = getLocale(Astro.currentLocale);
+const information = await readSingleton("information");
+---
+
+<BaseLayout lang={locale} title="Astro">
+	<h1>Astro</h1>
+	<span id="name">
+		{information.getByLocale("firstName", locale)}
+		{information.getByLocale("lastName", locale)}
+	</span>
+</BaseLayout>

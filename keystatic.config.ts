@@ -7,12 +7,12 @@ const [owner, name] = GITHUB_REPOSITORY.split("/");
 
 const storage = CI
 	? ({
-			kind: "github",
-			repo: { owner, name },
-		} satisfies GitHubConfig["storage"])
+		kind: "github",
+		repo: { owner, name },
+	} satisfies GitHubConfig["storage"])
 	: ({
-			kind: "local",
-		} satisfies LocalConfig["storage"]);
+		kind: "local",
+	} satisfies LocalConfig["storage"]);
 
 export default config({
 	storage,
@@ -22,6 +22,12 @@ export default config({
 			label: "Information",
 			path: "src/contents/data/information",
 			schema: {
+				profilePicture: fields.image({
+					label: "Profile",
+					directory: "src/contents/images",
+					publicPath: "../images",
+					validation: { isRequired: false }
+				}),
 				firstName: localised(fields.text, {
 					label: "First name",
 					validation: { isRequired: true },
