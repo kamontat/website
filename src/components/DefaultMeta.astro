@@ -1,0 +1,54 @@
+---
+import { getLocale, getLocales } from "@utils/i18n";
+import pkg from "package.json";
+
+interface Props {
+	site?: string;
+	title: string;
+	description?: string;
+	author?: { name: string; email: string; twitter?: string };
+}
+
+const props = Astro.props;
+const site = props.site ?? "KC";
+const title = props.title;
+const description = props.description ?? pkg.description;
+const author = props.author ?? {
+	name: pkg.author.name,
+	email: pkg.author.email,
+};
+
+const language = getLocale(Astro.currentLocale);
+const languages = getLocales();
+---
+
+<!-- Default -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{title} | {site}</title>
+
+<!-- OpenGraph -->
+<meta property="og:site_name" content={site} />
+<meta property="og:title" content={title} />
+<meta name="description" property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<!-- TODO: update og:image -->
+<!-- <meta property="og:image" content="https://ia.media-imdb.com/images/rock.jpg" /> -->
+<!-- <meta property="og:image:alt" content="Image description" /> -->
+<meta property="og:locale" content={language} />
+{languages.map((l) => <meta property="og:locale:alternate" content={l} />)}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content={pkg.author.twitter} />
+<meta name="twitter:creator" content={author.twitter ?? pkg.author.twitter} />
+
+<!-- Custom -->
+<meta name="git:repo" content={pkg.repository.url} />
+<meta name="git:version" content={pkg.version} />
+<meta name="author:name" content={author.name} />
+<meta name="author:email" content={author.email} />
+<meta name="copyright" content={pkg.license} />

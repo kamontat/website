@@ -1,0 +1,21 @@
+---
+import DefaultMeta from "@components/DefaultMeta.astro";
+
+interface Props {
+	lang?: string;
+	title: string;
+}
+
+const { lang, title } = Astro.props;
+---
+
+<html lang={lang}>
+	<head>
+		<DefaultMeta title={title} />
+
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
