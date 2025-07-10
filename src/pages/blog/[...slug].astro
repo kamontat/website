@@ -1,20 +1,20 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import BlogLayout from "@layouts/BlogLayout.astro";
 import Title from "@components/Title.astro";
-import { listCollections, readCollection } from "@utils/keystatic";
-import { getLocale } from "@utils/i18n";
+
+import { getCollections, getCollection } from "@utils/contents";
 
 export async function getStaticPaths() {
-	const posts = await listCollections("posts");
-	return posts.map((slug) => ({ params: { slug } }));
+	const posts = await getCollections("posts");
+	return posts.map((post) => ({ params: { slug: post.id } }));
 }
 
 const { slug } = Astro.params;
-const locale = getLocale(Astro.currentLocale);
-const post = await readCollection("posts", slug);
+const post = await getCollection("posts", slug);
+const { Content } = await post.render();
 ---
 
-<BaseLayout lang={locale} title="Astro">
-	<Title text={post.title} />
-	<span id="name" class="text-2xl font-sans"> unknown </span>
-</BaseLayout>
+<BlogLayout title={post.get("title")}>
+	<Title text={post.id} />
+	<Content />
+</BlogLayout>

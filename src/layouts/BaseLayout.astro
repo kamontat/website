@@ -1,21 +1,29 @@
 ---
 import DefaultMeta from "@components/DefaultMeta.astro";
+import { getLocale } from "@utils/i18n";
 
 interface Props {
-	lang?: string;
 	title: string;
+	site: string;
+	description?: string;
+	author?: { name: string; email: string; twitter?: string };
 }
 
-const { lang, title } = Astro.props;
+const { title, site, description, author } = Astro.props;
+const lang = getLocale(Astro.currentLocale);
 ---
 
 <html lang={lang}>
 	<head>
-		<DefaultMeta title={title} />
-
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<DefaultMeta
+			title={title}
+			site={site}
+			description={description}
+			author={author}
+		/>
+		<slot name="head" />
 	</head>
-	<body>
+	<body class="mx-3 my-5 flex flex-col items-center">
 		<slot />
 	</body>
 </html>

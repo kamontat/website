@@ -1,24 +1,28 @@
 ---
+import BlogLayout from "@layouts/BlogLayout.astro";
+
 import { getLocale, getLocales } from "@utils/i18n";
-import { readAllCollections } from "@utils/keystatic";
-import { getSlugUrl } from "@utils/keystatic/posts";
+import { getCollections } from "@utils/contents";
+import { getPostUrl } from "@utils/keystatic/posts";
 
 export function getStaticPaths() {
 	return getLocales().map((locale) => ({ params: { locale } }));
 }
 
 const locale = getLocale(Astro.currentLocale);
-const posts = await readAllCollections("posts");
+const posts = await getCollections("posts");
 ---
 
-<ul>
-	{
-		posts
-			.filter((post) => getLocale(post.slug) === locale)
-			.map((post) => (
-				<li>
-					<a href={getSlugUrl("blog", post.slug)}>{post.entry.title}</a>
-				</li>
-			))
-	}
-</ul>
+<BlogLayout title="Posts">
+	<ul>
+		{
+			posts
+				.filter((post) => getLocale(post.id) === locale)
+				.map((post) => (
+					<li>
+						<a href={getPostUrl(post.id)}>{post.get("title")}</a>
+					</li>
+				))
+		}
+	</ul>
+</BlogLayout>

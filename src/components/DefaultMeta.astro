@@ -3,14 +3,14 @@ import { getLocale, getLocales } from "@utils/i18n";
 import pkg from "package.json";
 
 interface Props {
-	site?: string;
 	title: string;
+	site: string;
 	description?: string;
 	author?: { name: string; email: string; twitter?: string };
 }
 
 const props = Astro.props;
-const site = props.site ?? "KC";
+const site = props.site;
 const title = props.title;
 const description = props.description ?? pkg.description;
 const author = props.author ?? {
