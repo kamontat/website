@@ -3,20 +3,62 @@ import { defineConfig, envField } from "astro/config";
 
 import svelte from "@astrojs/svelte";
 import markdoc from "@astrojs/markdoc";
-import keystatic from "@keystatic/astro";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
+import keystatic from "@keystatic/astro";
+import UnoCSS from "unocss/astro";
 
 // https://astro.build/config
 export default defineConfig({
 	site: "https://kc.in.th",
-	integrations: [svelte(), markdoc(), sitemap(), keystatic(), react()],
-	adapter: vercel(),
+	integrations: [
+		svelte(),
+		markdoc(),
+		sitemap(),
+		keystatic(),
+		react(),
+		UnoCSS({ injectReset: true }),
+	],
+	adapter: vercel({
+		isr: {
+			expiration: 60 * 60 * 24, // second
+		},
+	}),
 	output: "static",
-	vite: {
-		build: {
-			chunkSizeWarningLimit: 3000, // kB
+	prefetch: {
+		defaultStrategy: "hover",
+		prefetchAll: true,
+	},
+	i18n: {
+		locales: ["en", "th"],
+		defaultLocale: "en",
+		fallback: {
+			th: "en",
+		},
+		routing: {
+			prefixDefaultLocale: true,
+			redirectToDefaultLocale: true,
+			fallbackType: "redirect",
+		},
+	},
+	redirects: {
+		"/": "/en", // Avoid blank page before redirect occurred
+		"/go/facebook": {
+			status: 301,
+			destination: "https://facebook.com/kamontatc/",
+		},
+		"/go/x": {
+			status: 301,
+			destination: "https://x.com/kamontatc/",
+		},
+		"/go/linkedin": {
+			status: 301,
+			destination: "https://www.linkedin.com/in/kamontat/",
+		},
+		"/go/github": {
+			status: 301,
+			destination: "https://github.com/kamontat/",
 		},
 	},
 	env: {
@@ -56,14 +98,9 @@ export default defineConfig({
 			}),
 		},
 	},
-	redirects: {
-		"/go/facebook": {
-			status: 301,
-			destination: "https://facebook.com/kamontatc",
-		},
-		"/go/x": {
-			status: 301,
-			destination: "https://x.com/kamontatc",
+	vite: {
+		build: {
+			chunkSizeWarningLimit: 3000, // kB
 		},
 	},
 });
