@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Title from "@components/Title.astro";
+import { listCollections, readCollection } from "@utils/keystatic";
+import { getLocale } from "@utils/i18n";
+
+export async function getStaticPaths() {
+	const posts = await listCollections("posts");
+	return posts.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const locale = getLocale(Astro.currentLocale);
+const post = await readCollection("posts", slug);
+---
+
+<BaseLayout lang={locale} title="Astro">
+	<Title text={post.title} />
+	<span id="name" class="text-2xl font-sans"> unknown </span>
+</BaseLayout>

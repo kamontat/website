@@ -1,0 +1,24 @@
+---
+import { getLocale, getLocales } from "@utils/i18n";
+import { readAllCollections } from "@utils/keystatic";
+import { getSlugUrl } from "@utils/keystatic/posts";
+
+export function getStaticPaths() {
+	return getLocales().map((locale) => ({ params: { locale } }));
+}
+
+const locale = getLocale(Astro.currentLocale);
+const posts = await readAllCollections("posts");
+---
+
+<ul>
+	{
+		posts
+			.filter((post) => getLocale(post.slug) === locale)
+			.map((post) => (
+				<li>
+					<a href={getSlugUrl("blog", post.slug)}>{post.entry.title}</a>
+				</li>
+			))
+	}
+</ul>

@@ -3,14 +3,8 @@ import {
 	type ComponentSchema,
 	type ObjectField,
 } from "@keystatic/core";
+import { locales, type Locale } from "@utils/i18n";
 
-export const locales = {
-	en: "English",
-	th: "Thai",
-} as const;
-export const localesRegex = /(en|th)\/[\w\d-]+/;
-
-export type Locale = keyof typeof locales;
 export type Function = (arg: object & { label: string }) => ComponentSchema;
 
 /**
@@ -23,10 +17,10 @@ export type Function = (arg: object & { label: string }) => ComponentSchema;
  * @param fieldConfig The config
  * @returns The localised fields
  */
-function localised<F extends Function>(
+export const localised = <F extends Function>(
 	field: F,
 	param: Parameters<F>[0],
-): ObjectField<Record<Locale, ReturnType<F>>> {
+): ObjectField<Record<Locale, ReturnType<F>>> => {
 	const empty = {} as Record<Locale, ReturnType<F>>;
 	const object = Object.entries(locales).reduce((res, [key, value]) => {
 		res[key as Locale] = field({
@@ -37,6 +31,4 @@ function localised<F extends Function>(
 	}, empty);
 
 	return fields.object(object);
-}
-
-export { localised };
+};

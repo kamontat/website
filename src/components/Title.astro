@@ -1,0 +1,18 @@
+---
+interface Props {
+	text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<div class="flex items-center justify-start">
+	<span
+		aria-hidden="true"
+		class="i-line-md:github-loop"
+		un-text="4xl"
+		un-mx="2"
+	>
+	</span>
+	<h1 un-text="5xl" un-font="sans bold">{text}</h1>
+</div>
