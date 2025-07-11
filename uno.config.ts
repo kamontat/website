@@ -1,3 +1,4 @@
+import type { Theme } from "unocss/preset-wind4";
 import {
 	defineConfig,
 	presetWind4,
@@ -8,11 +9,15 @@ import {
 	transformerDirectives,
 } from "unocss";
 
-export default defineConfig({
+const config = defineConfig({
 	presets: [
 		presetWind4({
-			attributifyPseudo: true,
-			dark: "media",
+			arbitraryVariants: false,
+			preflights: {
+				// Already include on astro.config.mjs file
+				reset: false,
+			},
+			variablePrefix: "un-",
 		}),
 		presetWebFonts({
 			provider: "fontsource",
@@ -40,7 +45,7 @@ export default defineConfig({
 						subsets: ["latin"],
 						variable: {
 							ital: { default: "0", min: "0", max: "1", step: "1" },
-							wght: { default: "400", min: "100", max: "800", step: "100" },
+							wght: { default: "400", min: "200", max: "700", step: "100" },
 						},
 					},
 				],
@@ -65,19 +70,28 @@ export default defineConfig({
 		}),
 	],
 	transformers: [transformerDirectives()],
-	extendTheme: (theme) => {
+	theme: {
+		font: {
+			sans: 'ui-sans-serif,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
+			serif: "ui-serif,serif",
+			mono: "ui-monospace,monospace",
+		},
+		fontWeight: {
+			extralight: "200",
+			light: "300",
+			normal: "400",
+			medium: "500",
+			bold: "700",
+		},
+	} satisfies Theme,
+	extendTheme: (t) => {
+		const theme = t as Theme;
+		console.log(theme.font);
 		return {
 			...theme,
-			fontWeight: {
-				thin: "100",
-				extralight: "200",
-				light: "300",
-				normal: "400",
-				medium: "500",
-				semibold: "600",
-				bold: "700",
-				extrabold: "800",
-			},
 		};
 	},
+	blocklist: [[/font-\d+/, { message: "use named weight instead" }]],
 });
+
+export default config;

@@ -15,10 +15,18 @@ export default defineConfig({
 	integrations: [
 		svelte(),
 		markdoc(),
-		sitemap(),
+		sitemap({
+			i18n: {
+				defaultLocale: "en",
+				locales: {
+					en: "en-US",
+					th: "th-TH",
+				},
+			},
+		}),
 		keystatic(),
 		react(),
-		UnoCSS({ injectReset: true }),
+		UnoCSS({ injectReset: "@kcws/reset.css" }),
 	],
 	adapter: vercel({
 		isr: {
@@ -26,10 +34,6 @@ export default defineConfig({
 		},
 	}),
 	output: "static",
-	prefetch: {
-		defaultStrategy: "hover",
-		prefetchAll: true,
-	},
 	i18n: {
 		locales: ["en", "th"],
 		defaultLocale: "en",
@@ -98,6 +102,13 @@ export default defineConfig({
 				context: "server",
 			}),
 		},
+	},
+	devToolbar: {
+		enabled: false,
+	},
+	prefetch: {
+		defaultStrategy: "hover",
+		prefetchAll: true,
 	},
 	vite: {
 		build: {
