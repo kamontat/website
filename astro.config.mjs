@@ -29,6 +29,8 @@ export default defineConfig({
 		UnoCSS({ injectReset: "@kcws/reset.css" }),
 	],
 	adapter: vercel({
+		imageService: true,
+		devImageService: "sharp",
 		isr: {
 			expiration: 60 * 60 * 24, // second
 		},
@@ -49,6 +51,7 @@ export default defineConfig({
 	redirects: {
 		"/": "/en", // Avoid blank page before redirect occurred
 		"/blog": "/blog/en",
+		"/blog/": "/blog/en",
 		"/go/facebook": {
 			status: 301,
 			destination: "https://facebook.com/kamontatc/",
