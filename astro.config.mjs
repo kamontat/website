@@ -51,7 +51,6 @@ export default defineConfig({
 	redirects: {
 		"/": "/en", // Avoid blank page before redirect occurred
 		"/blog": "/blog/en",
-		"/blog/": "/blog/en",
 		"/go/facebook": {
 			status: 301,
 			destination: "https://facebook.com/kamontatc/",
