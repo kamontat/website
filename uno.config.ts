@@ -86,7 +86,7 @@ const config = defineConfig({
 	} satisfies Theme,
 	extendTheme: (t) => {
 		const theme = t as Theme;
-		console.log(theme.font);
+		// console.log(theme.font);
 		return {
 			...theme,
 		};
