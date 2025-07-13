@@ -31,6 +31,7 @@ export default defineConfig({
 	adapter: vercel({
 		imageService: true,
 		devImageService: "sharp",
+		edgeMiddleware: true,
 		isr: {
 			expiration: 60 * 60 * 24, // second
 		},
