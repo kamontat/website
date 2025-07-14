@@ -51,20 +51,21 @@ export default defineConfig({
 		},
 	},
 	redirects: {
+		"/": "/en",
 		"/go/facebook": {
-			status: 301,
+			status: 302,
 			destination: "https://facebook.com/kamontatc/",
 		},
 		"/go/x": {
-			status: 301,
+			status: 302,
 			destination: "https://x.com/kamontatc/",
 		},
 		"/go/linkedin": {
-			status: 301,
+			status: 302,
 			destination: "https://www.linkedin.com/in/kamontat/",
 		},
 		"/go/github": {
-			status: 301,
+			status: 302,
 			destination: "https://github.com/kamontat/",
 		},
 	},

@@ -2,44 +2,28 @@
 	"$schema": "https://openapi.vercel.sh/vercel.json",
 	"routes": [
 		{
-			"src": "/(?<lang>th|en)/(?<path>.*)",
-			"has": [
-				{
-					"type": "host",
-					"value": "blog.kc.in.th"
-				}
-			],
+			"$comment": "when visit /blog/* with path",
+			"src": "^/blog/(?<path>.*)$",
 			"headers": {
-				"Location": "https://kc.in.th/blog/$lang/$path"
+				"Location": "https://blog.kc.in.th/$path"
 			},
 			"status": 301
 		},
 		{
-			"src": "/(?<path>.*)",
-			"has": [
-				{
-					"type": "host",
-					"value": "blog.kc.in.th"
-				}
-			],
-			"headers": {
-				"Location": "https://kc.in.th/$path"
-			},
-			"status": 301
-		},
-		{
-			"src": "^/$",
-			"headers": {
-				"Location": "/en"
-			},
-			"status": 301
-		},
-		{
+			"$comment": "when visit /blog without path, default to english",
 			"src": "^/blog[/]?$",
 			"headers": {
-				"Location": "/blog/en"
+				"Location": "https://blog.kc.in.th"
 			},
 			"status": 301
+		},
+		{
+			"$comment": "when visit blog.kc.in.th/, rewrite to kc.in.th/blog",
+			"src": "^/$",
+			"headers": {
+				"Location": "https://blog.kc.in.th"
+			},
+			"dest": "https://kc.in.th/blog"
 		}
 	]
 }
