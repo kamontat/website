@@ -10,9 +10,7 @@
 				}
 			],
 			"dest": "https://kc.in.th/blog/$path"
-		}
-	],
-	"afterRoutes": [
+		},
 		{
 			"$comment": "when visit blog.kc.in.th/blog, redirect to blog.kc.in.th",
 			"src": "^/blog[/]?$",
@@ -40,7 +38,9 @@
 				"Location": "/$path"
 			},
 			"status": 301
-		},
+		}
+	],
+	"afterRoutes": [
 		{
 			"$comment": "when visit <domain>/*, redirect to /en version",
 			"src": "^/(?<path>(?:(?!th(/|$)|en(/|$)|blog(/|$))).*)$",
