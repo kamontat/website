@@ -9,7 +9,10 @@
 					"value": "blog.kc.in.th"
 				}
 			],
-			"dest": "/blog/$lang/$path"
+			"headers": {
+				"Location": "https://kc.in.th/blog/$lang/$path"
+			},
+			"status": 301
 		},
 		{
 			"src": "/(?<path>.*)",
@@ -19,18 +22,8 @@
 					"value": "blog.kc.in.th"
 				}
 			],
-			"dest": "/blog/en/$path"
-		},
-		{
-			"src": "/blog(?<path>.*)",
-			"has": [
-				{
-					"type": "host",
-					"value": "blog.kc.in.th"
-				}
-			],
 			"headers": {
-				"Location": "/$path"
+				"Location": "https://kc.in.th/$path"
 			},
 			"status": 301
 		},
