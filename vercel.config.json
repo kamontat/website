@@ -5,7 +5,8 @@
 			"$comment": "when visit <domain>/blog/*, redirect to blog.kc.in.th",
 			"src": "^/blog/(?<path>.*)$",
 			"headers": {
-				"Location": "https://blog.kc.in.th/$path"
+				"Location": "https://blog.kc.in.th/$path",
+				"X-Rule-ID": "1"
 			},
 			"status": 301
 		},
@@ -13,7 +14,8 @@
 			"$comment": "when visit <domain>/blog, redirect to blog.kc.in.th",
 			"src": "^/blog[/]?$",
 			"headers": {
-				"Location": "https://blog.kc.in.th"
+				"Location": "https://blog.kc.in.th",
+				"X-Rule-ID": "2"
 			},
 			"status": 301
 		},
@@ -21,7 +23,8 @@
 			"$comment": "when visit <domain>/*, redirect to /en version",
 			"src": "^/(?<path>(?:(?!th(/|$)|en(/|$))).*)$",
 			"headers": {
-				"Location": "/en/$path"
+				"Location": "/en/$path",
+				"X-Rule-ID": "3"
 			},
 			"status": 301
 		},
