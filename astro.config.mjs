@@ -51,6 +51,7 @@ export default defineConfig({
 		},
 	},
 	redirects: {
+		"/": "/en",
 		"/go/facebook": {
 			status: 302,
 			destination: "https://facebook.com/kamontatc/",
