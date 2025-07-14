@@ -1,5 +1,6 @@
 ---
 import { getLocale, getLocales } from "@utils/i18n";
+import { GITHUB_REPOSITORY, GITHUB_REF, GITHUB_SHA } from "astro:env/client";
 import pkg from "package.json";
 
 interface Props {
@@ -47,7 +48,10 @@ const languages = getLocales();
 <meta name="twitter:creator" content={author.twitter ?? pkg.author.twitter} />
 
 <!-- Custom -->
-<meta name="git:repo" content={pkg.repository.url} />
+<meta name="git:repo" content={GITHUB_REPOSITORY} />
+<meta name="git:url" content={pkg.repository.url} />
+<meta name="git:ref" content={GITHUB_REF} />
+<meta name="git:sha" content={GITHUB_SHA} />
 <meta name="git:version" content={pkg.version} />
 <meta name="author:name" content={author.name} />
 <meta name="author:email" content={author.email} />

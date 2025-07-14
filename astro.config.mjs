@@ -83,6 +83,10 @@ export default defineConfig({
 				access: "public",
 				context: "client",
 			}),
+			GITHUB_REF: envField.string({
+				access: "public",
+				context: "client",
+			}),
 			PUBLIC_KEYSTATIC_GITHUB_APP_SLUG: envField.string({
 				access: "public",
 				context: "client",
