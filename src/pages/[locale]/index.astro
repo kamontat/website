@@ -15,7 +15,7 @@ const information = await getSingleton("information");
 
 <DefaultLayout title="Home Page">
 	<Title text="Astro" />
-	<span id="name" class="text-2xl font-sans">
+	<span id="name" class="text-2xl text-red-400 font-mono">
 		{information.getByLocale("firstName", locale)}
 		{information.getByLocale("lastName", locale)}
 	</span>
