@@ -2,6 +2,16 @@
 	"$schema": "https://openapi.vercel.sh/vercel.json",
 	"routes": [
 		{
+			"src": "/(?<lang>th|en)/(?<path>.*)",
+			"has": [
+				{
+					"type": "host",
+					"value": "blog.kc.in.th"
+				}
+			],
+			"dest": "/blog/$lang/$path"
+		},
+		{
 			"src": "/(?<path>.*)",
 			"has": [
 				{
@@ -9,7 +19,20 @@
 					"value": "blog.kc.in.th"
 				}
 			],
-			"dest": "/blog/$path"
+			"dest": "/blog/en/$path"
+		},
+		{
+			"src": "/blog(?<path>.*)",
+			"has": [
+				{
+					"type": "host",
+					"value": "blog.kc.in.th"
+				}
+			],
+			"headers": {
+				"Location": "/$path"
+			},
+			"status": 301
 		},
 		{
 			"src": "^/$",
