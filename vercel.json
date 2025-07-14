@@ -10,6 +10,21 @@
 				}
 			],
 			"dest": "/blog/$path"
+		},
+		{
+			// Avoid blank page before i18n redirection
+			"src": "^/$",
+			"headers": {
+				"Location": "/en"
+			},
+			"status": 301
+		},
+		{
+			"src": "^/blog[/]?$",
+			"headers": {
+				"Location": "/blog/en"
+			},
+			"status": 301
 		}
 	]
 }

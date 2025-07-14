@@ -34,10 +34,7 @@ export default defineConfig({
 		edgeMiddleware: true,
 		isr: {
 			expiration: 60 * 60 * 24, // second
-			exclude: [
-				/^\/api\/.+/,
-				/^\/keystatic\/.+/,
-			]
+			exclude: [/^\/api\/.+/, /^\/keystatic\/.+/],
 		},
 	}),
 	output: "static",
@@ -54,8 +51,6 @@ export default defineConfig({
 		},
 	},
 	redirects: {
-		"/": "/en", // Avoid blank page before redirect occurred
-		"/blog": "/blog/en",
 		"/go/facebook": {
 			status: 301,
 			destination: "https://facebook.com/kamontatc/",
