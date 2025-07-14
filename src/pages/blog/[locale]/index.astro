@@ -20,7 +20,7 @@ const posts = await getCollections("posts");
 				.filter((post) => getLocale(post.id) === locale)
 				.map((post) => (
 					<li>
-						<a href={getPostUrl(post.id)}>{post.get("title")}</a>
+						<a href={getPostUrl(post.id, Astro.url)}>{post.get("title")}</a>
 					</li>
 				))
 		}
