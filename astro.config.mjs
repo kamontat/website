@@ -34,6 +34,10 @@ export default defineConfig({
 		edgeMiddleware: true,
 		isr: {
 			expiration: 60 * 60 * 24, // second
+			exclude: [
+				/^\/api\/.+/,
+				/^\/keystatic\/.+/,
+			]
 		},
 	}),
 	output: "static",
