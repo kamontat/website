@@ -1,0 +1,15 @@
+{
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"routes": [
+		{
+			"src": "/(?<path>.*)",
+			"has": [
+				{
+					"type": "host",
+					"value": "blog.kc.in.th"
+				}
+			],
+			"dest": "/blog/$path"
+		}
+	]
+}

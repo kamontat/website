@@ -17,20 +17,20 @@
 	},
 	"license": "ISC",
 	"scripts": {
-		"preinstall": "astro telemetry disable && vercel telemetry disable",
+		"preinstall": "sh scripts/preinstall.sh",
 		"prettier": "prettier .",
 		"eslint": "eslint .",
 		"check:prettier": "pnpm run prettier --check",
 		"check:eslint": "pnpm run eslint",
 		"check:astro": "astro check",
-		"check": "pnpm run check:prettier && pnpm run check:eslint && pnpm run check:astro",
 		"format:prettier": "pnpm run prettier --write",
 		"format:eslint": "pnpm run eslint --fix .",
-		"format": "pnpm run format:prettier && pnpm run format:eslint",
-		"dev": "astro dev",
-		"build": "astro build",
-		"deploy:stag": "vercel deploy --yes --prebuilt --no-logs --env KEYSTATIC_SECRET=$KEYSTATIC_SECRET --env KEYSTATIC_GITHUB_CLIENT_ID=$KEYSTATIC_GITHUB_CLIENT_ID --env KEYSTATIC_GITHUB_CLIENT_SECRET=$KEYSTATIC_GITHUB_CLIENT_SECRET",
-		"deploy:prod": "pnpm run deploy:stag --prod"
+		"check": "sh scripts/check.sh",
+		"format": "sh scripts/format.sh",
+		"dev": "sh scripts/dev.sh",
+		"build": "sh scripts/build.sh",
+		"deploy:stag": "sh scripts/deploy.sh",
+		"deploy:prod": "sh scripts/deploy.sh --prod"
 	},
 	"dependencies": {
 		"@astrojs/check": "0.9.4",
