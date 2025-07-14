@@ -1,4 +1,6 @@
 {
+	// Use vercel.config.json so vercel cli don't know about this file
+	// vercel should use output file from `astro build`
 	"$schema": "https://openapi.vercel.sh/vercel.json",
 	"routes": [
 		{
