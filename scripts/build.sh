@@ -8,7 +8,7 @@ cd "$(dirname "$0")/.."
 
 # shellcheck disable=SC2016
 QUERY='reduce inputs as $in (.; . + $in + {"routes": ($in.routes + .routes)})'
-ROOT_CONF="$PWD/vercel.json"
+ROOT_CONF="$PWD/vercel.config.json"
 OUTPUT_CONF="$PWD/.vercel/output/config.json"
 TMP_CONF="$PWD/.vercel/output/config.json.tmp"
 
