@@ -19,7 +19,7 @@
 		},
 		{
 			"$comment": "when visit <domain>/*, redirect to /en version",
-			"src": "^/(?<path>(?:(?!th/|en/)).*)$",
+			"src": "^/(?<path>(?:(?!th\b|en\b)).*)$",
 			"headers": {
 				"Location": "/en/$path"
 			},
