@@ -1,15 +1,5 @@
 {
-	"$schema": "https://openapi.vercel.sh/vercel.json",
-	"routes": [
-		{
-			"$comment": "when visit <domain>/*, redirect to /en version",
-			"src": "^/(?<path>(?:(?!th(/|$)|en(/|$))).*)$",
-			"headers": {
-				"Location": "/en/$path",
-				"X-Rule-ID": "3"
-			},
-			"status": 301
-		},
+	"beforeRoutes": [
 		{
 			"$comment": "when visit blog.kc.in.th/*, rewrite to kc.in.th/blog/*",
 			"src": "^/(?<path>.*)$",
@@ -20,6 +10,45 @@
 				}
 			],
 			"dest": "https://kc.in.th/blog/$path"
+		}
+	],
+	"afterRoutes": [
+		{
+			"$comment": "when visit blog.kc.in.th/blog, redirect to blog.kc.in.th",
+			"src": "^/blog[/]?$",
+			"has": [
+				{
+					"type": "host",
+					"value": "blog.kc.in.th"
+				}
+			],
+			"headers": {
+				"Location": "/"
+			},
+			"status": 301
+		},
+		{
+			"$comment": "when visit blog.kc.in.th/blog/*, redirect to blog.kc.in.th/*",
+			"src": "^/blog/(?<path>.*)$",
+			"has": [
+				{
+					"type": "host",
+					"value": "blog.kc.in.th"
+				}
+			],
+			"headers": {
+				"Location": "/$path"
+			},
+			"status": 301
+		},
+		{
+			"$comment": "when visit <domain>/*, redirect to /en version",
+			"src": "^/(?<path>(?:(?!th(/|$)|en(/|$))).*)$",
+			"headers": {
+				"Location": "/en/$path",
+				"X-Rule-ID": "3"
+			},
+			"status": 301
 		}
 	]
 }
