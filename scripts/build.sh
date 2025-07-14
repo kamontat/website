@@ -8,7 +8,7 @@ cd "$(dirname "$0")/.."
 
 ## Support deep-merge object and arrays, remove "$comment" field
 # shellcheck disable=SC2016
-QUERY='reduce inputs as $in (.; . + $in + {"routes": (($in.routes | map(del(.["$comment"]))) + .routes)})'
+QUERY='reduce inputs as $in (.; . + $in + {"routes": (.routes + ($in.routes | map(del(.["$comment"]))))})'
 ROOT_CONF="$PWD/vercel.config.json"
 OUTPUT_CONF="$PWD/.vercel/output/config.json"
 TMP_CONF="$PWD/.vercel/output/config.json.tmp"
