@@ -1,5 +1,8 @@
 ---
-import DefaultMeta from "@components/DefaultMeta.astro";
+import HeadHelmet from "@components/base/HeadHelmet.astro";
+import BodyFooter from "@components/base/BodyFooter.astro";
+import BodyHeader from "@components/base/BodyHeader.astro";
+import BodyMain from "@components/base/BodyMain.astro";
 import { getLocale } from "@utils/i18n";
 
 interface Props {
@@ -15,7 +18,7 @@ const lang = getLocale(Astro.currentLocale);
 
 <html lang={lang}>
 	<head>
-		<DefaultMeta
+		<HeadHelmet
 			title={title}
 			site={site}
 			description={description}
@@ -23,7 +26,11 @@ const lang = getLocale(Astro.currentLocale);
 		/>
 		<slot name="head" />
 	</head>
-	<body class="mx-3 my-5 flex flex-col items-center">
-		<slot />
+	<body>
+		<slot name="header"><BodyHeader title={title} /></slot>
+		<BodyMain>
+			<slot />
+		</BodyMain>
+		<slot name="footer"><BodyFooter /></slot>
 	</body>
 </html>
