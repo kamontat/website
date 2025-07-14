@@ -2,7 +2,7 @@
 	"$schema": "https://openapi.vercel.sh/vercel.json",
 	"routes": [
 		{
-			"$comment": "when visit /blog/* with path",
+			"$comment": "when visit <domain>/blog/*, redirect to blog.kc.in.th",
 			"src": "^/blog/(?<path>.*)$",
 			"headers": {
 				"Location": "https://blog.kc.in.th/$path"
@@ -10,7 +10,7 @@
 			"status": 301
 		},
 		{
-			"$comment": "when visit /blog without path, default to english",
+			"$comment": "when visit <domain>/blog, redirect to blog.kc.in.th",
 			"src": "^/blog[/]?$",
 			"headers": {
 				"Location": "https://blog.kc.in.th"
@@ -18,12 +18,23 @@
 			"status": 301
 		},
 		{
-			"$comment": "when visit blog.kc.in.th/, rewrite to kc.in.th/blog",
-			"src": "^/$",
+			"$comment": "when visit <domain>/*, redirect to /en version",
+			"src": "^/(?<path>(?:(?!th/|en/)).*)$",
 			"headers": {
-				"Location": "https://blog.kc.in.th"
+				"Location": "/en/$path"
 			},
-			"dest": "https://kc.in.th/blog"
+			"status": 301
+		},
+		{
+			"$comment": "when visit blog.kc.in.th/*, rewrite to kc.in.th/blog/*",
+			"src": "^/(?<path>.*)$",
+			"has": [
+				{
+					"type": "host",
+					"value": "blog.kc.in.th"
+				}
+			],
+			"dest": "https://kc.in.th/blog/$path"
 		}
 	]
 }
