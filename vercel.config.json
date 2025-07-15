@@ -14,20 +14,10 @@
 	],
 	"afterRoutes": [
 		{
-			"$comment": "when visit <domain>/blog/*, redirect to /blog/en version",
-			"src": "^/blog/(?<path>(?:(?!th(/|$)|en(/|$))).*)$",
-			"headers": {
-				"Location": "/blog/en/$path",
-				"X-Rule-ID": "1"
-			},
-			"status": 301
-		},
-		{
 			"$comment": "when visit <domain>/*, redirect to /en version",
-			"src": "^/(?<path>(?:(?!th(/|$)|en(/|$))).*)$",
+			"src": "^/(?<path>(?:(?!th(/|$)|en(/|$)|blog(/|$))).*)$",
 			"headers": {
-				"Location": "/en/$path",
-				"X-Rule-ID": "2"
+				"Location": "/en/$path"
 			},
 			"status": 301
 		}
