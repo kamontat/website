@@ -2,7 +2,7 @@
 	"beforeRoutes": [
 		{
 			"$comment": "when visit blog.kc.in.th/*, rewrite to kc.in.th/blog/*",
-			"src": "^/(?<path>.*(?:(?!\\.js|\\.css)))$",
+			"src": "^\/(?<path>(?:(?!_\\w+(\/|$)|keystatic(\/|$)|api(\/|$))).*)$",
 			"has": [
 				{
 					"type": "host",
@@ -14,8 +14,8 @@
 	],
 	"afterRoutes": [
 		{
-			"$comment": "when visit <domain>/*, redirect to /en version",
-			"src": "^/(?<path>(?:(?!th(/|$)|en(/|$)|blog(/|$))).*)$",
+			"$comment": "when visit <domain>/*, redirect to /en/* version",
+			"src": "^/(?<path>(?:(?!th(\/|$)|en(\/|$)|blog(\/|$))).*)$",
 			"headers": {
 				"Location": "/en/$path"
 			},
