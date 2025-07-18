@@ -38,7 +38,7 @@
 		"@astrojs/react": "4.3.0",
 		"@astrojs/sitemap": "3.4.1",
 		"@astrojs/svelte": "7.1.0",
-		"@astrojs/vercel": "8.2.1",
+		"@astrojs/vercel": "8.2.2",
 		"@kcws/reset.css": "1.38.2",
 		"@keystatic/astro": "5.0.6",
 		"@keystatic/core": "0.5.47",

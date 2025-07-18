@@ -24,8 +24,8 @@ importers:
         specifier: 7.1.0
         version: 7.1.0(@types/node@24.0.13)(astro@5.11.0(@types/node@24.0.13)(@vercel/blob@1.0.2)(idb-keyval@6.2.2)(jiti@2.4.2)(rollup@4.44.0)(typescript@5.8.3)(yaml@2.8.0))(jiti@2.4.2)(svelte@5.36.7)(typescript@5.8.3)(yaml@2.8.0)
       '@astrojs/vercel':
-        specifier: 8.2.1
-        version: 8.2.1(astro@5.11.0(@types/node@24.0.13)(@vercel/blob@1.0.2)(idb-keyval@6.2.2)(jiti@2.4.2)(rollup@4.44.0)(typescript@5.8.3)(yaml@2.8.0))(react@19.1.0)(rollup@4.44.0)(svelte@5.36.7)(vue@3.5.17(typescript@5.8.3))
+        specifier: 8.2.2
+        version: 8.2.2(astro@5.11.0(@types/node@24.0.13)(@vercel/blob@1.0.2)(idb-keyval@6.2.2)(jiti@2.4.2)(rollup@4.44.0)(typescript@5.8.3)(yaml@2.8.0))(react@19.1.0)(rollup@4.44.0)(svelte@5.36.7)(vue@3.5.17(typescript@5.8.3))
       '@kcws/reset.css':
         specifier: 1.38.2
         version: 1.38.2
@@ -199,8 +199,8 @@ packages:
     resolution: {integrity: sha512-UFBgfeldP06qu6khs/yY+q1cDAaArM2/7AEIqQ9Cuvf7B1hNLq0xDrZkct+QoIGyjq56y8IaE2I3CTvG99mlhQ==}
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0}
 
-  '@astrojs/vercel@8.2.1':
-    resolution: {integrity: sha512-z/AV2lOA5xQGA4q6Hk06HbRdI+ITwDKwfpQcK/Go5rVUHd/ng2brDAHycLKUp0LIVh0JHi2wiYJe8cZe7bVhfg==}
+  '@astrojs/vercel@8.2.2':
+    resolution: {integrity: sha512-NXILrYu3XgAtwL3/4Oox8nlpqJkfwO6jEfw4n4q/vpWfMtCdRWkVWo32+SlK8jgAHiPXhYpMgLAsmv0tEW6EHg==}
     peerDependencies:
       astro: ^5.0.0
 
@@ -2380,8 +2380,8 @@ packages:
   '@vercel/remix-builder@5.4.9':
     resolution: {integrity: sha512-+fWdMjVI6bO0GUBJbw2seBDnLvPi2dd9aBQHVG2TCbJobBPfXgyEMgRWDS+4gjhXn4jLatX4B5C5iJykkeMqNQ==}
 
-  '@vercel/routing-utils@5.1.0':
-    resolution: {integrity: sha512-0GwV9lxVzRgTN3KM9Neh7gX6pOKoNsp/WKcoxIQp6KWWdfPGWeIK2PFZk0JlbTaxfAxrjzi4JRPR6cCZD2Cbdw==}
+  '@vercel/routing-utils@5.1.1':
+    resolution: {integrity: sha512-EyOik06V2fPXAbKY087BM7DMOQOJK+9mubwwox1TkDi21tMeJcMYwsXwepm6ZmyZ5u0j1TpJW172fP4MbzaCcg==}
 
   '@vercel/ruby@2.2.0':
     resolution: {integrity: sha512-FJF9gKVNHAljGOgV6zS5ou2N7ZgjOqMMtcPA5lsJEUI5/AZzVDWCmtcowTP80wEtHuupkd7d7M399FA082kXYQ==}
@@ -4516,6 +4516,10 @@ packages:
     resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
     engines: {node: '>=12'}
 
+  picomatch@4.0.3:
+    resolution: {integrity: sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==}
+    engines: {node: '>=12'}
+
   pkg-types@1.3.1:
     resolution: {integrity: sha512-/Jm5M4RvtBFVkKWRu2BLUTNP8/M2a+UwuAX+ae4770q1qVGtfjG+WTCupoZixokjmHiry8uI+dlY8KXYV5HVVQ==}
 
@@ -6198,13 +6202,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/vercel@8.2.1(astro@5.11.0(@types/node@24.0.13)(@vercel/blob@1.0.2)(idb-keyval@6.2.2)(jiti@2.4.2)(rollup@4.44.0)(typescript@5.8.3)(yaml@2.8.0))(react@19.1.0)(rollup@4.44.0)(svelte@5.36.7)(vue@3.5.17(typescript@5.8.3))':
+  '@astrojs/vercel@8.2.2(astro@5.11.0(@types/node@24.0.13)(@vercel/blob@1.0.2)(idb-keyval@6.2.2)(jiti@2.4.2)(rollup@4.44.0)(typescript@5.8.3)(yaml@2.8.0))(react@19.1.0)(rollup@4.44.0)(svelte@5.36.7)(vue@3.5.17(typescript@5.8.3))':
     dependencies:
       '@astrojs/internal-helpers': 0.6.1
       '@vercel/analytics': 1.5.0(react@19.1.0)(svelte@5.36.7)(vue@3.5.17(typescript@5.8.3))
       '@vercel/edge': 1.2.2
       '@vercel/nft': 0.29.4(rollup@4.44.0)
-      '@vercel/routing-utils': 5.1.0
+      '@vercel/routing-utils': 5.1.1
       astro: 5.11.0(@types/node@24.0.13)(@vercel/blob@1.0.2)(idb-keyval@6.2.2)(jiti@2.4.2)(rollup@4.44.0)(typescript@5.8.3)(yaml@2.8.0)
       esbuild: 0.25.6
       tinyglobby: 0.2.14
@@ -8964,7 +8968,7 @@ snapshots:
       glob: 10.4.5
       graceful-fs: 4.2.11
       node-gyp-build: 4.8.4
-      picomatch: 4.0.2
+      picomatch: 4.0.3
       resolve-from: 5.0.0
     transitivePeerDependencies:
       - encoding
@@ -8983,7 +8987,7 @@ snapshots:
       glob: 10.4.5
       graceful-fs: 4.2.11
       node-gyp-build: 4.8.4
-      picomatch: 4.0.2
+      picomatch: 4.0.3
       resolve-from: 5.0.0
     transitivePeerDependencies:
       - encoding
@@ -9046,7 +9050,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/routing-utils@5.1.0':
+  '@vercel/routing-utils@5.1.1':
     dependencies:
       path-to-regexp: 6.1.0
       path-to-regexp-updated: path-to-regexp@6.3.0
@@ -10339,6 +10343,10 @@ snapshots:
   fdir@6.4.6(picomatch@4.0.2):
     optionalDependencies:
       picomatch: 4.0.2
+
+  fdir@6.4.6(picomatch@4.0.3):
+    optionalDependencies:
+      picomatch: 4.0.3
 
   file-entry-cache@8.0.0:
     dependencies:
@@ -11725,6 +11733,8 @@ snapshots:
 
   picomatch@4.0.2: {}
 
+  picomatch@4.0.3: {}
+
   pkg-types@1.3.1:
     dependencies:
       confbox: 0.1.8
@@ -12781,8 +12791,8 @@ snapshots:
 
   tinyglobby@0.2.14:
     dependencies:
-      fdir: 6.4.6(picomatch@4.0.2)
-      picomatch: 4.0.2
+      fdir: 6.4.6(picomatch@4.0.3)
+      picomatch: 4.0.3
 
   to-regex-range@5.0.1:
     dependencies:
@@ -13033,7 +13043,7 @@ snapshots:
   unplugin-utils@0.2.4:
     dependencies:
       pathe: 2.0.3
-      picomatch: 4.0.2
+      picomatch: 4.0.3
 
   unstorage@1.16.0(@vercel/blob@1.0.2)(idb-keyval@6.2.2):
     dependencies:
@@ -13113,7 +13123,7 @@ snapshots:
 
   vite@6.3.5(@types/node@24.0.13)(jiti@2.4.2)(yaml@2.8.0):
     dependencies:
-      esbuild: 0.25.5
+      esbuild: 0.25.6
       fdir: 6.4.6(picomatch@4.0.2)
       picomatch: 4.0.2
       postcss: 8.5.6
