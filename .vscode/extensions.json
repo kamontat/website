@@ -2,7 +2,8 @@
 	"recommendations": [
 		"astro-build.astro-vscode",
 		"antfu.unocss",
-		"antfu.iconify"
+		"antfu.iconify",
+		"svelte.svelte-vscode"
 	],
 	"unwantedRecommendations": []
 }

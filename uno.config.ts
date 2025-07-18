@@ -5,7 +5,6 @@ import {
 	presetWebFonts,
 	presetTypography,
 	presetIcons,
-	presetAttributify,
 	transformerDirectives,
 } from "unocss";
 
@@ -64,10 +63,10 @@ const config = defineConfig({
 					import("@iconify-json/line-md/icons.json").then((i) => i.default),
 			},
 		}),
-		presetAttributify({
-			prefix: "un-",
-			prefixedOnly: true,
-		}),
+		// presetAttributify({
+		// 	prefix: "un-",
+		// 	prefixedOnly: true,
+		// }),
 	],
 	transformers: [transformerDirectives()],
 	theme: {

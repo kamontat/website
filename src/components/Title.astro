@@ -6,13 +6,11 @@ interface Props {
 const { text } = Astro.props;
 ---
 
-<div un-flex un-items="center" un-justify="start">
+<div class:list={["flex", "items-center", "justify-start"]}>
 	<span
+		class:list={["i-line-md:github-loop", "text-4xl", "mx-2"]}
 		aria-hidden="true"
-		class="i-line-md:github-loop"
-		un-text="4xl"
-		un-mx="2"
 	>
 	</span>
-	<h1 un-text="5xl" un-font="sans bold">{text}</h1>
+	<h1 class="text-5xl font-bold font-sans">{text}</h1>
 </div>

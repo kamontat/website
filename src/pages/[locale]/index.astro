@@ -14,12 +14,12 @@ const information = await getSingleton("information");
 
 <DefaultLayout title="Home Page">
 	<div>
-		<span id="name" un-text="2xl red-400" un-font="mono">
+		<span id="name" class:list={["text-2xl", "text-red-400", "font-mono"]}>
 			{information.getByLocale("firstName", locale)}
 			{information.getByLocale("lastName", locale)}
 		</span>
 	</div>
-	<div un-mt="4">
+	<div class:list={["mt-4"]}>
 		<a href="/blog">Go to blog</a>
 	</div>
 </DefaultLayout>
