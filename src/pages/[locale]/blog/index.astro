@@ -1,0 +1,28 @@
+---
+import BlogLayout from "@layouts/BlogLayout.astro";
+
+import { getLocale, getStaticPathParamsWithLocale } from "@utils/i18n";
+import { getCollections, getSingleton } from "@utils/contents";
+
+export function getStaticPaths() {
+	return getStaticPathParamsWithLocale();
+}
+
+const { locale } = Astro.params;
+const ui = await getSingleton("ui");
+const posts = await getCollections("posts");
+---
+
+<BlogLayout {locale} title={ui.must("page.blog.title", locale)}>
+	<ul>
+		{
+			posts
+				.filter((post) => getLocale(post.id) === locale)
+				.map((post) => (
+					<li>
+						<a href={post.id}>{post.get("title")}</a>
+					</li>
+				))
+		}
+	</ul>
+</BlogLayout>

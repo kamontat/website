@@ -1,15 +1,32 @@
 {
 	"beforeRoutes": [
 		{
-			"$comment": "when visit blog.kc.in.th/*, rewrite to kc.in.th/blog/*",
-			"src": "^\/(?<path>(?:(?!_\\w+(\/|$)|keystatic(\/|$)|api(\/|$))).*)$",
+			"$comment": "when visit blog.kc.in.th/*, rewrite to kc.in.th/en/blog/*",
+			"src": "^\/(?<lang>en|th)[/]?(?<path>.*)$",
 			"has": [
 				{
 					"type": "host",
 					"value": "blog.kc.in.th"
 				}
 			],
-			"dest": "https://kc.in.th/blog/$path"
+			"headers": {
+				"Location": "https://kc.in.th/$lang/blog/$path"
+			},
+			"status": 301
+		},
+		{
+			"$comment": "when visit blog.kc.in.th/*, rewrite to kc.in.th/en/blog/*",
+			"src": "^\/(?<path>.*)$",
+			"has": [
+				{
+					"type": "host",
+					"value": "blog.kc.in.th"
+				}
+			],
+			"headers": {
+				"Location": "https://kc.in.th/en/blog/$path"
+			},
+			"status": 301
 		}
 	],
 	"afterRoutes": [

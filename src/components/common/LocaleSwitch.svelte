@@ -1,17 +1,25 @@
 <script lang="ts">
-	import { getLocales, type Locale } from "@utils/i18n";
-	import { getRelativeLocaleUrl } from "astro:i18n";
+	import {
+		getLocaleName,
+		getLocales,
+		getPathWithLocale,
+		type Locale,
+	} from "@utils/i18n";
 
 	interface Props {
-		current: Locale;
+		currentLocale: Locale;
+		/** Set to Astro.url */
+		currentUrl: URL;
 	}
 
-	const { current }: Props = $props();
+	const { currentUrl, currentLocale }: Props = $props();
+	const other = getLocales().filter((l) => l !== currentLocale);
 </script>
 
-<a
-	href={getRelativeLocaleUrl(current === "en" ? "th" : "en")}
-	class:mx-2={true}
->
-	{current}
-</a>
+<div>
+	{#each other as locale}
+		<a class:mx-2={true} href={getPathWithLocale(currentUrl.pathname, locale)}>
+			{getLocaleName(locale)}
+		</a>
+	{/each}
+</div>

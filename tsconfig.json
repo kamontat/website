@@ -8,7 +8,12 @@
 			"@keystatic/config": ["keystatic.config.ts"],
 			"@layouts/*": ["src/layouts/*"],
 			"@components/*": ["src/components/*"],
-			"@utils/*": ["src/utils/*"]
+			"@utils/contents": ["src/utils/contents/index.ts"],
+			"@utils/contents/utils": ["src/utils/contents/utils/index.ts"],
+			"@utils/contents/schemas": ["src/utils/contents/schemas/index.ts"],
+			"@utils/i18n": ["src/utils/i18n/index.ts"],
+			"@utils/i18n/languages": ["src/utils/i18n/languages.ts"],
+			"@utils/logger": ["src/utils/logger/index.ts"]
 		},
 		"jsx": "react-jsx",
 		"jsxImportSource": "react",

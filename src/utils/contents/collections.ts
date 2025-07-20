@@ -1,3 +1,4 @@
+import type { KeystaticCollections } from "@utils/contents/schemas";
 import {
 	getCollection as _getCollection,
 	getEntry,
@@ -5,7 +6,7 @@ import {
 	type DataEntryMap,
 } from "astro:content";
 
-export type CollectionKey = Extract<keyof DataEntryMap, "posts">;
+export type CollectionKey = keyof KeystaticCollections<"collection">;
 
 export const getCollections = async <K extends CollectionKey>(key: K) => {
 	const entries = await _getCollection(key);

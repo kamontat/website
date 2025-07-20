@@ -1,3 +1,4 @@
+profilePicture: ../images/profilePicture.jpeg
 firstName:
   en: Kamontat
   th: กมนทัต
@@ -8,7 +9,10 @@ nickName:
   en: Net
   th: เน็ต
 summary:
-  en: |
-    Versatile Lead Developer with 7+ years of experience, recognized for significantly impacting business growth through innovative software solutions.
-  th: |
-    ผมเป็น Full-Stack Developer และโดยทั่วไป ผมชอบที่จะ เขียน open-source application ไว้ที่ Github
+  en: >
+    Versatile Lead Developer with 7+ years of experience, recognized for
+    significantly impacting business growth through innovative software
+    solutions.
+  th: >
+    ผมเป็น Full-Stack Developer และโดยทั่วไป ผมชอบที่จะ เขียน open-source
+    application ไว้ที่ Github

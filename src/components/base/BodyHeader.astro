@@ -1,14 +1,15 @@
 ---
+import type { ComponentProps } from "astro/types";
+import type HeadHelmet from "@components/base/HeadHelmet.astro";
+
 import Icon from "@components/common/Icon.svelte";
 import ThemeSwitch from "@components/common/ThemeSwitch.svelte";
 import LocaleSwitch from "@components/common/LocaleSwitch.svelte";
-import { getLocale } from "@utils/i18n";
+import { getPathWithLocale, goToHome } from "@utils/i18n";
 
-interface Props {
-	title: string;
-}
+type Props = Pick<ComponentProps<typeof HeadHelmet>, "locale" | "title">;
 
-const { title } = Astro.props;
+const { locale, title } = Astro.props;
 ---
 
 <header>
@@ -25,12 +26,20 @@ const { title } = Astro.props;
 		]}
 	>
 		<div class="flex flex-1 flex-row items-center justify-stretch">
-			<Icon as="a" class="i-line-md:watch-twotone-loop" size="md" href="/" />
-			<span class="text-xl font-light font-sans px-2">{title}</span>
+			<Icon
+				as="a"
+				class="i-line-md:watch-twotone-loop"
+				size="md"
+				href={goToHome(locale)}
+			/>
+			<a
+				href={getPathWithLocale(Astro.url.pathname, locale)}
+				class="text-xl font-light font-sans px-2">{title}</a
+			>
 		</div>
 		<div class="flex flex-row">
 			<ThemeSwitch />
-			<LocaleSwitch current={getLocale(Astro.currentLocale)} />
+			<LocaleSwitch currentUrl={Astro.url} currentLocale={locale} />
 		</div>
 	</nav>
 </header>

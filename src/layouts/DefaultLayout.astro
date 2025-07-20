@@ -1,14 +1,12 @@
 ---
 import type { ComponentProps } from "astro/types";
 import BaseLayout from "./BaseLayout.astro";
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface Props
-	extends Omit<ComponentProps<typeof BaseLayout>, "site" | "author"> {}
 
-const { title, description } = Astro.props;
+type Props = Omit<ComponentProps<typeof BaseLayout>, "site" | "author">;
+const { locale, title, description } = Astro.props;
 ---
 
-<BaseLayout site="KC" title={title} description={description}>
-	<link slot="head" rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<BaseLayout site="KC" {locale} {title} {description}>
+	<link slot="head" rel="icon" type="image/svg+xml" href="/favicon-light.svg" />
 	<slot />
 </BaseLayout>

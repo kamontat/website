@@ -9,6 +9,12 @@ import vercel from "@astrojs/vercel";
 import keystatic from "@keystatic/astro";
 import UnoCSS from "unocss/astro";
 
+import {
+	defaultLocale,
+	localeISOMap,
+	locales,
+} from "./src/utils/i18n/languages";
+
 // https://astro.build/config
 export default defineConfig({
 	site: "https://kc.in.th",
@@ -17,11 +23,8 @@ export default defineConfig({
 		markdoc(),
 		sitemap({
 			i18n: {
-				defaultLocale: "en",
-				locales: {
-					en: "en-US",
-					th: "th-TH",
-				},
+				defaultLocale,
+				locales: localeISOMap,
 			},
 		}),
 		keystatic(),
@@ -39,10 +42,10 @@ export default defineConfig({
 	}),
 	output: "static",
 	i18n: {
-		locales: ["en", "th"],
-		defaultLocale: "en",
+		locales,
+		defaultLocale,
 		fallback: {
-			th: "en",
+			th: defaultLocale,
 		},
 		routing: {
 			prefixDefaultLocale: true,
@@ -52,7 +55,7 @@ export default defineConfig({
 	},
 	redirects: {
 		"/": "/en",
-		"/blog": "/blog/en",
+		"/blog": "/en/blog",
 		"/go/facebook": {
 			status: 302,
 			destination: "https://facebook.com/kamontatc/",

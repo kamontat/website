@@ -1,33 +1,25 @@
 ---
+import type { ComponentProps } from "astro/types";
+
 import HeadHelmet from "@components/base/HeadHelmet.astro";
 import BodyFooter from "@components/base/BodyFooter.astro";
 import BodyHeader from "@components/base/BodyHeader.astro";
 import BodyMain from "@components/base/BodyMain.astro";
-import { getLocale } from "@utils/i18n";
 
-interface Props {
-	title: string;
-	site: string;
-	description?: string;
-	author?: { name: string; email: string; twitter?: string };
-}
+import { getLocaleISO } from "@utils/i18n";
 
-const { title, site, description, author } = Astro.props;
-const lang = getLocale(Astro.currentLocale);
+type Props = ComponentProps<typeof HeadHelmet>;
+
+const { locale, title, site, description, author } = Astro.props;
 ---
 
-<html lang={lang}>
+<html lang={getLocaleISO(locale)}>
 	<head>
-		<HeadHelmet
-			title={title}
-			site={site}
-			description={description}
-			author={author}
-		/>
+		<HeadHelmet {locale} {title} {site} {description} {author} />
 		<slot name="head" />
 	</head>
 	<body>
-		<slot name="header"><BodyHeader title={title} /></slot>
+		<slot name="header"><BodyHeader {locale} {title} /></slot>
 		<BodyMain>
 			<slot />
 		</BodyMain>

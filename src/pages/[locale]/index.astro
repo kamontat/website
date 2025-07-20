@@ -2,24 +2,25 @@
 import DefaultLayout from "@layouts/DefaultLayout.astro";
 
 import { getSingleton } from "@utils/contents";
-import { getLocales, getLocale } from "@utils/i18n";
+import { getStaticPathParamsWithLocale, goToBlog } from "@utils/i18n";
 
 export function getStaticPaths() {
-	return getLocales().map((locale) => ({ params: { locale } }));
+	return getStaticPathParamsWithLocale();
 }
 
-const locale = getLocale(Astro.currentLocale);
+const { locale } = Astro.params;
 const information = await getSingleton("information");
+const ui = await getSingleton("ui");
 ---
 
-<DefaultLayout title="Home Page">
+<DefaultLayout title={ui.must("page.home.title", locale)} {locale}>
 	<div>
 		<span id="name" class:list={["text-2xl", "text-red-400", "font-mono"]}>
-			{information.getByLocale("firstName", locale)}
-			{information.getByLocale("lastName", locale)}
+			{information.must("firstName", locale)}
+			{information.must("lastName", locale)}
 		</span>
 	</div>
 	<div class:list={["mt-4"]}>
-		<a href="/blog">Go to blog</a>
+		<a href={goToBlog(locale)}>Go to blog</a>
 	</div>
 </DefaultLayout>

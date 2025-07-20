@@ -1,97 +1,33 @@
 import type { LocalConfig, GitHubConfig } from "@keystatic/core";
-import { config, fields, collection, singleton } from "@keystatic/core";
-import { localised } from "@utils/keystatic/internal";
-import { localePathRegex } from "@utils/i18n";
+
 import { CI, GITHUB_REPOSITORY } from "astro:env/client";
+import { config } from "@keystatic/core";
+import { getLocaleISO } from "@utils/i18n";
+import {
+	keystaticSingleton,
+	keystaticCollections,
+} from "@utils/contents/schemas";
 
-const [owner, name] = GITHUB_REPOSITORY.split("/");
+const getStorage = () => {
+	const [owner, name] = GITHUB_REPOSITORY.split("/");
+	switch (CI) {
+		case true:
+			return {
+				kind: "github",
+				repo: { owner, name },
+			} satisfies GitHubConfig["storage"];
+		default:
+			return {
+				kind: "local",
+			} satisfies LocalConfig["storage"];
+	}
+};
 
-const storage = CI
-	? ({
-			kind: "github",
-			repo: { owner, name },
-		} satisfies GitHubConfig["storage"])
-	: ({
-			kind: "local",
-		} satisfies LocalConfig["storage"]);
-
-export default config({
-	storage,
-	locale: "en-US",
-	singletons: {
-		information: singleton({
-			label: "Information",
-			path: "src/contents/data/information",
-			schema: {
-				profilePicture: fields.image({
-					label: "Profile",
-					directory: "src/contents/images",
-					publicPath: "../images",
-					validation: { isRequired: false },
-				}),
-				firstName: localised(fields.text, {
-					label: "First name",
-					validation: { isRequired: true },
-				}),
-				lastName: localised(fields.text, {
-					label: "Last name",
-					validation: { isRequired: true },
-				}),
-				nickName: localised(fields.text, {
-					label: "Nickname",
-					validation: { isRequired: true },
-				}),
-				summary: localised(fields.text, {
-					label: "Summary",
-					multiline: true,
-					validation: { isRequired: true },
-				}),
-			},
-		}),
-		links: singleton({
-			label: "Links",
-			path: "src/contents/data/links",
-			schema: {
-				facebook: fields.url({ label: "Facebook" }),
-				x: fields.url({ label: "X (Twitter)" }),
-			},
-		}),
-	},
-	collections: {
-		posts: collection({
-			label: "Posts",
-			slugField: "slug",
-			path: "src/contents/posts/**",
-			format: { contentField: "content" },
-			entryLayout: "content",
-			schema: {
-				slug: fields.text({
-					label: "Slug",
-					validation: { isRequired: true, pattern: { regex: localePathRegex } },
-				}),
-				title: fields.text({
-					label: "Title",
-					validation: { isRequired: true },
-				}),
-				pubDate: fields.date({
-					label: "Publish date",
-					defaultValue: { kind: "today" },
-					validation: { isRequired: true },
-				}),
-				modDate: fields.date({
-					label: "Modified date",
-				}),
-				content: fields.markdoc({
-					label: "Content",
-					extension: "mdoc",
-					options: {
-						image: {
-							directory: "src/contents/images",
-							publicPath: "../images/",
-						},
-					},
-				}),
-			},
-		}),
-	},
+const baseConfig = config({
+	storage: getStorage(),
+	locale: getLocaleISO("en"),
+	singletons: await keystaticSingleton(),
+	collections: await keystaticCollections(),
 });
+
+export default baseConfig;

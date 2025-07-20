@@ -1,51 +1,60 @@
 ---
-import { getLocale, getLocales } from "@utils/i18n";
+import { getSingleton } from "@utils/contents";
+import { getLocaleISO, getLocales, type Locale } from "@utils/i18n";
 import { GITHUB_REPOSITORY, GITHUB_REF, GITHUB_SHA } from "astro:env/client";
 import pkg from "package.json";
 
+interface Author {
+	name: string;
+	email: string;
+	twitter?: string;
+}
+
 interface Props {
+	locale: Locale;
 	title: string;
 	site: string;
 	description?: string;
-	author?: { name: string; email: string; twitter?: string };
+	author?: Author;
 }
 
-const props = Astro.props;
-const site = props.site;
-const title = props.title;
-const description = props.description ?? pkg.description;
-const author = props.author ?? {
-	name: pkg.author.name,
-	email: pkg.author.email,
-};
+const { locale, title, site, description, author } = Astro.props;
+const generator = Astro.generator;
+const url = Astro.url;
 
-const language = getLocale(Astro.currentLocale);
-const languages = getLocales();
+const ui = await getSingleton("ui");
+const locales = getLocales();
 ---
 
 <!-- Default -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="generator" content={Astro.generator} />
+<meta name="generator" content={generator} />
 
 <title>{title} | {site}</title>
 
 <!-- OpenGraph -->
 <meta property="og:site_name" content={site} />
 <meta property="og:title" content={title} />
-<meta name="description" property="og:description" content={description} />
+<meta
+	name="description"
+	property="og:description"
+	content={description ??
+		ui.get("page.home.description", locale) ??
+		pkg.description}
+/>
 <meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:url" content={url} />
 <!-- TODO: update og:image -->
 <!-- <meta property="og:image" content="https://ia.media-imdb.com/images/rock.jpg" /> -->
 <!-- <meta property="og:image:alt" content="Image description" /> -->
-<meta property="og:locale" content={language} />
-{languages.map((l) => <meta property="og:locale:alternate" content={l} />)}
+<meta property="og:locale" content={getLocaleISO(locale)} />
+{locales.map((l) => <meta property="og:locale:alternate" content={l} />)}
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content={pkg.author.twitter} />
-<meta name="twitter:creator" content={author.twitter ?? pkg.author.twitter} />
+<meta name="twitter:creator" content={author?.twitter ?? pkg.author.twitter} />
 
 <!-- Custom -->
 <meta name="git:repo" content={GITHUB_REPOSITORY} />
@@ -53,8 +62,8 @@ const languages = getLocales();
 <meta name="git:ref" content={GITHUB_REF} />
 <meta name="git:sha" content={GITHUB_SHA} />
 <meta name="git:version" content={pkg.version} />
-<meta name="author:name" content={author.name} />
-<meta name="author:email" content={author.email} />
+<meta name="author:name" content={author?.name ?? pkg.author.name} />
+<meta name="author:email" content={author?.email ?? pkg.author.email} />
 <meta name="copyright" content={pkg.license} />
 
 <link rel="sitemap" href="/sitemap-index.xml" />

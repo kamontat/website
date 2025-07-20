@@ -1,33 +1,62 @@
+import { defaultLocale } from "@utils/i18n/languages";
+import type { KeystaticCollections } from "@utils/contents/schemas";
 import { getEntry, type DataEntryMap } from "astro:content";
 
-export type SingletonKey = Extract<keyof DataEntryMap, "information">;
+export type SingletonKey = keyof KeystaticCollections<"singleton">;
+
+export interface SingletonData<
+	K extends SingletonKey,
+	D extends DataEntryMap[K]["default"]["data"],
+> {
+	readonly id: string;
+	readonly collection: K;
+	readonly data: D;
+	get<V extends keyof D>(key: V): D[V] | undefined;
+	get<V extends keyof D, L extends keyof D[V]>(
+		key: V,
+		locale: L,
+	): D[V][L] | undefined;
+	must<V extends keyof D>(key: V): D[V];
+	must<V extends keyof D, L extends keyof D[V]>(key: V, locale: L): D[V][L];
+}
 
 export const getSingleton = async <K extends SingletonKey>(key: K) => {
 	const entry = await getEntry(key, "default");
-	return warpSingleton(entry!);
-};
+	if (!entry) throw new Error(`Cannot find singleton key: "${key}"`);
 
-const warpSingleton = <
-	K extends SingletonKey,
-	E extends DataEntryMap[K][string],
->(
-	entry: E,
-) => {
+	type Output = SingletonData<K, DataEntryMap[K]["default"]["data"]>;
+
+	const { id, collection, data } = entry;
 	return {
-		id: entry.id,
-		collection: entry.collection,
-		get: <K extends keyof E["data"]>(
-			key: Exclude<K, "id" | "collection">,
-		): E["data"][K] => {
-			const data = entry.data as E["data"];
-			return data[key];
+		id,
+		collection,
+		data,
+		get: (key, locale) => {
+			const _data = data as Output["data"];
+			const _value = _data[key];
+			if (_value === undefined || _value === null) return undefined;
+
+			if (!locale) return _value;
+			// fallback to default locale if not exist
+			return _value[locale] ?? _value[defaultLocale as keyof typeof _value];
 		},
-		getByLocale: <K extends keyof E["data"], L extends keyof E["data"][K]>(
-			key: Exclude<K, "id" | "collection">,
-			locale: L,
-		): E["data"][K][L] => {
-			const data = entry.data as E["data"];
-			return data[key][locale];
+		must: (key, locale) => {
+			const _data = data as Output["data"];
+			const _value = _data[key];
+			if (_value === undefined || _value === null)
+				throw new Error(
+					`Cannot find singleton data: ${String(locale).toUpperCase()}:${String(key)}`,
+				);
+
+			if (!locale) return _value;
+			// fallback to default locale if not exist
+			const value =
+				_value[locale] ?? _value[defaultLocale as keyof typeof _value];
+			if (_value === undefined || _value === null)
+				throw new Error(
+					`Cannot find localised singleton data: ${String(locale).toUpperCase()}:${String(key)}`,
+				);
+			return value;
 		},
-	};
+	} as Output;
 };

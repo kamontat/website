@@ -1,0 +1,9 @@
+page.home.title:
+  en: Home page
+  th: หน้าหลัก
+page.home.description:
+  en: Personal website written in Astro, Svelte, and UnoCSS with KeyStatic as CMS
+  th: เว็บไซต์ส่วนตัวที่พัฒนาด้วย Astro, Svelte และ UnoCSS โดยใช้ KeyStatic เป็นระบบจัดการเนื้อหา (CMS)
+page.blog.title:
+  en: Blog
+  th: บล็อก
