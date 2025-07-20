@@ -59,5 +59,19 @@ export const getPathWithLocale = (pathname: string, locale: Locale) => {
 	return getRelativeLocaleUrl(locale, path);
 };
 
-export const goToHome = (locale: Locale) => getPathWithLocale("/", locale);
-export const goToBlog = (locale: Locale) => getPathWithLocale("/blog", locale);
+export const buildPath = (...paths: (string | undefined)[]): string => {
+	// remove '/' prefix and suffix
+	return paths
+		.map((path) => path?.replace(/(^\/|\/$)/g, ""))
+		.filter((path) => typeof path === "string")
+		.join("/");
+};
+
+export const goToHome = (
+	locale: Locale,
+	...appendPaths: (string | undefined)[]
+) => getPathWithLocale(buildPath("/", ...appendPaths), locale);
+export const goToBlog = (
+	locale: Locale,
+	...appendPaths: (string | undefined)[]
+) => getPathWithLocale(buildPath("/blog", ...appendPaths), locale);

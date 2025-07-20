@@ -4,9 +4,9 @@ import DefaultLayout from "@layouts/DefaultLayout.astro";
 import { getSingleton } from "@utils/contents";
 import { getStaticPathParamsWithLocale, goToBlog } from "@utils/i18n";
 
-export function getStaticPaths() {
+export const getStaticPaths = () => {
 	return getStaticPathParamsWithLocale();
-}
+};
 
 const { locale } = Astro.params;
 const information = await getSingleton("information");
