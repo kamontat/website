@@ -1,10 +1,24 @@
 import type { Debugger } from "debug";
 import type { SEP } from "./constants";
 
+type NamespaceAdder<NS extends string[]> = NS extends []
+	? ""
+	: NS extends [infer F]
+		? F extends string
+			? `${typeof SEP}${F}`
+			: ""
+		: NS extends [infer F, ...infer R]
+			? F extends string
+				? R extends string[]
+					? `${typeof SEP}${F}${NamespaceAdder<R>}`
+					: ""
+				: ""
+			: "";
+
 export type NamespaceMerger<
 	N extends string,
 	NS extends string[],
-> = `${N}${NS extends [] ? "" : `${typeof SEP}${NS[number]}`}`;
+> = `${N}${NamespaceAdder<NS>}`;
 
 export type LoggerExtender<O extends string> = <
 	N extends string,

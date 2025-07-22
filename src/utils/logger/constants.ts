@@ -1,5 +1,5 @@
 import _debug from "debug";
-import { name } from "package.json";
+import { name } from "@config/package";
 
 export const APP = name;
 export const SEP = ":" as const;
