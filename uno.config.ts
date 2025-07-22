@@ -61,6 +61,8 @@ const config = defineConfig({
 					import("@iconify-json/skill-icons/icons.json").then((i) => i.default),
 				"line-md": () =>
 					import("@iconify-json/line-md/icons.json").then((i) => i.default),
+				lineicons: () =>
+					import("@iconify-json/lineicons/icons.json").then((i) => i.default),
 			},
 		}),
 		// presetAttributify({
@@ -90,6 +92,16 @@ const config = defineConfig({
 			...theme,
 		};
 	},
+	variants: [
+		(matcher) => {
+			if (!matcher.startsWith("black:")) return matcher;
+			return {
+				// slice `black:` prefix and passed to the next variants and rules
+				matcher: matcher.slice(6),
+				selector: (s) => `.black ${s}`,
+			};
+		},
+	],
 	blocklist: [[/font-\d+/, { message: "use named weight instead" }]],
 });
 
