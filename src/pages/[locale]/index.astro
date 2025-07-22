@@ -1,4 +1,5 @@
 ---
+import { Picture } from "astro:assets";
 import DefaultLayout from "@layouts/DefaultLayout.astro";
 
 import { getSingleton } from "@utils/contents";
@@ -14,8 +15,14 @@ const ui = await getSingleton("ui");
 ---
 
 <DefaultLayout title={ui.must("page.home.title", locale)} {locale}>
-	<div>
-		<span id="name" class:list={["text-2xl", "text-red-400", "font-mono"]}>
+	<div class="items-center">
+		<Picture
+			src={information.must("profilePicture")}
+			alt="profile picture"
+			formats={["avif", "webp"]}
+			height={500}
+		/>
+		<span id="name" class:list={["text-2xl", "text-red-400"]}>
 			{information.must("firstName", locale)}
 			{information.must("lastName", locale)}
 		</span>
