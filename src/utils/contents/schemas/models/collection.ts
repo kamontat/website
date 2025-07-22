@@ -35,10 +35,18 @@ export abstract class AbstractCollectionDataSchema<
 	abstract readonly contentField: string | [string, ...string[]];
 	abstract readonly filePattern: string;
 
+	get astroPath() {
+		return `./src/contents/${this.name}`;
+	}
+
+	get keystaticPath(): `${string}/**` {
+		return `src/contents/${this.name}/**`;
+	}
+
 	async buildKeystaticConfig() {
 		return collection({
 			label: this.label,
-			path: `src/contents/${this.name}/**`,
+			path: this.keystaticPath,
 			format: { data: "yaml", contentField: this.contentField },
 			entryLayout: this.layout,
 			schema: this.keystaticSchema,
@@ -49,7 +57,7 @@ export abstract class AbstractCollectionDataSchema<
 	async buildAstroConfig({ globLoader, defineCollection }: AstroAPIContext) {
 		return defineCollection({
 			loader: globLoader({
-				base: `./src/contents/${this.name}`,
+				base: this.astroPath,
 				pattern: this.filePattern,
 			}),
 			schema: this.astroSchema,

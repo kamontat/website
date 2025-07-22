@@ -7,15 +7,17 @@ import { SingletonDataSchema } from "./models";
 export default new SingletonDataSchema(
 	"information",
 	"Information",
-	z.object({
-		firstName: zodLocalised(z.string()),
-		lastName: zodLocalised(z.string()),
-	}),
+	({ image }) =>
+		z.object({
+			profilePicture: image(),
+			firstName: zodLocalised(z.string()),
+			lastName: zodLocalised(z.string()),
+		}),
 	{
 		profilePicture: fields.image({
 			label: "Profile",
-			directory: "src/contents/images",
-			publicPath: "../images",
+			directory: "src/assets/data",
+			publicPath: "@assets/data/",
 			validation: { isRequired: false },
 		}),
 		firstName: ksLocalised(fields.text, {

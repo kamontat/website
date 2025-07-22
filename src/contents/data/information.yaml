@@ -1,4 +1,4 @@
-profilePicture: ../images/profilePicture.jpeg
+profilePicture: "@assets/data/profilePicture.jpeg"
 firstName:
   en: Kamontat
   th: กมนทัต

@@ -1,5 +1,10 @@
 import type { CollectionConfig } from "astro/content/config";
-import type { AstroAPIContext, KeystaticSchemaTypeMap } from "./models/base";
+import type {
+	AstroAPIContext,
+	AstroSchemaFromIDataSchema,
+	KeystaticSchemaFromIDataSchema,
+	KeystaticSchemaTypeMap,
+} from "./models/base";
 
 import posts from "./posts";
 import information from "./information";
@@ -19,12 +24,14 @@ export type RawDataTypeSelector<T extends keyof KeystaticSchemaTypeMap> = {
 }[keyof RawData];
 
 export type AstroCollections = {
-	-readonly [K in keyof RawData]: CollectionConfig<RawData[K]["astroSchema"]>;
+	-readonly [K in keyof RawData]: CollectionConfig<
+		AstroSchemaFromIDataSchema<RawData[K]>
+	>;
 };
 
 export type KeystaticCollections<T extends keyof KeystaticSchemaTypeMap> = {
 	[K in RawDataTypeSelector<T>]: KeystaticSchemaTypeMap<
-		RawData[K]["keystaticSchema"]
+		KeystaticSchemaFromIDataSchema<RawData[K]>
 	>[T];
 };
 

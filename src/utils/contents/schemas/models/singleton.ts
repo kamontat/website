@@ -1,17 +1,13 @@
 import type {
 	AstroAPIContext,
 	AstroSchema,
+	AstroSchemaBuilder,
 	IDataSchema,
 	KeystaticSchema,
 } from "./base";
 
 import { singleton } from "@keystatic/core";
 import { load } from "js-yaml";
-
-export interface SingletonAstroCollectionConfig {
-	name: string | (() => string);
-	schema: AstroSchema;
-}
 
 export class SingletonDataSchema<
 	N extends string,
@@ -23,36 +19,30 @@ export class SingletonDataSchema<
 	constructor(
 		readonly name: N,
 		readonly label: string,
-		readonly astroSchema: AS,
+		readonly astroSchema: AS | AstroSchemaBuilder<AS>,
 		readonly keystaticSchema: KS,
 	) {}
+
+	get astroPath() {
+		return `./src/contents/data/${this.name}.yaml`;
+	}
+
+	get keystaticPath() {
+		return `src/contents/data/${this.name}`;
+	}
 
 	async buildKeystaticConfig() {
 		return singleton({
 			label: this.label,
-			path: `src/contents/data/${this.name}`,
+			path: this.keystaticPath,
 			format: "yaml",
 			schema: this.keystaticSchema,
 		});
 	}
 
-	async buildAstroConfig(context: AstroAPIContext) {
-		return await this.defineAstroCollection(context, {
-			name: this.name,
-			schema: this.astroSchema,
-		});
-	}
-
-	protected async defineAstroCollection(
-		{ defineCollection, fileLoader }: AstroAPIContext,
-		config: SingletonAstroCollectionConfig,
-	) {
-		const path =
-			typeof config.name === "function"
-				? config.name()
-				: `./src/contents/data/${config.name}.yaml`;
+	async buildAstroConfig({ defineCollection, fileLoader }: AstroAPIContext) {
 		return defineCollection({
-			loader: fileLoader(path, {
+			loader: fileLoader(this.astroPath, {
 				parser: (text) => {
 					const data = load(text) as Record<string, unknown>;
 					return [

@@ -53,8 +53,8 @@ export default new PostsDataSchema(
 			extension: "mdoc",
 			options: {
 				image: {
-					directory: "src/contents/images",
-					publicPath: "../images/",
+					directory: "src/assets/posts",
+					publicPath: "@assets/posts/",
 				},
 			},
 		}),

@@ -5,7 +5,9 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"@keystatic/config": ["keystatic.config.ts"],
+			"@assets/data/*": ["./src/assets/data/*"],
+			"@assets/generic/*": ["./src/assets/generic/*"],
+			"@assets/posts/*": ["./src/assets/posts/*"],
 			"@layouts/*": ["src/layouts/*"],
 			"@components/*": ["src/components/*"],
 			"@utils/contents": ["src/utils/contents/index.ts"],
@@ -13,7 +15,9 @@
 			"@utils/contents/schemas": ["src/utils/contents/schemas/index.ts"],
 			"@utils/i18n": ["src/utils/i18n/index.ts"],
 			"@utils/i18n/languages": ["src/utils/i18n/languages.ts"],
-			"@utils/logger": ["src/utils/logger/index.ts"]
+			"@utils/logger": ["src/utils/logger/index.ts"],
+			"@config/package": ["package.json"],
+			"@config/keystatic": ["keystatic.config.ts"]
 		},
 		"jsx": "react-jsx",
 		"jsxImportSource": "react",

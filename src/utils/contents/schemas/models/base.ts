@@ -1,8 +1,11 @@
 import type { Collection, ComponentSchema, Singleton } from "@keystatic/core";
 import type { BaseSchema, CollectionConfig } from "astro/content/config";
 import type { file, glob, Loader } from "astro/loaders";
-import type { defineCollection } from "astro:content";
+import type { defineCollection, SchemaContext } from "astro:content";
 
+export type AstroSchemaBuilder<S extends AstroSchema> = (
+	context: SchemaContext,
+) => S;
 export type AstroSchema = BaseSchema;
 export type AstroConfig<S extends AstroSchema> = CollectionConfig<S>;
 
@@ -38,9 +41,24 @@ export interface IDataSchema<
 	readonly name: N;
 	/** Similar to name, but for visualization only */
 	readonly label: string;
-	readonly astroSchema: AS;
+	readonly astroSchema: AS | AstroSchemaBuilder<AS>;
 	readonly keystaticSchema: KS;
 
+	readonly astroPath: string;
 	buildAstroConfig(context: AstroAPIContext): Promise<CollectionConfig<AS>>;
+
+	readonly keystaticPath: string;
 	buildKeystaticConfig(): Promise<KeystaticConfig<T, KS>>;
 }
+
+export type AstroSchemaFromIDataSchema<S> =
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	S extends IDataSchema<keyof KeystaticSchemaTypeMap, string, infer AS, any>
+		? AS
+		: never;
+
+export type KeystaticSchemaFromIDataSchema<S> =
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	S extends IDataSchema<keyof KeystaticSchemaTypeMap, string, any, infer KS>
+		? KS
+		: never;
