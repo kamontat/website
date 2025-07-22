@@ -2,7 +2,7 @@
 import { getSingleton } from "@utils/contents";
 import { getLocaleISO, getLocales, type Locale } from "@utils/i18n";
 import { GITHUB_REPOSITORY, GITHUB_REF, GITHUB_SHA } from "astro:env/client";
-import pkg from "package.json";
+import pkg from "@config/package";
 
 interface Author {
 	name: string;
