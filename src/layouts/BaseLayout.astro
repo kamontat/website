@@ -18,7 +18,15 @@ const { locale, title, site, description, author } = Astro.props;
 		<HeadHelmet {locale} {title} {site} {description} {author} />
 		<slot name="head" />
 	</head>
-	<body>
+	<body
+		class:list={[
+			"bg-white",
+			"dark:bg-gray-700",
+			"black:bg-black",
+			"font-sans",
+			"font-light",
+		]}
+	>
 		<slot name="header"><BodyHeader {locale} {title} /></slot>
 		<BodyMain>
 			<slot />
@@ -26,3 +34,9 @@ const { locale, title, site, description, author } = Astro.props;
 		<slot name="footer"><BodyFooter /></slot>
 	</body>
 </html>
+
+<style>
+	html.black {
+		color-scheme: dark;
+	}
+</style>
