@@ -15,22 +15,37 @@ const ui = await getSingleton("ui");
 ---
 
 <DefaultLayout title={ui.must("page.home.title", locale)} {locale}>
-	<div class="items-center">
+	<div class="h-100% max-w-lg w-100% items-center justify-center">
 		<Picture
 			src={information.must("profilePicture")}
 			alt="profile picture"
 			formats={["avif", "webp"]}
 			layout="constrained"
-			width={450}
+			width={256}
 			loading="lazy"
 			class="rounded-2xl"
 		/>
-		<span id="name" class:list={["text-2xl", "text-red-400"]}>
+		<span
+			class="black:text-red-300 text-2xl text-red-500 mt-3 text-center dark:text-red-400"
+		>
 			{information.must("firstName", locale)}
 			{information.must("lastName", locale)}
+			({information.must("nickName", locale)})
 		</span>
-	</div>
-	<div class:list={["mt-4"]}>
-		<a href={goToBlog(locale)}>Go to blog</a>
+		<span
+			class="black:text-gray-200 text-sm text-gray-500 mt-1 text-center dark:text-gray-300"
+		>
+			{information.must("title", locale)}
+		</span>
+		<span
+			class="black:text-white text-lg text-black mt-5 text-center dark:text-white"
+		>
+			{information.must("summary", locale)}
+		</span>
+		<hr class="mt-5 border-1 w-100%" />
+
+		<div class="mt-2">
+			<a href={goToBlog(locale)}>Go to blog</a>
+		</div>
 	</div>
 </DefaultLayout>

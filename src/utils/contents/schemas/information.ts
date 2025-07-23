@@ -13,6 +13,9 @@ export default new SingletonDataSchema(
 			profilePicture: image(),
 			firstName: zodLocalised(z.string()),
 			lastName: zodLocalised(z.string()),
+			nickName: zodLocalised(z.string()),
+			title: zodLocalised(z.string()),
+			summary: zodLocalised(z.string()),
 		}),
 	{
 		profilePicture: fields.image({
@@ -31,6 +34,10 @@ export default new SingletonDataSchema(
 		}),
 		nickName: ksLocalised(fields.text, {
 			label: "Nickname",
+			validation: { isRequired: true },
+		}),
+		title: ksLocalised(fields.text, {
+			label: "Title",
 			validation: { isRequired: true },
 		}),
 		summary: ksLocalised(fields.text, {

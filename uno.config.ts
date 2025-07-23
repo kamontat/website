@@ -87,9 +87,13 @@ const config = defineConfig({
 	} satisfies Theme,
 	extendTheme: (t) => {
 		const theme = t as Theme;
-		// console.log(theme.font);
+		// console.log(theme);
 		return {
 			...theme,
+			spacing: {
+				...theme.spacing,
+				main: "87vh",
+			},
 		};
 	},
 	variants: [
