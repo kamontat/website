@@ -20,7 +20,10 @@ const ui = await getSingleton("ui");
 			src={information.must("profilePicture")}
 			alt="profile picture"
 			formats={["avif", "webp"]}
-			height={500}
+			layout="constrained"
+			width={450}
+			loading="lazy"
+			class="rounded-2xl"
 		/>
 		<span id="name" class:list={["text-2xl", "text-red-400"]}>
 			{information.must("firstName", locale)}
