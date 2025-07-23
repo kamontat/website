@@ -1,10 +1,10 @@
+import type { LocaleName } from "@models/locales";
+import { localeNameMap } from "@models/locales";
 import {
 	fields,
 	type ComponentSchema,
 	type ObjectField,
 } from "@keystatic/core";
-import type { Locale } from "@utils/i18n";
-import { localeNameMap } from "@utils/i18n/languages";
 
 export type Function = (arg: object & { label: string }) => ComponentSchema;
 
@@ -21,10 +21,10 @@ export type Function = (arg: object & { label: string }) => ComponentSchema;
 export const ksLocalised = <F extends Function>(
 	field: F,
 	param: Parameters<F>[0],
-): ObjectField<Record<Locale, ReturnType<F>>> => {
-	const empty = {} as Record<Locale, ReturnType<F>>;
+): ObjectField<Record<LocaleName, ReturnType<F>>> => {
+	const empty = {} as Record<LocaleName, ReturnType<F>>;
 	const object = Object.entries(localeNameMap).reduce((res, [key, value]) => {
-		res[key as Locale] = field({
+		res[key as LocaleName] = field({
 			...param,
 			label: `${param.label} - ${value}`,
 		}) as ReturnType<F>;

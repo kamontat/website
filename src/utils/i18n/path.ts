@@ -1,12 +1,13 @@
+import type { LocaleName } from "@models/locales";
+
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { i18nLogger } from "../constants";
-import type { Locale } from "../models";
+import { i18nLogger } from "./constants";
 import { getLocales, hasLocale } from "./locales";
 
 export const getStaticPathParamsWithLocale = <
 	P extends Record<string, string | number | boolean> | null = null,
 >(
-	builder?: P | ((locale: Locale) => P),
+	builder?: P | ((locale: LocaleName) => P),
 ) => {
 	return getLocales().map((locale) => {
 		const _overrides =
@@ -18,8 +19,8 @@ export const getStaticPathParamsWithLocale = <
 				...overrides,
 			},
 		} as P extends null
-			? { params: { locale: Locale } }
-			: { params: { locale: Locale } & P };
+			? { params: { locale: LocaleName } }
+			: { params: { locale: LocaleName } & P };
 	});
 };
 
@@ -47,7 +48,7 @@ export const getPathWithoutLocale = (pathname: string) => {
 	return output;
 };
 
-export const getPathWithLocale = (pathname: string, locale: Locale) => {
+export const getPathWithLocale = (pathname: string, locale: LocaleName) => {
 	const logger = i18nLogger.extend("getPathWithLocale");
 	const path = getPathWithoutLocale(pathname);
 	logger.debug(
@@ -68,10 +69,10 @@ export const buildPath = (...paths: (string | undefined)[]): string => {
 };
 
 export const goToHome = (
-	locale: Locale,
+	locale: LocaleName,
 	...appendPaths: (string | undefined)[]
 ) => getPathWithLocale(buildPath("/", ...appendPaths), locale);
 export const goToBlog = (
-	locale: Locale,
+	locale: LocaleName,
 	...appendPaths: (string | undefined)[]
 ) => getPathWithLocale(buildPath("/blog", ...appendPaths), locale);

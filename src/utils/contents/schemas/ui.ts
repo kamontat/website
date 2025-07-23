@@ -1,6 +1,7 @@
 import { z } from "astro:schema";
 import { fields } from "@keystatic/core";
-import { ksLocalised, zodLocalised } from "@utils/contents/utils";
+import { ksLocalised } from "@utils/i18n/keystatic";
+import { zodLocalised } from "@utils/i18n/astro";
 
 import { SingletonDataSchema } from "./models";
 

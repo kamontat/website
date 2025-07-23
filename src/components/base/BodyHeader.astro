@@ -36,7 +36,7 @@ const { locale, title } = Astro.props;
 		</div>
 		<div class="flex flex-row">
 			<ThemeSwitch client:load />
-			<LocaleSwitch currentUrl={Astro.url} currentLocale={locale} />
+			<LocaleSwitch client:load currentUrl={Astro.url} currentLocale={locale} />
 		</div>
 	</nav>
 </header>

@@ -1,6 +1,7 @@
 ---
+import type { LocaleName } from "@models/locales";
 import { getSingleton } from "@utils/contents";
-import { getLocaleISO, getLocales, type Locale } from "@utils/i18n";
+import { getLocaleISO, getLocales } from "@utils/i18n";
 import { GITHUB_REPOSITORY, GITHUB_REF, GITHUB_SHA } from "astro:env/client";
 import pkg from "@config/package";
 
@@ -11,7 +12,7 @@ interface Author {
 }
 
 interface Props {
-	locale: Locale;
+	locale: LocaleName;
 	title: string;
 	site: string;
 	description?: string;

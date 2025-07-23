@@ -1,19 +1,27 @@
 <script lang="ts">
-	import {
-		getLocaleName,
-		getLocales,
-		getPathWithLocale,
-		type Locale,
-	} from "@utils/i18n";
+	import type { LocaleName } from "@models/locales";
+
+	import { onMount } from "svelte";
+	import { context, setupLocale, switchLocale } from "@app";
+	import { getLocaleName, getLocales, getPathWithLocale } from "@utils/i18n";
+	import { newLogger } from "@utils/logger";
 
 	interface Props {
-		currentLocale: Locale;
+		currentLocale: LocaleName;
 		/** Set to Astro.url */
 		currentUrl: URL;
 	}
 
+	const logger = newLogger("components", "common", "LocaleSwitch");
+
 	const { currentUrl, currentLocale }: Props = $props();
 	const other = getLocales().filter((l) => l !== currentLocale);
+
+	onMount(() => {
+		logger.debug("onMount callback");
+		setupLocale();
+		switchLocale(currentLocale);
+	});
 </script>
 
 <div>

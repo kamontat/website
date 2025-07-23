@@ -1,12 +1,12 @@
-import type { Locale } from "../models";
+import type { LocaleName } from "@models/locales";
 
-import { i18nLogger } from "../constants";
+import { i18nLogger } from "./constants";
 import {
 	defaultLocale,
 	localeISOMap,
 	localeNameMap,
-	locales,
-} from "../languages";
+	localeList,
+} from "@models/locales";
 
 /**
  * check if input locales are equals
@@ -15,7 +15,10 @@ import {
  * @param actual Actual locale (Support Astro.currentLocal, Astro.url.pathname)
  * @returns true if expected and actual are equals
  */
-const isLocale = (expected: Locale, actual: string | undefined): boolean => {
+const isLocale = (
+	expected: LocaleName,
+	actual: string | undefined,
+): boolean => {
 	if (!actual) return false;
 	if (actual?.startsWith(expected) || actual?.startsWith(`/${expected}`))
 		return true;
@@ -24,7 +27,7 @@ const isLocale = (expected: Locale, actual: string | undefined): boolean => {
 
 export const hasLocale = (locale: string | undefined) => {
 	if (!locale) return false;
-	return locales.some((l) => isLocale(l, locale));
+	return localeList.some((l) => isLocale(l, locale));
 };
 
 /**
@@ -34,9 +37,9 @@ export const hasLocale = (locale: string | undefined) => {
  * @param locale Astro.currentLocale
  * @returns locale string as Locale type.
  */
-export const getLocale = (locale: string | undefined): Locale => {
+export const getLocale = (locale: string | undefined): LocaleName => {
 	const logger = i18nLogger.extend("getLocale");
-	const output = locales.find((l) => isLocale(l, locale));
+	const output = localeList.find((l) => isLocale(l, locale));
 	if (output === undefined) {
 		logger.debug(
 			`fn(${locale}) is missing, returns default '${defaultLocale}'`,
@@ -48,13 +51,13 @@ export const getLocale = (locale: string | undefined): Locale => {
 	return output;
 };
 
-export const getLocaleName = <L extends Locale>(
+export const getLocaleName = <L extends LocaleName>(
 	locale: L | undefined,
 ): (typeof localeNameMap)[L] => {
 	type Output = (typeof localeNameMap)[L];
 	const logger = i18nLogger.extend("getLocaleName");
 	const raw = Object.entries(localeNameMap).find(([code]) =>
-		isLocale(code as Locale, locale),
+		isLocale(code as LocaleName, locale),
 	)?.[1];
 	const output = (raw ?? localeNameMap[defaultLocale]) as Output;
 	if (raw === undefined) {
@@ -66,13 +69,13 @@ export const getLocaleName = <L extends Locale>(
 	return output;
 };
 
-export const getLocaleISO = <L extends Locale>(
+export const getLocaleISO = <L extends LocaleName>(
 	locale?: L | undefined,
 ): (typeof localeISOMap)[L] => {
 	type Output = (typeof localeISOMap)[L];
 	const logger = i18nLogger.extend("getLocaleISO");
 	const raw = Object.entries(localeISOMap).find(([code]) =>
-		isLocale(code as Locale, locale),
+		isLocale(code as LocaleName, locale),
 	)?.[1];
 	const output = (raw ?? localeISOMap[defaultLocale]) as Output;
 	if (raw === undefined) {
@@ -88,4 +91,4 @@ export const getLocaleISO = <L extends Locale>(
  *
  * @returns All supported locales
  */
-export const getLocales = () => locales;
+export const getLocales = () => localeList;

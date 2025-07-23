@@ -1,4 +1,4 @@
-import { defaultLocale } from "@utils/i18n/languages";
+import { defaultLocale } from "@models/locales";
 import type { KeystaticCollections } from "@utils/contents/schemas";
 import { getEntry, type DataEntryMap } from "astro:content";
 

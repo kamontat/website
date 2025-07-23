@@ -3,11 +3,11 @@ import type { AstroSchema } from "./models/base";
 import { z } from "astro:schema";
 import { fields } from "@keystatic/core";
 
-import { localePathRegex } from "@utils/i18n/languages";
 import {
 	AbstractCollectionDataSchema,
 	type KeystaticSlugSchema,
 } from "./models";
+import { localeList } from "@models/locales";
 
 class PostsDataSchema<
 	AS extends AstroSchema,
@@ -34,7 +34,12 @@ export default new PostsDataSchema(
 	{
 		slug: fields.text({
 			label: "Slug",
-			validation: { isRequired: true, pattern: { regex: localePathRegex } },
+			validation: {
+				isRequired: true,
+				pattern: {
+					regex: new RegExp(`(${localeList.join("|")})\\/[\\w\\d-]+;`),
+				},
+			},
 		}),
 		title: fields.text({
 			label: "Title",

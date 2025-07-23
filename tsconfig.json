@@ -5,16 +5,18 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
+			"@app": ["./src/apps/index.ts"],
+			"@models/*": ["./src/apps/models/*"],
 			"@assets/data/*": ["./src/assets/data/*"],
 			"@assets/generic/*": ["./src/assets/generic/*"],
 			"@assets/posts/*": ["./src/assets/posts/*"],
 			"@layouts/*": ["src/layouts/*"],
 			"@components/*": ["src/components/*"],
 			"@utils/contents": ["src/utils/contents/index.ts"],
-			"@utils/contents/utils": ["src/utils/contents/utils/index.ts"],
 			"@utils/contents/schemas": ["src/utils/contents/schemas/index.ts"],
 			"@utils/i18n": ["src/utils/i18n/index.ts"],
-			"@utils/i18n/languages": ["src/utils/i18n/languages.ts"],
+			"@utils/i18n/keystatic": ["src/utils/i18n/keystatic/index.ts"],
+			"@utils/i18n/astro": ["src/utils/i18n/astro/index.ts"],
 			"@utils/logger": ["src/utils/logger/index.ts"],
 			"@config/package": ["package.json"],
 			"@config/keystatic": ["keystatic.config.ts"]

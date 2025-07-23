@@ -12,8 +12,8 @@ import UnoCSS from "unocss/astro";
 import {
 	defaultLocale,
 	localeISOMap,
-	locales,
-} from "./src/utils/i18n/languages";
+	localeList,
+} from "./src/apps/models/locales";
 
 // https://astro.build/config
 export default defineConfig({
@@ -42,7 +42,7 @@ export default defineConfig({
 	}),
 	output: "static",
 	i18n: {
-		locales,
+		locales: localeList,
 		defaultLocale,
 		fallback: {
 			th: defaultLocale,

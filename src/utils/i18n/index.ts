@@ -1,3 +1,2 @@
-export * from "./utils";
-
-export type { Locale } from "./models";
+export * from "./locales";
+export * from "./path";
