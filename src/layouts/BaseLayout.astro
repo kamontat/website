@@ -10,12 +10,12 @@ import { getLocaleISO } from "@utils/i18n";
 
 type Props = ComponentProps<typeof HeadHelmet>;
 
-const { locale, title, site, description, author } = Astro.props;
+const props = Astro.props;
 ---
 
-<html lang={getLocaleISO(locale)}>
+<html lang={getLocaleISO(props.locale)}>
 	<head>
-		<HeadHelmet {locale} {title} {site} {description} {author} />
+		<HeadHelmet {...props} />
 		<slot name="head" />
 	</head>
 	<body
@@ -27,7 +27,9 @@ const { locale, title, site, description, author } = Astro.props;
 			"font-light",
 		]}
 	>
-		<slot name="header"><BodyHeader {locale} {title} /></slot>
+		<slot name="header">
+			<BodyHeader locale={props.locale} title={props.title} />
+		</slot>
 		<BodyMain>
 			<slot />
 		</BodyMain>

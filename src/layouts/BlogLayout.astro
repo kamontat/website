@@ -6,7 +6,15 @@ type Props = Omit<ComponentProps<typeof BaseLayout>, "site">;
 const { locale, title, description, author } = Astro.props;
 ---
 
-<BaseLayout site="KCBlog" {locale} {title} {description} {author}>
-	<link slot="head" rel="icon" type="image/svg+xml" href="/favicon-light.svg" />
+<BaseLayout
+	site="KCBlog"
+	{locale}
+	{title}
+	{description}
+	{author}
+	favicon="/favicon.svg"
+	favicon:light="/favicon-light.svg"
+	favicon:dark="/favicon-dark.svg"
+>
 	<slot />
 </BaseLayout>

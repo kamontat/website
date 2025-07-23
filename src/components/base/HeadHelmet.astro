@@ -1,8 +1,10 @@
 ---
+import { GITHUB_REPOSITORY, GITHUB_REF, GITHUB_SHA } from "astro:env/client";
+
+import Favicon from "@components/common/Favicon.svelte";
 import type { LocaleName } from "@models/locales";
 import { getSingleton } from "@utils/contents";
 import { getLocaleISO, getLocales } from "@utils/i18n";
-import { GITHUB_REPOSITORY, GITHUB_REF, GITHUB_SHA } from "astro:env/client";
 import pkg from "@config/package";
 
 interface Author {
@@ -17,9 +19,23 @@ interface Props {
 	site: string;
 	description?: string;
 	author?: Author;
+	favicon?: string;
+	"favicon:light"?: string;
+	"favicon:dark"?: string;
+	"favicon:black"?: string;
 }
 
-const { locale, title, site, description, author } = Astro.props;
+const {
+	locale,
+	title,
+	site,
+	description,
+	author,
+	favicon: faviconBase,
+	"favicon:light": faviconLight,
+	"favicon:dark": faviconDark,
+	"favicon:black": faviconBlack,
+} = Astro.props;
 const generator = Astro.generator;
 const url = Astro.url;
 
@@ -68,3 +84,10 @@ const locales = getLocales();
 <meta name="copyright" content={pkg.license} />
 
 <link rel="sitemap" href="/sitemap-index.xml" />
+<Favicon
+	client:load
+	base={faviconBase}
+	light={faviconLight}
+	dark={faviconDark}
+	black={faviconBlack}
+/>
