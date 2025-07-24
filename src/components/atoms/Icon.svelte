@@ -1,11 +1,3 @@
-<!-- ---
-
-
-const { as, class: className, size, ...rest } = Astro.props;
-
-const Tag = as ?? "i";
---- -->
-
 <script lang="ts">
 	import type { HTMLTag, Polymorphic } from "astro/types";
 
