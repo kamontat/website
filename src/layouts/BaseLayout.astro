@@ -1,10 +1,10 @@
 ---
 import type { ComponentProps } from "astro/types";
 
-import HeadHelmet from "@components/base/HeadHelmet.astro";
-import BodyFooter from "@components/base/BodyFooter.astro";
-import BodyHeader from "@components/base/BodyHeader.astro";
-import BodyMain from "@components/base/BodyMain.astro";
+import HeadHelmet from "@components/organisms/HeadHelmet.astro";
+import BodyFooter from "@components/organisms/BodyFooter.astro";
+import BodyHeader from "@components/organisms/BodyHeader.astro";
+import BodyMain from "@components/organisms/BodyMain.astro";
 
 import { getLocaleISO } from "@utils/i18n";
 
@@ -20,20 +20,22 @@ const props = Astro.props;
 	</head>
 	<body
 		class:list={[
+			"font-sans",
+			"font-light",
 			"bg-white",
 			"dark:bg-gray-700",
 			"black:bg-black",
-			"font-sans",
-			"font-light",
 		]}
 	>
-		<slot name="header">
-			<BodyHeader locale={props.locale} title={props.title} />
-		</slot>
-		<BodyMain>
-			<slot />
-		</BodyMain>
-		<slot name="footer"><BodyFooter /></slot>
+		<div class="h-screen">
+			<slot name="header">
+				<BodyHeader locale={props.locale} title={props.title} />
+			</slot>
+			<BodyMain>
+				<slot />
+			</BodyMain>
+			<slot name="footer"><BodyFooter /></slot>
+		</div>
 	</body>
 </html>
 

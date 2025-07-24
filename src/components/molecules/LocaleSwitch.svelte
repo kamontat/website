@@ -26,7 +26,7 @@
 
 <div>
 	{#each other as locale}
-		<a class:mx-2={true} href={getPathWithLocale(currentUrl.pathname, locale)}>
+		<a class="mx-2" href={getPathWithLocale(currentUrl.pathname, locale)}>
 			{getLocaleName(locale)}
 		</a>
 	{/each}

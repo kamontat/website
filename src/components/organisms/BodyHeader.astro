@@ -1,10 +1,10 @@
 ---
 import type { ComponentProps } from "astro/types";
-import type HeadHelmet from "@components/base/HeadHelmet.astro";
+import type HeadHelmet from "@components/organisms/HeadHelmet.astro";
 
-import Icon from "@components/common/Icon.svelte";
-import ThemeSwitch from "@components/common/ThemeSwitch.svelte";
-import LocaleSwitch from "@components/common/LocaleSwitch.svelte";
+import ThemeSwitch from "@components/molecules/ThemeSwitch.svelte";
+import LocaleSwitch from "@components/molecules/LocaleSwitch.svelte";
+import Icon from "@components/atoms/Icon.svelte";
 import { goToHome } from "@utils/i18n";
 
 type Props = Pick<ComponentProps<typeof HeadHelmet>, "locale" | "title">;
@@ -12,21 +12,10 @@ type Props = Pick<ComponentProps<typeof HeadHelmet>, "locale" | "title">;
 const { locale, title } = Astro.props;
 ---
 
-<header>
-	<nav
-		class:list={[
-			"flex",
-			"flex-row",
-			"items-center",
-			"justify-between",
-			"bg-blue-300",
-			"dark:bg-blue-600",
-			"black:bg-blue-900",
-			"px-2 sm:px-6 lg:px-8",
-			"h-12",
-			"max-w-screen",
-		]}
-	>
+<header
+	class="black:bg-blue-900 px-2 py-3 bg-blue-300 lg:px-8 sm:px-6 dark:bg-blue-600"
+>
+	<nav class:list={["flex", "flex-row", "items-center", "justify-between"]}>
 		<div class="flex flex-1 flex-row items-center justify-stretch">
 			<Icon as="a" class="i-lineicons:menu-hamburger-1" size="md" />
 			<a

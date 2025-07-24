@@ -1,6 +1,7 @@
 ---
 import { Picture } from "astro:assets";
 import DefaultLayout from "@layouts/DefaultLayout.astro";
+import CenterDiv from "@components/molecules/CenterDiv.svelte";
 
 import { getSingleton } from "@utils/contents";
 import { getStaticPathParamsWithLocale, goToBlog } from "@utils/i18n";
@@ -15,7 +16,7 @@ const ui = await getSingleton("ui");
 ---
 
 <DefaultLayout title={ui.must("page.home.title", locale)} {locale}>
-	<div class="h-100% max-w-lg w-100% items-center justify-center">
+	<CenterDiv class="mb-6 mt-12 px-8 md:px-0 sm:px-12 md:max-w-md">
 		<Picture
 			src={information.must("profilePicture")}
 			alt="profile picture"
@@ -26,26 +27,26 @@ const ui = await getSingleton("ui");
 			class="rounded-2xl"
 		/>
 		<span
-			class="text-2xl text-red-500 mt-3 text-center black:text-red-300 dark:text-red-400"
+			class="black:text-red-300 text-2xl text-red-500 mt-2 text-center dark:text-red-400"
 		>
 			{information.must("firstName", locale)}
 			{information.must("lastName", locale)}
 			({information.must("nickName", locale)})
 		</span>
 		<span
-			class="text-sm text-gray-500 mt-1 text-center black:text-gray-200 dark:text-gray-300"
+			class="black:text-gray-200 text-sm text-gray-500 mt-1 text-center dark:text-gray-300"
 		>
 			{information.must("title", locale)}
 		</span>
 		<span
-			class="text-lg text-black mt-5 text-center black:text-white dark:text-white"
+			class="black:text-white text-lg text-black mt-3 text-center dark:text-white"
 		>
 			{information.must("summary", locale)}
 		</span>
-		<hr class="mt-5 border-1 w-100%" />
 
+		<hr class="mt-5 border-1 w-100%" />
 		<div class="mt-2">
 			<a href={goToBlog(locale)}>Go to blog</a>
 		</div>
-	</div>
+	</CenterDiv>
 </DefaultLayout>

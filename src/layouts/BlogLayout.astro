@@ -1,6 +1,6 @@
 ---
 import type { ComponentProps } from "astro/types";
-import BaseLayout from "./BaseLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
 type Props = Omit<ComponentProps<typeof BaseLayout>, "site">;
 const { locale, title, description, author } = Astro.props;
@@ -12,7 +12,7 @@ const { locale, title, description, author } = Astro.props;
 	{title}
 	{description}
 	{author}
-	favicon="/favicon.svg"
+	favicon="/favicon.ico"
 	favicon:light="/favicon-light.svg"
 	favicon:dark="/favicon-dark.svg"
 >
