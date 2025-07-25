@@ -17,7 +17,10 @@ import {
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://kc.in.th",
+	site:
+		import.meta.env.CI === "true"
+			? "https://kc.in.th"
+			: "http://localhost:4321",
 	integrations: [
 		svelte(),
 		markdoc(),
