@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig, envField } from "astro/config";
 
+import { writeFile } from "node:fs/promises";
 import svelte from "@astrojs/svelte";
 import markdoc from "@astrojs/markdoc";
 import react from "@astrojs/react";
@@ -47,13 +48,8 @@ export default defineConfig({
 	i18n: {
 		locales: localeList,
 		defaultLocale,
-		fallback: {
-			th: defaultLocale,
-		},
 		routing: {
 			prefixDefaultLocale: true,
-			redirectToDefaultLocale: true,
-			fallbackType: "redirect",
 		},
 	},
 	redirects: {

@@ -18,6 +18,29 @@
 	const logger = moleculeLogger.extend("LocaleSwitch");
 
 	let other = getLocaleRoutes(currentUrl.pathname, currentLocale);
+	let promise = Promise.all(
+		other.map(async (r) => {
+			try {
+				const response = await fetch(r.url, {
+					method: "HEAD",
+					cache: "no-cache",
+					keepalive: false,
+					redirect: "error",
+					mode: "same-origin",
+				});
+				logger.warn(
+					`checking validate url "%s": %s`,
+					response.url,
+					response.ok,
+				);
+
+				return { ...r, enabled: response.ok };
+			} catch (error) {
+				logger.warn(`Cannot validate url: %s`, error);
+				return { ...r, enabled: false };
+			}
+		}),
+	);
 
 	onMount(() => {
 		logger.debug("onMount callback");
@@ -26,10 +49,14 @@
 	});
 </script>
 
-<div>
-	{#each other as path}
-		<a class="mx-2" href={path.url} hreflang={path.locale}>
-			{getLocaleName(path.locale)}
-		</a>
+{#await promise}
+	<div></div>
+{:then paths}
+	{#each paths as path}
+		{#if path.enabled}
+			<a class="mx-2" href={path.url} hreflang={path.locale}>
+				{getLocaleName(path.locale)}
+			</a>
+		{/if}
 	{/each}
-</div>
+{/await}
