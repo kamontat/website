@@ -1,19 +1,20 @@
 ---
-import type { ComponentProps } from "astro/types";
+import type { BaseProps, WithComponent } from "@core/types/astro";
 import type HeadHelmet from "@components/organisms/HeadHelmet.astro";
 
+import { goToHome } from "@core/models/route";
 import ThemeSwitch from "@components/molecules/ThemeSwitch.svelte";
 import LocaleSwitch from "@components/molecules/LocaleSwitch.svelte";
 import Icon from "@components/atoms/Icon.svelte";
-import { goToHome } from "@utils/i18n";
 
-type Props = Pick<ComponentProps<typeof HeadHelmet>, "locale" | "title">;
+type Props = BaseProps &
+	Pick<WithComponent<typeof HeadHelmet>, "locale" | "title">;
 
 const { locale, title } = Astro.props;
 ---
 
 <header
-	class="black:bg-blue-900 px-2 py-3 bg-blue-300 lg:px-8 sm:px-6 dark:bg-blue-600"
+	class="px-2 py-3 bg-blue-300 lg:px-8 sm:px-6 black:bg-blue-900 dark:bg-blue-600"
 >
 	<nav class:list={["flex", "flex-row", "items-center", "justify-between"]}>
 		<div class="flex flex-1 flex-row items-center justify-stretch">

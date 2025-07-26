@@ -1,8 +1,8 @@
 // ref: https://docs.astro.build/en/guides/content-collections/
 
-import { astroCollections } from "@utils/contents/schemas";
 import { defineCollection } from "astro:content";
 import { file, glob } from "astro/loaders";
+import { astroCollections } from "@core/schemas";
 
 export const collections = await astroCollections({
 	defineCollection,

@@ -1,14 +1,14 @@
 ---
 import { Picture } from "astro:assets";
+
 import DefaultLayout from "@layouts/DefaultLayout.astro";
 import CenterDiv from "@components/molecules/CenterDiv.svelte";
 
-import { getSingleton } from "@utils/contents";
-import { getStaticPathParamsWithLocale, goToBlog } from "@utils/i18n";
+import { goToBlog } from "@core/models/route";
+import { getStaticPathsWithLocale } from "@core/utils/path";
+import { getSingleton } from "@core/contents";
 
-export const getStaticPaths = () => {
-	return getStaticPathParamsWithLocale();
-};
+export const getStaticPaths = getStaticPathsWithLocale();
 
 const { locale } = Astro.params;
 const information = await getSingleton("information");
@@ -27,19 +27,19 @@ const ui = await getSingleton("ui");
 			class="rounded-2xl"
 		/>
 		<span
-			class="black:text-red-300 text-2xl text-red-500 mt-2 text-center dark:text-red-400"
+			class="text-2xl text-red-500 mt-2 text-center black:text-red-300 dark:text-red-400"
 		>
 			{information.must("firstName", locale)}
 			{information.must("lastName", locale)}
 			({information.must("nickName", locale)})
 		</span>
 		<span
-			class="black:text-gray-200 text-sm text-gray-500 mt-1 text-center dark:text-gray-300"
+			class="text-sm text-gray-500 mt-1 text-center black:text-gray-200 dark:text-gray-300"
 		>
 			{information.must("title", locale)}
 		</span>
 		<span
-			class="black:text-white text-lg text-black mt-3 text-center dark:text-white"
+			class="text-lg text-black mt-3 text-center black:text-white dark:text-white"
 		>
 			{information.must("summary", locale)}
 		</span>

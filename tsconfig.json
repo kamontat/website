@@ -5,21 +5,27 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"@app": ["./src/apps/index.ts"],
-			"@models/*": ["./src/apps/models/*"],
+			"@core/types": ["./src/core/types"],
+			"@core/types/svelte": ["./src/core/types/svelte"],
+			"@core/types/astro": ["./src/core/types/astro"],
+			"@core/constants/*": ["src/core/constants/*"],
+			"@core/models/*": ["src/core/models/*"],
+			"@core/utils/*": ["./src/core/utils/*"],
+
+			"@core/contexts": ["./src/core/contexts"],
+			"@core/contents": ["./src/core/contents"],
+			"@core/schemas": ["./src/core/schemas"],
+
+			"@core/configs/package": ["package.json"],
+			"@core/configs/keystatic": ["keystatic.config.ts"],
+
+			"@layouts/*": ["src/layouts/*"],
+			"@components/atoms/*": ["src/components/atoms/*"],
+			"@components/molecules/*": ["src/components/molecules/*"],
+			"@components/organisms/*": ["src/components/organisms/*"],
 			"@assets/data/*": ["./src/assets/data/*"],
 			"@assets/generic/*": ["./src/assets/generic/*"],
-			"@assets/posts/*": ["./src/assets/posts/*"],
-			"@layouts/*": ["src/layouts/*"],
-			"@components/*": ["src/components/*"],
-			"@utils/contents": ["src/utils/contents/index.ts"],
-			"@utils/contents/schemas": ["src/utils/contents/schemas/index.ts"],
-			"@utils/i18n": ["src/utils/i18n/index.ts"],
-			"@utils/i18n/keystatic": ["src/utils/i18n/keystatic/index.ts"],
-			"@utils/i18n/astro": ["src/utils/i18n/astro/index.ts"],
-			"@utils/logger": ["src/utils/logger/index.ts"],
-			"@config/package": ["package.json"],
-			"@config/keystatic": ["keystatic.config.ts"]
+			"@assets/posts/*": ["./src/assets/posts/*"]
 		},
 		"jsx": "react-jsx",
 		"jsxImportSource": "react",

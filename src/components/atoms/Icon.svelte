@@ -1,13 +1,21 @@
 <script lang="ts">
-	import type { HTMLTag, Polymorphic } from "astro/types";
+	import type {
+		BaseProps,
+		WithOptionalPolymorphic,
+		HTMLTag,
+		WithElement,
+	} from "@core/types/svelte";
 
-	type Props<T extends HTMLTag> = Polymorphic<{ as: T }> & {
+	type Size = "sm" | "md" | "lg";
+	type Props<Tag extends HTMLTag> = BaseProps<{
 		class: string;
-		size: "sm" | "md" | "lg";
-	};
+		size?: Size;
+	}> &
+		WithOptionalPolymorphic<Tag> &
+		WithElement<Tag>;
 
-	const { as, class: className, size, ...rest }: Props<HTMLTag> = $props();
-	const sizeMap: Record<string, string> = {
+	let { as, class: className, size, ...rest }: Props<HTMLTag> = $props();
+	const sizeMap: Record<Size, string> = {
 		sm: "text-xl",
 		md: "text-2xl",
 		lg: "text-4xl",

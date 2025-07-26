@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { context, setupTheme, switchTheme } from "@app";
-	import { themeList, themeMap } from "@models/themes";
-	import { newLogger } from "@utils/logger";
+	import { themeList, themeMap } from "@core/constants/theme";
+	import { moleculeLogger } from "@core/constants/logger";
+	import { context, setupTheme, switchTheme } from "@core/contexts";
 
-	const logger = newLogger("components", "common", "ThemeSwitch");
+	const logger = moleculeLogger.extend("ThemeSwitch");
 
 	context.subscribe(({ theme }) => {
 		if (theme) {

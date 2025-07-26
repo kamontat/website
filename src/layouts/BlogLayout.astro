@@ -1,8 +1,13 @@
 ---
-import type { ComponentProps } from "astro/types";
+import type { BaseProps, WithComponent } from "@core/types/astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 
-type Props = Omit<ComponentProps<typeof BaseLayout>, "site">;
+type Props = BaseProps &
+	Pick<
+		WithComponent<typeof BaseLayout>,
+		"locale" | "title" | "description" | "author"
+	>;
+
 const { locale, title, description, author } = Astro.props;
 ---
 

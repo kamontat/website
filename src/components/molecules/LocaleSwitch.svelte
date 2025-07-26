@@ -1,21 +1,23 @@
 <script lang="ts">
-	import type { LocaleName } from "@models/locales";
+	import type { BaseProps } from "@core/types/svelte";
+	import type { LocaleName } from "@core/types";
 
 	import { onMount } from "svelte";
-	import { context, setupLocale, switchLocale } from "@app";
-	import { getLocaleName, getLocales, getPathWithLocale } from "@utils/i18n";
-	import { newLogger } from "@utils/logger";
+	import { moleculeLogger } from "@core/constants/logger";
+	import { setupLocale, switchLocale } from "@core/contexts";
+	import { getLocaleRoutes } from "@core/models/route";
+	import { getLocaleName } from "@core/utils/locale";
 
-	interface Props {
+	type Props = BaseProps<{
 		currentLocale: LocaleName;
 		/** Set to Astro.url */
 		currentUrl: URL;
-	}
+	}>;
 
-	const logger = newLogger("components", "common", "LocaleSwitch");
+	let { currentUrl, currentLocale }: Props = $props();
+	const logger = moleculeLogger.extend("LocaleSwitch");
 
-	const { currentUrl, currentLocale }: Props = $props();
-	const other = getLocales().filter((l) => l !== currentLocale);
+	let other = getLocaleRoutes(currentUrl.pathname, currentLocale);
 
 	onMount(() => {
 		logger.debug("onMount callback");
@@ -25,9 +27,9 @@
 </script>
 
 <div>
-	{#each other as locale}
-		<a class="mx-2" href={getPathWithLocale(currentUrl.pathname, locale)}>
-			{getLocaleName(locale)}
+	{#each other as path}
+		<a class="mx-2" href={path.url} hreflang={path.locale}>
+			{getLocaleName(path.locale)}
 		</a>
 	{/each}
 </div>

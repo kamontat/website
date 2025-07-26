@@ -1,17 +1,12 @@
 ---
 import BlogLayout from "@layouts/BlogLayout.astro";
 
-import {
-	getLocale,
-	getPathWithoutLocale,
-	getStaticPathParamsWithLocale,
-	goToBlog,
-} from "@utils/i18n";
-import { getCollections, getSingleton } from "@utils/contents";
+import { getCollections, getSingleton } from "@core/contents";
+import { goToBlog, getLocaleRoute } from "@core/models/route";
+import { getStaticPathsWithLocale } from "@core/utils/path";
+import { getLocale } from "@core/utils/locale";
 
-export const getStaticPaths = () => {
-	return getStaticPathParamsWithLocale();
-};
+export const getStaticPaths = getStaticPathsWithLocale();
 
 const { locale } = Astro.params;
 const ui = await getSingleton("ui");
@@ -25,7 +20,7 @@ const posts = await getCollections("posts");
 				.filter((post) => getLocale(post.id) === locale)
 				.map((post) => (
 					<li>
-						<a href={goToBlog(locale, getPathWithoutLocale(post.id))}>
+						<a href={goToBlog(locale, getLocaleRoute(post.id).rawPath)}>
 							{post.get("title")}
 						</a>
 					</li>

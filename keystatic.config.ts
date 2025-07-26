@@ -2,11 +2,9 @@ import type { LocalConfig, GitHubConfig } from "@keystatic/core";
 
 import { CI, GITHUB_REPOSITORY } from "astro:env/client";
 import { config } from "@keystatic/core";
-import { getLocaleISO } from "@utils/i18n";
-import {
-	keystaticSingleton,
-	keystaticCollections,
-} from "@utils/contents/schemas";
+
+import { keystaticCollections, keystaticSingleton } from "@core/schemas";
+import { getLocaleISO } from "@core/utils/locale";
 
 const getStorage = () => {
 	const [owner, name] = GITHUB_REPOSITORY.split("/");

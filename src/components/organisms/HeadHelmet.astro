@@ -1,11 +1,13 @@
 ---
-import { GITHUB_REPOSITORY, GITHUB_REF, GITHUB_SHA } from "astro:env/client";
+import type { BaseProps } from "@core/types/astro";
+import type { LocaleName } from "@core/types";
 
+import { GITHUB_REPOSITORY, GITHUB_REF, GITHUB_SHA } from "astro:env/client";
+import pkg from "@core/configs/package";
+import { getSingleton } from "@core/contents";
+import { getLocaleRoutes } from "@core/models/route";
+import { getLocaleISO } from "@core/utils/locale";
 import Favicon from "@components/atoms/Favicon.svelte";
-import type { LocaleName } from "@models/locales";
-import { getSingleton } from "@utils/contents";
-import { getLocaleISO, getLocales } from "@utils/i18n";
-import pkg from "@config/package";
 
 interface Author {
 	name: string;
@@ -13,7 +15,7 @@ interface Author {
 	twitter?: string;
 }
 
-interface Props {
+type Props = BaseProps<{
 	locale: LocaleName;
 	title: string;
 	site: string;
@@ -23,7 +25,7 @@ interface Props {
 	"favicon:light"?: string;
 	"favicon:dark"?: string;
 	"favicon:black"?: string;
-}
+}>;
 
 const {
 	locale,
@@ -40,7 +42,7 @@ const generator = Astro.generator;
 const url = Astro.url;
 
 const ui = await getSingleton("ui");
-const locales = getLocales();
+const localePaths = getLocaleRoutes(url.pathname, locale);
 ---
 
 <!-- Default -->
@@ -66,7 +68,12 @@ const locales = getLocales();
 <!-- <meta property="og:image" content="https://ia.media-imdb.com/images/rock.jpg" /> -->
 <!-- <meta property="og:image:alt" content="Image description" /> -->
 <meta property="og:locale" content={getLocaleISO(locale)} />
-{locales.map((l) => <meta property="og:locale:alternate" content={l} />)}
+{
+	localePaths.map(({ locale, url }) => [
+		<meta property="og:locale:alternate" content={getLocaleISO(locale)} />,
+		<link rel="alternate" hreflang={getLocaleISO(locale)} href={url} />,
+	])
+}
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary" />

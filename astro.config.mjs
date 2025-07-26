@@ -13,7 +13,7 @@ import {
 	defaultLocale,
 	localeISOMap,
 	localeList,
-} from "./src/apps/models/locales";
+} from "./src/core/constants/locale";
 
 // https://astro.build/config
 export default defineConfig({

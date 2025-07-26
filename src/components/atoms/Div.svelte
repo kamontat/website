@@ -1,10 +1,13 @@
 <script lang="ts">
-	import type { SvelteHTMLElements } from "svelte/elements";
+	import type {
+		BaseProps,
+		WithChildren,
+		WithElement,
+	} from "@core/types/svelte";
 
-	type Div = Required<Pick<SvelteHTMLElements["div"], "children">> &
-		Omit<SvelteHTMLElements["div"], "children">;
+	type Props = BaseProps & WithChildren & WithElement<"div">;
 
-	let { children, ...rest }: Div = $props();
+	let { children, ...rest }: Props = $props();
 </script>
 
 <div {...rest}>

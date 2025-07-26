@@ -1,17 +1,18 @@
 <script lang="ts">
-	import type { ThemeName } from "@models/themes";
-	import { context } from "@app";
-	import { newLogger } from "@utils/logger";
+	import type { BaseProps } from "@core/types/svelte";
+	import type { ThemeName } from "@core/types";
+	import { context } from "@core/contexts";
+	import { atomLogger } from "@core/constants/logger";
 
-	interface Props {
+	type Props = BaseProps<{
 		base?: string;
 		light?: string;
 		dark?: string;
 		black?: string;
-	}
+	}>;
 
-	const { base = "/favicon.ico", light, dark, black }: Props = $props();
-	const logger = newLogger("components", "common", "Favicon");
+	let { base = "/favicon.ico", light, dark, black }: Props = $props();
+	const logger = atomLogger.extend("Favicon");
 
 	const getIcon = (theme: ThemeName | undefined) => {
 		logger.debug("get icon from theme: %s", theme);
