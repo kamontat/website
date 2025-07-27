@@ -1,13 +1,14 @@
 <script lang="ts">
-	import type { BaseProps } from "@core/types/svelte";
+	import type { BaseProps, WithElement } from "@core/types/svelte";
 
 	type Props = BaseProps<{
 		text: string;
-	}>;
+	}> &
+		Omit<WithElement<"h1">, "class">;
 
-	let { text }: Props = $props();
+	let { text, ...rest }: Props = $props();
 </script>
 
 <div class="flex-row items-center justify-center mt-4">
-	<h1 class="text-4xl font-bold">{text}</h1>
+	<h1 class="text-4xl font-bold" {...rest}>{text}</h1>
 </div>

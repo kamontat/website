@@ -9,7 +9,10 @@ import BodyMain from "@components/organisms/BodyMain.astro";
 import { getLocaleISO } from "@core/utils/locale";
 import { ClientRouter } from "astro:transitions";
 
-type Props = BaseProps & WithComponent<typeof HeadHelmet>;
+type Props = BaseProps<{
+	mainLocale?: string;
+}> &
+	WithComponent<typeof HeadHelmet>;
 
 const props = Astro.props;
 ---
@@ -33,7 +36,7 @@ const props = Astro.props;
 			<slot name="header">
 				<BodyHeader locale={props.locale} title={props.title} />
 			</slot>
-			<BodyMain>
+			<BodyMain locale={props.mainLocale}>
 				<slot />
 			</BodyMain>
 			<slot name="footer"><BodyFooter /></slot>

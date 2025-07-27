@@ -16,26 +16,62 @@ type Props = BaseProps<{
 	slug: string;
 }>;
 
+// NOTE: If post on alternative languages is missing, use existed language instead
 export const getStaticPaths = async () => {
 	const posts = await getCollections("posts");
-	return posts.map((post) => {
+	// return posts.map((post) => {
+	// 	const slug = post.id;
+	// 	const [locale, name] = slug.split("/");
+	// 	return {
+	// 		params: { locale, name },
+	// 		props: { slug },
+	// 	} as StaticPathsItem<Parameters, Props>;
+	// });
+
+	// Map<name, {[locale]: slug}>
+	const mapper: Record<string, Record<LocaleName, string>> = {};
+	posts.map((post) => {
 		const slug = post.id;
 		const [locale, name] = slug.split("/");
-		return {
-			params: { locale, name },
-			props: { slug },
-		} as StaticPathsItem<Parameters, Props>;
+		if (!mapper[name]) {
+			mapper[name] = {
+				en: slug,
+				th: slug,
+			};
+		} else {
+			const previous = mapper[name]!;
+			mapper[name] = {
+				...previous,
+				[locale]: slug,
+			};
+		}
+	});
+
+	return Object.entries(mapper).flatMap(([name, slug]) => {
+		const build = (locale: LocaleName) =>
+			({
+				params: {
+					locale,
+					name,
+				},
+				props: {
+					slug: slug[locale],
+				},
+			}) as StaticPathsItem<Parameters, Props>;
+
+		return [build("en"), build("th")];
 	});
 };
 
 const { locale } = Astro.params;
 const { slug } = Astro.props;
+const [slugLang] = slug.split("/");
 
 const post = await getCollection("posts", slug);
 const { Content } = await post.render();
 ---
 
-<BlogLayout title={post.must("title")} {locale}>
+<BlogLayout title={post.must("title")} {locale} mainLocale={slugLang}>
 	<Title text={post.must("title")} />
 	<Content />
 </BlogLayout>

@@ -1,7 +1,6 @@
 ---
 import type { BaseProps, WithComponent } from "@core/types/astro";
 import type HeadHelmet from "@components/organisms/HeadHelmet.astro";
-import type { AstroInstance } from "astro";
 
 import { goToHome } from "@core/models/route";
 import ThemeSwitch from "@components/molecules/ThemeSwitch.svelte";
@@ -31,6 +30,7 @@ const { locale, title } = Astro.props;
 				client:only="svelte"
 				currentUrl={Astro.url}
 				currentLocale={locale}
+				autoHidden={false}
 			/>
 		</div>
 	</nav>

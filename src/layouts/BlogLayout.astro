@@ -5,15 +5,16 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 type Props = BaseProps &
 	Pick<
 		WithComponent<typeof BaseLayout>,
-		"locale" | "title" | "description" | "author"
+		"locale" | "mainLocale" | "title" | "description" | "author"
 	>;
 
-const { locale, title, description, author } = Astro.props;
+const { locale, title, description, author, mainLocale } = Astro.props;
 ---
 
 <BaseLayout
 	site="KCBlog"
 	{locale}
+	{mainLocale}
 	{title}
 	{description}
 	{author}

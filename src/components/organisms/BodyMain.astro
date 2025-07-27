@@ -1,3 +1,15 @@
-<main class="h-100%">
+---
+import type { BaseProps } from "@core/types/astro";
+import { getLocale, getLocaleISO } from "@core/utils/locale";
+
+type Props = BaseProps<{
+	locale?: string;
+}>;
+
+const { locale } = Astro.props;
+const lang = getLocale(locale, false);
+---
+
+<main class="h-100%" lang={lang && getLocaleISO(lang)}>
 	<slot />
 </main>
