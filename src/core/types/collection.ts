@@ -1,6 +1,6 @@
 import type { DataEntryMap, RenderResult } from "astro:content";
 import type { SchemaMap } from "@core/schemas";
-import type { LocaleContent } from "@core/utils";
+import type { LocaleContent } from "@core/utils/content";
 import type { KeystaticCollections } from "./schema";
 
 export type CollectionKey = keyof KeystaticCollections<SchemaMap, "collection">;

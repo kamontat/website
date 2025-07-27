@@ -13,8 +13,20 @@ export const newCollectionEntry = <
 		collection: entry.collection,
 		data: entry.data,
 
-		get: (key, locale) => getContent(entry.data, key, locale),
-		must: (key, locale) => mustContent(entry.data, key, locale),
+		get: <
+			Key extends keyof Entry["data"],
+			Locale extends keyof Entry["data"][Key] | undefined = undefined,
+		>(
+			key: Key,
+			locale: Locale,
+		) => getContent<Entry["data"], Key, Locale>(entry.data, key, locale),
+		must: <
+			Key extends keyof Entry["data"],
+			Locale extends keyof Entry["data"][Key] | undefined = undefined,
+		>(
+			key: Key,
+			locale: Locale,
+		) => mustContent<Entry["data"], Key, Locale>(entry.data, key, locale),
 		render: () => render(entry),
 	};
 };
