@@ -1,30 +1,41 @@
 ---
 import BlogLayout from "@layouts/BlogLayout.astro";
+import Container from "@components/molecules/Container.svelte";
 
 import { getCollections, getSingleton } from "@core/contents";
+import { pageLogger } from "@core/constants/logger";
 import { goToBlog, getLocaleRoute } from "@core/models/route";
 import { getStaticPathsWithLocale } from "@core/utils/path";
-import { getLocale } from "@core/utils/locale";
+import { buildLocalePosts } from "@core/utils/posts";
 
 export const getStaticPaths = getStaticPathsWithLocale();
 
 const { locale } = Astro.params;
+const logger = pageLogger.extend("blog", "index");
 const ui = await getSingleton("ui");
-const posts = await getCollections("posts");
+const posts = buildLocalePosts(await getCollections("posts")).filter(
+	(post) => post.pageLocale === locale,
+);
+logger.debug("Show '%d' posts from locale=%s", posts.length, locale);
 ---
 
 <BlogLayout {locale} title={ui.must("page.blog.title", locale)}>
-	<ul>
-		{
-			posts
-				.filter((post) => getLocale(post.id) === locale)
-				.map((post) => (
+	<Container>
+		<ul class="list-disc">
+			{
+				posts.map((post) => (
 					<li>
-						<a href={goToBlog(locale, getLocaleRoute(post.id).rawPath)}>
-							{post.get("title")}
+						<a
+							href={goToBlog(
+								locale,
+								getLocaleRoute(post.name, post.pageLocale).rawPath,
+							)}
+						>
+							{post.entry.get("title")}
 						</a>
 					</li>
 				))
-		}
-	</ul>
+			}
+		</ul>
+	</Container>
 </BlogLayout>

@@ -15,7 +15,6 @@
 	const logger = atomLogger.extend("Favicon");
 
 	const getIcon = (theme: ThemeName | undefined) => {
-		logger.debug("get icon from theme: %s", theme);
 		if (theme === "light") return light ?? base;
 		if (theme === "dark") return dark ?? base;
 		if (theme === "black") return black ?? dark ?? base;
@@ -24,8 +23,11 @@
 
 	let icon = $state(base);
 	context.subscribe(({ theme }) => {
-		icon = getIcon(theme);
-		logger.debug("switch icon: %s (theme=%s)", $state.snapshot(icon), theme);
+		const _icon = getIcon(theme);
+		if (icon === _icon) return;
+
+		logger.debug("switch icon: %s (theme=%s)", _icon, theme);
+		icon = _icon;
 	});
 </script>
 

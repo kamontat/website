@@ -10,6 +10,6 @@ const { locale } = Astro.props;
 const lang = getLocale(locale, false);
 ---
 
-<main class="h-100%" lang={lang && getLocaleISO(lang)}>
+<main class="h-full" lang={lang && getLocaleISO(lang)}>
 	<slot />
 </main>

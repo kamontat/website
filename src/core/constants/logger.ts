@@ -15,3 +15,5 @@ export const modelsLogger = _newLogger("core", "models");
 export const atomLogger = _newLogger("components", "atoms");
 export const moleculeLogger = _newLogger("components", "molecules");
 export const organismLogger = _newLogger("components", "organisms");
+
+export const pageLogger = _newLogger("page");

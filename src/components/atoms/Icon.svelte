@@ -24,7 +24,7 @@
 
 <svelte:element
 	this={as ?? "i"}
-	aria-hidden="true"
+	aria-hidden={as === "i"}
 	class={[sizeMap[size ?? "md"], "mx-2", className]}
 	{...rest}
 >

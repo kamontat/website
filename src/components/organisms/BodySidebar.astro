@@ -1,0 +1,17 @@
+---
+import { getSingleton } from "@core/contents";
+import { goToBlog, goToHome } from "@core/models/route";
+import { getLocale } from "@core/utils/locale";
+
+const locale = getLocale(Astro.currentLocale);
+const ui = await getSingleton("ui");
+---
+
+<Fragment>
+	<a href={goToHome(locale)} data-astro-reload>
+		{ui.must("page.home.title", locale)}
+	</a>
+	<a href={goToBlog(locale)} data-astro-reload>
+		{ui.must("page.blog.title", locale)}
+	</a>
+</Fragment>

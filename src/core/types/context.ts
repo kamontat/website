@@ -5,6 +5,7 @@ import type { ThemeName } from "./theme";
 export interface ContextValue {
 	theme: ThemeName | undefined;
 	locale: LocaleName | undefined;
+	sidebar: boolean;
 }
 
 export type Context = Writable<ContextValue>;

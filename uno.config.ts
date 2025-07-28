@@ -57,10 +57,13 @@ const config = defineConfig({
 			cdn: "https://esm.sh/",
 			prefix: "i-",
 			collections: {
+				// https://icon-sets.iconify.design/skill-icons/
 				"skill-icons": () =>
 					import("@iconify-json/skill-icons/icons.json").then((i) => i.default),
+				// https://icon-sets.iconify.design/line-md/
 				"line-md": () =>
 					import("@iconify-json/line-md/icons.json").then((i) => i.default),
+				// https://icon-sets.iconify.design/lineicons/
 				lineicons: () =>
 					import("@iconify-json/lineicons/icons.json").then((i) => i.default),
 			},
@@ -92,7 +95,6 @@ const config = defineConfig({
 			...theme,
 			spacing: {
 				...theme.spacing,
-				main: "87vh",
 			},
 		};
 	},

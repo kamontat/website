@@ -2,27 +2,29 @@ import type { ThemeName } from "@core/types";
 import { ctxLogger } from "@core/constants/logger";
 import { nextTheme } from "@core/utils/theme";
 import { context } from "./context";
+import { readStorage, writeStorage } from "@core/utils/storage";
 
 /**
  * require client:load directive
  */
 export const setupTheme = () => {
-	context.subscribe(({ theme: t }) => {
-		ctxLogger.debug("update theme value: %s", t);
-		if (t) window.localStorage.setItem("theme", t);
+	context.subscribe(({ theme }) => {
+		const previous = readStorage("theme");
+		if (previous === theme) return;
+		writeStorage("theme", theme);
 	});
 
 	// Load theme from localStorage
-	const previous = window.localStorage.getItem("theme");
-	if (previous) switchTheme(previous as ThemeName);
+	const previous = readStorage<ThemeName>("theme");
+	if (previous) switchTheme(previous);
 	else switchTheme(undefined);
 };
 
 export const switchTheme = (overrides?: ThemeName) => {
 	context.update((ctx) => {
 		const next = nextTheme(ctx.theme, overrides);
-		ctxLogger.debug("switch theme from '%s' to '%s'", ctx.theme, next);
 		if (ctx.theme === next) return ctx;
+		ctxLogger.debug("switch '%s' to '%s'", ctx.theme, next);
 		return { ...ctx, theme: next };
 	});
 };

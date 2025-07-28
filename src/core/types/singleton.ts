@@ -7,7 +7,7 @@ export type SingletonKey = keyof KeystaticCollections<SchemaMap, "singleton">;
 
 export interface SingletonEntry<
 	Key extends SingletonKey,
-	Entry extends DataEntryMap[Key][string],
+	Entry extends DataEntryMap[Key][string] = DataEntryMap[Key][string],
 > {
 	readonly id: Entry["id"];
 	readonly collection: Entry["collection"];

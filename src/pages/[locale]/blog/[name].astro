@@ -4,6 +4,7 @@ import type { LocaleName, StaticPathsItem } from "@core/types";
 
 import BlogLayout from "@layouts/BlogLayout.astro";
 import Title from "@components/atoms/Title.svelte";
+import Container from "@components/molecules/Container.svelte";
 
 import { getCollections, getCollection } from "@core/contents";
 
@@ -72,6 +73,8 @@ const { Content } = await post.render();
 ---
 
 <BlogLayout title={post.must("title")} {locale} mainLocale={slugLang}>
-	<Title text={post.must("title")} />
-	<Content />
+	<Container>
+		<Title text={post.must("title")} />
+		<Content />
+	</Container>
 </BlogLayout>

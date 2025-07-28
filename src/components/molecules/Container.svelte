@@ -4,9 +4,9 @@
 
 	type Props = BaseProps & WithComponent<typeof Div>;
 
-	let { class: className, children, ...rest }: Props = $props();
+	let { children }: Props = $props();
 </script>
 
-<Div class="min-h-100% w-100% items-center justify-center">
-	<Div class={[className, "items-center"]} {...rest}>{@render children()}</Div>
+<Div class="min-h-full w-full pb-4 pt-6 px-10 sm:px-48">
+	{@render children()}
 </Div>

@@ -3,9 +3,14 @@ import type { BaseProps, WithComponent } from "@core/types/astro";
 import type HeadHelmet from "@components/organisms/HeadHelmet.astro";
 
 import { goToHome } from "@core/models/route";
+
+import Navigation from "@components/atoms/Navigation.svelte";
+import Link from "@components/atoms/Link.svelte";
 import ThemeSwitch from "@components/molecules/ThemeSwitch.svelte";
 import LocaleSwitch from "@components/molecules/LocaleSwitch.svelte";
-import Icon from "@components/atoms/Icon.svelte";
+import Sidebar from "@components/molecules/Sidebar.svelte";
+import SidebarIcon from "@components/molecules/SidebarIcon.svelte";
+import BodySidebar from "@components/organisms/BodySidebar.astro";
 
 type Props = BaseProps &
 	Pick<WithComponent<typeof HeadHelmet>, "locale" | "title">;
@@ -13,18 +18,15 @@ type Props = BaseProps &
 const { locale, title } = Astro.props;
 ---
 
-<header
-	class="px-2 py-3 bg-blue-300 lg:px-8 sm:px-6 black:bg-blue-900 dark:bg-blue-600"
->
-	<nav class:list={["flex", "flex-row", "items-center", "justify-between"]}>
-		<div class="flex flex-1 flex-row items-center justify-stretch">
-			<Icon as="a" class="i-lineicons:menu-hamburger-1" size="md" />
-			<a
-				href={goToHome(locale)}
-				class="text-xl font-light font-sans px-2 uppercase">{title}</a
-			>
-		</div>
-		<div class="flex flex-row">
+<Fragment>
+	<Navigation>
+		<Fragment slot="left">
+			<SidebarIcon client:only="svelte" />
+			<Link href={goToHome(locale)} class="text-xl px-2 uppercase">
+				{title}
+			</Link>
+		</Fragment>
+		<Fragment slot="right">
 			<ThemeSwitch client:only="svelte" />
 			<LocaleSwitch
 				client:only="svelte"
@@ -32,6 +34,9 @@ const { locale, title } = Astro.props;
 				currentLocale={locale}
 				autoHidden={false}
 			/>
-		</div>
-	</nav>
-</header>
+		</Fragment>
+	</Navigation>
+	<Sidebar client:only="svelte" currentLocale={locale}>
+		<BodySidebar />
+	</Sidebar>
+</Fragment>
