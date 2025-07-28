@@ -5,7 +5,6 @@ import svelte from "@astrojs/svelte";
 import markdoc from "@astrojs/markdoc";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
-import partytown from "@astrojs/partytown";
 import vercel from "@astrojs/vercel";
 import keystatic from "@keystatic/astro";
 import UnoCSS from "unocss/astro";
@@ -31,20 +30,6 @@ export default defineConfig({
 		keystatic(),
 		react(),
 		UnoCSS({ injectReset: "@kcws/reset.css" }),
-		partytown({
-			config: {
-				debug: false,
-				forward: ["dataLayer.push"],
-				logCalls: true,
-				logSetters: true,
-				logGetters: true,
-				logImageRequests: true,
-				logMainAccess: true,
-				logScriptExecution: true,
-				logSendBeaconRequests: true,
-				logStackTraces: false,
-			},
-		}),
 	],
 	adapter: vercel({
 		imageService: true,

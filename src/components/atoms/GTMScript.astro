@@ -12,7 +12,7 @@ const gtmNoScript =
 	gtmId && `https://www.googletagmanager.com/ns.html?id=${gtmId}`;
 ---
 
-{gtmScript && <script is:inline type="text/partytown" src={gtmScript} />}
+{gtmScript && <script is:inline src={gtmScript} />}
 {
 	gtmNoScript && (
 		<noscript>
@@ -25,19 +25,12 @@ const gtmNoScript =
 	)
 }
 
-<script is:inline type="text/partytown" define:vars={{ gtmId }}>
+<script is:inline define:vars={{ gtmId }}>
 	if (gtmId) {
 		window.dataLayer = window.dataLayer || [];
-		const action = (...args) => window.dataLayer?.push(args);
-		action("js", { "gtm.start": new Date().getTime(), event: "gtm.js" });
+		window.dataLayer?.push({
+			"gtm.start": new Date().getTime(),
+			event: "gtm.js",
+		});
 	}
 </script>
-
-<noscript>
-	<iframe
-		title="google-tag-manager"
-		src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-		height="0"
-		width="0"
-		class="hidden"></iframe>
-</noscript>
