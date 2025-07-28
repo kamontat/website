@@ -1,11 +1,11 @@
 ---
 import type { BaseProps, WithComponent } from "@core/types/astro";
 
-import GTM from "@components/atoms/GTM.svelte";
 import HeadHelmet from "@components/organisms/HeadHelmet.astro";
 import BodyFooter from "@components/organisms/BodyFooter.astro";
 import BodyHeader from "@components/organisms/BodyHeader.astro";
 import BodyMain from "@components/organisms/BodyMain.astro";
+import GTMScript from "@components/atoms/GTMScript.astro";
 
 import { getLocaleISO } from "@core/utils/locale";
 import { ClientRouter } from "astro:transitions";
@@ -21,21 +21,9 @@ const { mainLocale, gtmId, ...props } = Astro.props;
 
 <html lang={getLocaleISO(props.locale)}>
 	<head>
-		<link rel="sitemap" href="/sitemap-index.xml" />
-		{
-			gtmId && (
-				<Fragment>
-					<script
-						is:inline
-						type="text/partytown"
-						src={`https://www.googletagmanager.com/gtag/js?id=${gtmId}`}
-					/>
-					<GTM client:only="svelte" {gtmId} />
-				</Fragment>
-			)
-		}
-
 		<HeadHelmet {...props} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+
 		<slot name="head" />
 		<ClientRouter />
 	</head>
@@ -49,22 +37,9 @@ const { mainLocale, gtmId, ...props } = Astro.props;
 			"black:bg-black",
 		]}
 	>
-		<!-- Google Tag Manager (noscript) -->
-		{
-			gtmId && (
-				<noscript>
-					<iframe
-						title="google-tag-manager"
-						src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-						height="0"
-						width="0"
-						class="hidden"
-					/>
-				</noscript>
-			)
-		}
-
-		<!-- End Google Tag Manager (noscript) -->
+		<!-- Google Tag Manager -->
+		<GTMScript {gtmId} />
+		<!-- End Google Tag Manager -->
 		<div class="h-screen">
 			<slot name="header">
 				<BodyHeader locale={props.locale} title={props.title} />

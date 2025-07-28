@@ -1,0 +1,43 @@
+---
+import type { BaseProps } from "@core/types/astro";
+
+type Props = BaseProps<{
+	gtmId?: string;
+}>;
+
+const { gtmId } = Astro.props;
+const gtmScript =
+	gtmId && `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
+const gtmNoScript =
+	gtmId && `https://www.googletagmanager.com/ns.html?id=${gtmId}`;
+---
+
+{gtmScript && <script is:inline type="text/partytown" src={gtmScript} />}
+{
+	gtmNoScript && (
+		<noscript>
+			<iframe
+				title="google-tag-manager"
+				src={gtmNoScript}
+				class="h-0 w-0 hidden"
+			/>
+		</noscript>
+	)
+}
+
+<script is:inline type="text/partytown" define:vars={{ gtmId }}>
+	if (gtmId) {
+		window.dataLayer = window.dataLayer || [];
+		const action = (...args) => window.dataLayer?.push(args);
+		action("js", { "gtm.start": new Date().getTime(), event: "gtm.js" });
+	}
+</script>
+
+<noscript>
+	<iframe
+		title="google-tag-manager"
+		src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+		height="0"
+		width="0"
+		class="hidden"></iframe>
+</noscript>

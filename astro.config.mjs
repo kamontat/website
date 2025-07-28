@@ -33,7 +33,16 @@ export default defineConfig({
 		UnoCSS({ injectReset: "@kcws/reset.css" }),
 		partytown({
 			config: {
+				debug: false,
 				forward: ["dataLayer.push"],
+				logCalls: true,
+				logSetters: true,
+				logGetters: true,
+				logImageRequests: true,
+				logMainAccess: true,
+				logScriptExecution: true,
+				logSendBeaconRequests: true,
+				logStackTraces: false,
 			},
 		}),
 	],
