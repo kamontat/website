@@ -15,7 +15,7 @@ importers:
         specifier: 0.15.1
         version: 0.15.1(@types/react@19.1.8)(astro@5.12.1(@types/node@24.0.13)(@vercel/blob@1.0.2)(idb-keyval@6.2.2)(jiti@2.4.2)(rollup@4.45.1)(typescript@5.8.3)(yaml@2.8.0))(react@19.1.0)
       '@astrojs/partytown':
-        specifier: ^2.1.4
+        specifier: 2.1.4
         version: 2.1.4
       '@astrojs/react':
         specifier: 4.3.0
