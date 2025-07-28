@@ -52,6 +52,14 @@ const localePaths = getLocaleRoutes(url.pathname, locale);
 
 <title>{title} | {site}</title>
 
+<Favicon
+	client:load
+	base={faviconBase}
+	light={faviconLight}
+	dark={faviconDark}
+	black={faviconBlack}
+/>
+
 <!-- OpenGraph -->
 <meta property="og:site_name" content={site} />
 <meta property="og:title" content={title} />
@@ -89,12 +97,3 @@ const localePaths = getLocaleRoutes(url.pathname, locale);
 <meta name="author:name" content={author?.name ?? pkg.author.name} />
 <meta name="author:email" content={author?.email ?? pkg.author.email} />
 <meta name="copyright" content={pkg.license} />
-
-<link rel="sitemap" href="/sitemap-index.xml" />
-<Favicon
-	client:load
-	base={faviconBase}
-	light={faviconLight}
-	dark={faviconDark}
-	black={faviconBlack}
-/>
