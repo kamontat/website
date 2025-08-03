@@ -1,12 +1,6 @@
-import {
-	fields,
-	type ComponentSchema,
-	type ObjectField,
-} from "@keystatic/core";
-import type { LocaleName } from "@core/types";
+import type { LocaleName, SchemaBuilder } from "@core/types";
+import { fields, type ObjectField } from "@keystatic/core";
 import { getLocaleName, getLocales } from "@core/utils/locale";
-
-export type Function = (arg: object & { label: string }) => ComponentSchema;
 
 /**
  * Support basic i18n by repeating a given Keystatic field for each locale.
@@ -18,7 +12,7 @@ export type Function = (arg: object & { label: string }) => ComponentSchema;
  * @param fieldConfig The config
  * @returns The localised fields
  */
-export const ksLocalised = <F extends Function>(
+export const ksLocalised = <F extends SchemaBuilder>(
 	field: F,
 	param: Parameters<F>[0],
 ): ObjectField<Record<LocaleName, ReturnType<F>>> => {

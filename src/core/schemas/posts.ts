@@ -5,6 +5,7 @@ import { fields } from "@keystatic/core";
 
 import { AbstractCollectionDataSchema } from "./models";
 import { getLocales } from "@core/utils/locale";
+import { keystaticMarkdocConfig } from "./components";
 
 class PostsDataSchema<
 	AS extends AstroSchema,
@@ -34,7 +35,7 @@ export default new PostsDataSchema(
 			validation: {
 				isRequired: true,
 				pattern: {
-					regex: new RegExp(`(${getLocales().join("|")})\\/[\\w\\d-]+;`),
+					regex: new RegExp(`(${getLocales().join("|")})\\/[\\w\\d-]+`),
 				},
 			},
 		}),
@@ -58,6 +59,9 @@ export default new PostsDataSchema(
 					directory: "src/assets/posts",
 					publicPath: "@assets/posts/",
 				},
+			},
+			components: {
+				...keystaticMarkdocConfig("Testimonial"),
 			},
 		}),
 	},

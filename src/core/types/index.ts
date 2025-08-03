@@ -10,3 +10,6 @@ export type * from "./schema";
 
 export type * from "./collection";
 export type * from "./singleton";
+
+export type * from "./markdown";
+export type * from "./keystatic";
