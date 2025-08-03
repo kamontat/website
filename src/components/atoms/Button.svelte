@@ -5,14 +5,14 @@
 		WithElement,
 	} from "@core/types/svelte";
 
-	type Props = BaseProps & WithElement<"a"> & WithChildren;
+	type Props = BaseProps & WithElement<"button"> & WithChildren;
 	let { class: className, children, ...rest }: Props = $props();
 </script>
 
-<a
-	data-component-name="Link"
+<button
+	data-component-name="Button"
 	class={["px-3 py-2 rounded-lg", className]}
 	{...rest}
 >
 	{@render children()}
-</a>
+</button>

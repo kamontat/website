@@ -15,11 +15,14 @@
 		"h-12",
 		"flex flex-row items-center justify-between",
 		"px-2 sm:px-4 lg:px-6",
-		"bg-blue-300 dark:bg-blue-600 black:bg-blue-900",
+		"bg-primary-light dark:bg-primary-dark black:bg-primary-black",
+		"text-on-primary-light dark:text-on-primary-dark black:text-on-primary-black",
 		"z-999",
 	]}
 >
-	<div class="flex flex-1 flex-row items-center justify-stretch">
+	<div
+		class="flex flex-1 flex-row items-center justify-stretch flex-nowrap text-nowrap"
+	>
 		{#if left}
 			{@render left()}
 		{/if}
