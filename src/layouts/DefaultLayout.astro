@@ -1,6 +1,6 @@
 ---
 import type { BaseProps, WithComponent } from "@core/types/astro";
-import BaseLayout from "@layouts/BaseLayout.astro";
+import BaseLayout from "@layouts/BaseLayout/index.astro";
 
 type Props = BaseProps &
 	Pick<WithComponent<typeof BaseLayout>, "locale" | "title" | "description">;

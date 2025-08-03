@@ -5,10 +5,12 @@ import HeadHelmet from "@components/organisms/HeadHelmet.astro";
 import BodyFooter from "@components/organisms/BodyFooter.astro";
 import BodyHeader from "@components/organisms/BodyHeader.astro";
 import BodyMain from "@components/organisms/BodyMain.astro";
-import GTMScript from "@components/atoms/GTMScript.astro";
+import GoogleTagManager from "@components/organisms/GoogleTagManager.astro";
 
 import { getLocaleISO } from "@core/utils/locale";
 import { ClientRouter } from "astro:transitions";
+
+import "./index.css";
 
 type Props = BaseProps<{
 	mainLocale?: string;
@@ -38,7 +40,7 @@ const { mainLocale, gtmId, ...props } = Astro.props;
 		]}
 	>
 		<!-- Google Tag Manager -->
-		<GTMScript {gtmId} />
+		<GoogleTagManager {gtmId} />
 		<!-- End Google Tag Manager -->
 		<div class="h-screen">
 			<slot name="header">
@@ -51,9 +53,3 @@ const { mainLocale, gtmId, ...props } = Astro.props;
 		</div>
 	</body>
 </html>
-
-<style>
-	html.black {
-		color-scheme: dark;
-	}
-</style>
