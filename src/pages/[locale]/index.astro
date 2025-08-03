@@ -3,6 +3,9 @@ import { Picture } from "astro:assets";
 
 import DefaultLayout from "@layouts/DefaultLayout.astro";
 import CenterContainer from "@components/molecules/CenterContainer.svelte";
+import Heading from "@components/atoms/Heading.svelte";
+import Caption from "@components/atoms/Caption.svelte";
+import Paragraph from "@components/atoms/Paragraph.svelte";
 
 import { getStaticPathsWithLocale } from "@core/utils/path";
 import { getSingleton } from "@core/contents";
@@ -12,10 +15,12 @@ export const getStaticPaths = getStaticPathsWithLocale();
 const { locale } = Astro.params;
 const information = await getSingleton("information");
 const ui = await getSingleton("ui");
+
+const name = `${information.must("firstName", locale)} ${information.must("lastName", locale)}`;
 ---
 
 <DefaultLayout title={ui.must("page.home.title", locale)} {locale}>
-	<CenterContainer class="md:max-w-md">
+	<CenterContainer class="text-center md:max-w-xl">
 		<Picture
 			src={information.must("profilePicture")}
 			alt="profile picture"
@@ -23,28 +28,24 @@ const ui = await getSingleton("ui");
 			layout="constrained"
 			width={256}
 			loading="lazy"
-			class="rounded-2xl"
+			class="mb-2 rounded-2xl"
 		/>
-		<h1
-			class="text-2xl text-red-500 mt-2 text-center black:text-red-300 dark:text-red-400"
+		<Heading
+			level={1}
+			class="text-primary-light black:text-primary-black dark:text-primary-dark"
 		>
+			{name}
 			<span class="font-medium">
-				{information.must("firstName", locale)}
-				{information.must("lastName", locale)}
+				({information.must("nickName", locale)})
 			</span>
-			({information.must("nickName", locale)})
-		</h1>
-		<h2
-			class="text-sm text-gray-500 mt-1 text-center black:text-gray-200 dark:text-gray-300"
-		>
-			<span class="font-medium">{information.must("title", locale)}</span>
+		</Heading>
+		<Caption class="mt-1">
+			<span class="font-normal">{information.must("title", locale)}</span>
 			@
 			{information.must("company", locale)}
-		</h2>
-		<p
-			class="text-lg text-black mt-3 text-center black:text-white dark:text-white"
-		>
+		</Caption>
+		<Paragraph class="mt-3">
 			{information.must("summary", locale)}
-		</p>
+		</Paragraph>
 	</CenterContainer>
 </DefaultLayout>

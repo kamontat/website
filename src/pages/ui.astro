@@ -1,0 +1,25 @@
+---
+import DefaultLayout from "@layouts/DefaultLayout.astro";
+import Container from "@components/molecules/Container.svelte";
+import Heading from "@components/atoms/Heading.svelte";
+---
+
+<DefaultLayout locale="en" title="UX/UI design">
+	<Container class="flex flex-row justify-between">
+		<div>
+			{
+				[1, 2, 3, 4, 5, 6].map((level) => (
+					<Heading {level}>Hello Heading {level}</Heading>
+				))
+			}
+			<p class="text-base">Hello body</p>
+			<span class="text-base">Hello span</span>
+			<small class="text-sm">Hello small</small>
+		</div>
+		<div class="font-mono">
+			<p class="text-base">Hello body</p>
+			<span class="text-base">Hello span</span>
+			<small class="text-sm">Hello small</small>
+		</div>
+	</Container>
+</DefaultLayout>
