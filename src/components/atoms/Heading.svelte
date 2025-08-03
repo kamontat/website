@@ -29,6 +29,7 @@
 <svelte:element
 	this={level > 0 ? `h${level}` : "span"}
 	class={[classMap[level], className]}
+	data-component-name="Heading"
 	{...rest}
 >
 	{@render children()}

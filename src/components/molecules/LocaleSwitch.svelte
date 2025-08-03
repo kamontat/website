@@ -3,6 +3,8 @@
 	import type { LocaleName } from "@core/types";
 
 	import { onMount } from "svelte";
+	import Link from "@components/atoms/Link.svelte";
+
 	import { moleculeLogger } from "@core/constants/logger";
 	import { setupLocale, switchLocale } from "@core/contexts";
 	import { getLocaleRoutes } from "@core/models/route";
@@ -55,13 +57,17 @@
 </script>
 
 {#await promise}
-	<div></div>
+	<div class="min-w-20 mx-1"></div>
 {:then paths}
 	{#each paths as path}
 		{#if path.enabled}
-			<a class="mx-2" href={path.url} hreflang={path.locale}>
+			<Link
+				class="min-w-20 mx-1 text-center"
+				href={path.url}
+				hreflang={path.locale}
+			>
 				{getLocaleName(path.locale)}
-			</a>
+			</Link>
 		{/if}
 	{/each}
 {/await}

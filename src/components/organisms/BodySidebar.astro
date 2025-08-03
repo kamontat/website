@@ -1,4 +1,6 @@
 ---
+import Link from "@components/atoms/Link.svelte";
+
 import { getSingleton } from "@core/contents";
 import { goToBlog, goToHome } from "@core/models/route";
 import { getLocale } from "@core/utils/locale";
@@ -8,10 +10,10 @@ const ui = await getSingleton("ui");
 ---
 
 <Fragment>
-	<a href={goToHome(locale)} data-astro-reload>
+	<Link href={goToHome(locale)} reload={true}>
 		{ui.must("page.home.title", locale)}
-	</a>
-	<a href={goToBlog(locale)} data-astro-reload>
+	</Link>
+	<Link href={goToBlog(locale)} reload={true}>
 		{ui.must("page.blog.title", locale)}
-	</a>
+	</Link>
 </Fragment>

@@ -10,6 +10,6 @@
 	let { children, ...rest }: Props = $props();
 </script>
 
-<div {...rest}>
+<div data-component-name="Div" {...rest}>
 	{@render children()}
 </div>

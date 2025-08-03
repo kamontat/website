@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+
+	import Button from "@components/atoms/Button.svelte";
+
 	import { themeList, themeMap } from "@core/constants/theme";
 	import { moleculeLogger } from "@core/constants/logger";
 	import { context, setupTheme, switchTheme } from "@core/contexts";
@@ -15,8 +18,12 @@
 	});
 
 	const onclick = () => {
-		logger.debug("[event] click switch theme");
-		switchTheme();
+		if ($context.theme) {
+			logger.debug("[event] click switch theme");
+			switchTheme();
+		} else {
+			logger.warn("[event] click switch theme but no theme defined");
+		}
 	};
 
 	onMount(() => {
@@ -25,6 +32,8 @@
 	});
 </script>
 
-{#if $context.theme}
-	<button class="mx-1" {onclick}>{themeMap[$context.theme]}</button>
-{/if}
+<Button class="min-w-14 mx-1 text-center" {onclick}>
+	{#if $context.theme}
+		{themeMap[$context.theme]}
+	{/if}
+</Button>

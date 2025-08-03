@@ -21,22 +21,22 @@ const { locale, title } = Astro.props;
 <Fragment>
 	<Navigation>
 		<Fragment slot="left">
-			<SidebarIcon client:only="svelte" />
+			<SidebarIcon client:load />
 			<Link href={goToHome(locale)} class="text-xl px-2 uppercase">
 				{title}
 			</Link>
 		</Fragment>
 		<Fragment slot="right">
-			<ThemeSwitch client:only="svelte" />
+			<ThemeSwitch client:load />
 			<LocaleSwitch
-				client:only="svelte"
+				client:load
 				currentUrl={Astro.url}
 				currentLocale={locale}
 				autoHidden={false}
 			/>
 		</Fragment>
 	</Navigation>
-	<Sidebar client:only="svelte" currentLocale={locale}>
+	<Sidebar client:load currentLocale={locale}>
 		<BodySidebar />
 	</Sidebar>
 </Fragment>

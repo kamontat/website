@@ -11,6 +11,7 @@
 </script>
 
 <nav
+	data-component-name="Navigation"
 	class={[
 		"h-12",
 		"flex flex-row items-center justify-between",

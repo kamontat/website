@@ -7,7 +7,7 @@
 	let { class: className, children, ...rest }: Props = $props();
 </script>
 
-<Div class="min-h-full w-full items-center justify-center">
+<Div class="min-h-full w-full px-12 md:px-52 items-center justify-center">
 	<Div
 		class={[
 			className,

@@ -26,6 +26,7 @@
 	this={as ?? "i"}
 	aria-hidden={as === "i"}
 	class={[sizeMap[size ?? "md"], "mx-2", className]}
+	data-component-name="Icon"
 	{...rest}
 >
 </svelte:element>

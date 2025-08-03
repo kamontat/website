@@ -11,6 +11,7 @@
 </script>
 
 <small
+	data-component-name="Caption"
 	class={[
 		"text-sm font-light text-gray-600 black:text-gray-300 dark:text-gray-400",
 		className,

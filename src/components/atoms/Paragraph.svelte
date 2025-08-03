@@ -10,6 +10,7 @@
 </script>
 
 <p
+	data-component-name="Paragraph"
 	class={[
 		className,
 		"text-base text-black dark:text-gray-100 black:text-white",
