@@ -5,7 +5,7 @@
 		WithElement,
 	} from "@core/types/svelte";
 
-	type HeadingLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+	type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 	type Props = BaseProps<{
 		level: HeadingLevel;
@@ -14,20 +14,19 @@
 		WithElement<"h1">;
 
 	const classMap = {
-		0: "",
-		1: "text-4xl font-sans font-bold tracking-wider mt-4",
-		2: "text-3xl font-sans font-bold tracking-wider mt-3",
-		3: "text-2xl font-sans font-bold tracking-wider mt-2",
-		4: "text-xl font-sans font-medium tracking-wide mt-2",
-		5: "text-lg font-sans font-medium mt-1",
-		6: "text-base font-sans font-light mt-1",
+		1: "text-4xl font-sans font-bold tracking-wider",
+		2: "text-3xl font-sans font-bold tracking-wider",
+		3: "text-2xl font-sans font-bold tracking-wider",
+		4: "text-xl font-sans font-medium tracking-wide",
+		5: "text-lg font-sans font-medium",
+		6: "text-base font-sans font-light",
 	};
 
 	let { level, children, class: className, ...rest }: Props = $props();
 </script>
 
 <svelte:element
-	this={level > 0 ? `h${level}` : "span"}
+	this={`h${level}`}
 	class={[classMap[level], className]}
 	data-component-name="Heading"
 	{...rest}

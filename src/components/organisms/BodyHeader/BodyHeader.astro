@@ -2,14 +2,13 @@
 import type { BaseProps, WithComponent } from "@core/types/astro";
 import type HeadMeta from "@components/organisms/HeadMeta/HeadMeta.astro";
 
-import { goToHome } from "@core/models/route";
+import { goToHome, goToMain } from "@core/models/route";
 
 import ThemeSwitch from "@components/molecules/ThemeSwitch/ThemeSwitch.svelte";
 import LocaleSwitch from "@components/molecules/LocaleSwitch/LocaleSwitch.svelte";
 import Navigation from "@components/atoms/Navigation.svelte";
 import Link from "@components/atoms/Link.svelte";
 import KcLogo from "@components/molecules/KcLogo/KcLogo.svelte";
-import Heading from "@components/atoms/Heading.svelte";
 
 type Props = BaseProps &
 	Pick<WithComponent<typeof HeadMeta>, "locale" | "title">;
@@ -23,9 +22,12 @@ const { locale, title } = Astro.props;
 			<Link href={goToHome(locale)}>
 				<KcLogo client:load size="xs" auto="true" rounded="true" />
 			</Link>
-			<Heading level="0" class="text-xl min-w-0 text-nowrap truncate uppercase">
+			<Link
+				href={goToMain(Astro.url.pathname)}
+				class="text-xl min-w-0 text-nowrap truncate uppercase"
+			>
 				{title}
-			</Heading>
+			</Link>
 		</Fragment>
 		<Fragment slot="right">
 			<ThemeSwitch client:load />

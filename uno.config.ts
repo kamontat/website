@@ -86,9 +86,9 @@ const config = defineConfig({
 				base: { fontSize: "1rem", lineHeight: "1.5rem" }, // h6, all
 				lg: { fontSize: "1.125rem", lineHeight: "1.75rem" }, // h5
 				xl: { fontSize: "1.25rem", lineHeight: "2rem" }, // h4
-				"2xl": { fontSize: "1.385rem", lineHeight: "1" }, // h3
-				"3xl": { fontSize: "1.55rem", lineHeight: "1.1" }, // h2
-				"4xl": { fontSize: "1.85rem", lineHeight: "1.225" }, // h1
+				"2xl": { fontSize: "1.5rem", lineHeight: "1" }, // h3
+				"3xl": { fontSize: "1.75rem", lineHeight: "1.1" }, // h2
+				"4xl": { fontSize: "2rem", lineHeight: "1.225" }, // h1
 			},
 			fontWeight: {
 				extralight: "200",

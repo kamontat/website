@@ -44,3 +44,9 @@ export const goToBlog = (
 	locale: LocaleName,
 	...appendPaths: (string | undefined)[]
 ) => goTo(locale, "/", "blog", ...appendPaths);
+
+export const goToMain = (pathname: string) => {
+	const route = getLocaleRoute(pathname);
+	if (route.rawPath.startsWith("/blog")) return goToBlog(route.locale);
+	return goToHome(route.locale);
+};

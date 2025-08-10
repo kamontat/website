@@ -53,19 +53,23 @@ export default defineConfig({
 		"/blog": "/en/blog",
 		"/go/facebook": {
 			status: 302,
-			destination: "https://facebook.com/kamontatc/",
+			destination:
+				"https://facebook.com/kamontatc/?utm_source=kc.in.th&utm_medium=golink&utm_campaign=direct",
 		},
 		"/go/x": {
 			status: 302,
-			destination: "https://x.com/kamontatc/",
+			destination:
+				"https://x.com/kamontatc/?utm_source=kc.in.th&utm_medium=golink&utm_campaign=direct",
 		},
 		"/go/linkedin": {
 			status: 302,
-			destination: "https://www.linkedin.com/in/kamontat/",
+			destination:
+				"https://www.linkedin.com/in/kamontat/?utm_source=kc.in.th&utm_medium=golink&utm_campaign=direct",
 		},
 		"/go/github": {
 			status: 302,
-			destination: "https://github.com/kamontat/",
+			destination:
+				"https://github.com/kamontat/?utm_source=kc.in.th&utm_medium=golink&utm_campaign=direct",
 		},
 	},
 	env: {
