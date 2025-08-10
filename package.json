@@ -62,7 +62,7 @@
 		"@types/node": "24.0.13",
 		"@types/react": "latest",
 		"@types/react-dom": "19.1.6",
-		"@typescript-eslint/parser": "8.36.0",
+		"@typescript-eslint/parser": "8.39.0",
 		"@unocss/eslint-config": "66.3.3",
 		"@unocss/svelte-scoped": "66.3.3",
 		"eslint": "9.32.0",
