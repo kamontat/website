@@ -1,4 +1,3 @@
-export type * from "./context";
 export type * from "./theme";
 export type * from "./locale";
 export type * from "./logger";
