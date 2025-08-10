@@ -1,8 +1,9 @@
 import type { LocaleName, LocaleRoute, OptionalPaths } from "@core/types";
 
 import { getAbsoluteLocaleUrl, getRelativeLocaleUrl } from "astro:i18n";
-import { getLocale, getLocales } from "@core/utils/locale";
+import { getLocale, getLocales, hasLocale } from "@core/utils/locale";
 import { buildPath, getRawPath } from "@core/utils/path";
+import { defaultLocale } from "@core/constants/locale";
 
 export const getLocaleRoute = (
 	pathname: string,
@@ -45,8 +46,11 @@ export const goToBlog = (
 	...appendPaths: (string | undefined)[]
 ) => goTo(locale, "/", "blog", ...appendPaths);
 
-export const goToMain = (pathname: string) => {
-	const route = getLocaleRoute(pathname);
-	if (route.rawPath.startsWith("/blog")) return goToBlog(route.locale);
-	return goToHome(route.locale);
+export const goToMain = (pathname: string, overrides?: LocaleName) => {
+	const route = hasLocale(pathname) ? getLocaleRoute(pathname) : undefined;
+	const locale = overrides ?? route?.locale ?? defaultLocale;
+	const path = route?.rawPath ?? pathname;
+
+	if (path.startsWith("/blog")) return goToBlog(locale);
+	return goToHome(locale);
 };
