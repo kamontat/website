@@ -4,13 +4,12 @@ import type HeadMeta from "@components/organisms/HeadMeta/HeadMeta.astro";
 
 import { goToHome } from "@core/models/route";
 
-import BodySidebar from "@components/organisms/BodySidebar/BodySidebar.astro";
-import ThemeSwitch from "@components/molecules/ThemeSwitch.svelte";
-import LocaleSwitch from "@components/molecules/LocaleSwitch.svelte";
-import Sidebar from "@components/molecules/Sidebar.svelte";
-import SidebarIcon from "@components/molecules/SidebarIcon.svelte";
+import ThemeSwitch from "@components/molecules/ThemeSwitch/ThemeSwitch.svelte";
+import LocaleSwitch from "@components/molecules/LocaleSwitch/LocaleSwitch.svelte";
 import Navigation from "@components/atoms/Navigation.svelte";
 import Link from "@components/atoms/Link.svelte";
+import KcLogo from "@components/molecules/KcLogo/KcLogo.svelte";
+import Heading from "@components/atoms/Heading.svelte";
 
 type Props = BaseProps &
 	Pick<WithComponent<typeof HeadMeta>, "locale" | "title">;
@@ -19,12 +18,14 @@ const { locale, title } = Astro.props;
 ---
 
 <Fragment>
-	<Navigation>
+	<Navigation class="min-w-0" leftClass="min-w-0" rightClass="min-w-0">
 		<Fragment slot="left">
-			<SidebarIcon client:load />
-			<Link href={goToHome(locale)} class="text-xl px-2 uppercase">
-				{title}
+			<Link href={goToHome(locale)}>
+				<KcLogo client:load size="xs" auto="true" rounded="true" />
 			</Link>
+			<Heading level="0" class="text-xl min-w-0 text-nowrap truncate uppercase">
+				{title}
+			</Heading>
 		</Fragment>
 		<Fragment slot="right">
 			<ThemeSwitch client:load />
@@ -36,7 +37,4 @@ const { locale, title } = Astro.props;
 			/>
 		</Fragment>
 	</Navigation>
-	<Sidebar client:load currentLocale={locale}>
-		<BodySidebar />
-	</Sidebar>
 </Fragment>

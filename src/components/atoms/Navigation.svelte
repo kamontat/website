@@ -1,13 +1,30 @@
 <script lang="ts">
-	import type { BaseProps, HTMLSnippet, WithSnippet } from "@core/types/svelte";
+	import type {
+		BaseProps,
+		HTMLSnippet,
+		WithElement,
+		WithSnippet,
+	} from "@core/types/svelte";
+	import Div from "./Div.svelte";
 
-	type Props = BaseProps &
+	type Props = BaseProps<{
+		leftClass?: string;
+		rightClass?: string;
+	}> &
 		WithSnippet<{
 			left?: HTMLSnippet;
 			right?: HTMLSnippet;
-		}>;
+		}> &
+		WithElement<"nav">;
 
-	const { left, right }: Props = $props();
+	const {
+		left,
+		leftClass,
+		right,
+		rightClass,
+		class: className,
+		...rest
+	}: Props = $props();
 </script>
 
 <nav
@@ -19,18 +36,18 @@
 		"bg-primary-light dark:bg-primary-dark black:bg-primary-black",
 		"text-on-primary-light dark:text-on-primary-dark black:text-on-primary-black",
 		"z-999",
+		className,
 	]}
+	{...rest}
 >
-	<div
-		class="flex flex-1 flex-row items-center justify-stretch flex-nowrap text-nowrap"
-	>
+	<Div class={["flex-1 flex-row items-center flex-nowrap", leftClass]}>
 		{#if left}
 			{@render left()}
 		{/if}
-	</div>
-	<div class="flex flex-row">
+	</Div>
+	<Div class={["flex-row items-center flex-nowrap", rightClass]}>
 		{#if right}
 			{@render right()}
 		{/if}
-	</div>
+	</Div>
 </nav>
