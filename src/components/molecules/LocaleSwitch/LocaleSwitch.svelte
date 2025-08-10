@@ -6,7 +6,7 @@
 	import Link from "@components/atoms/Link.svelte";
 
 	import { moleculeLogger } from "@core/constants/logger";
-	import { setupLocale, switchLocale } from "@core/contexts";
+	import { setupLocale, switchLocale } from "@core/contexts/locale";
 	import { getLocaleRoutes } from "@core/models/route";
 	import { getLocaleName } from "@core/utils/locale";
 

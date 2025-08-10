@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from "@components/atoms/Icon.svelte";
-	import { toggleSidebar } from "@core/contexts";
+	import { toggleSidebar } from "@core/contexts/sidebar";
 </script>
 
 <Icon

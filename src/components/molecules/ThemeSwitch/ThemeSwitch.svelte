@@ -5,11 +5,11 @@
 
 	import { themeList, themeMap } from "@core/constants/theme";
 	import { moleculeLogger } from "@core/constants/logger";
-	import { context, setupTheme, switchTheme } from "@core/contexts";
+	import context, { setupTheme, switchTheme } from "@core/contexts/theme";
 
 	const logger = moleculeLogger.extend("ThemeSwitch");
 
-	context.subscribe(({ theme }) => {
+	context.subscribe((theme) => {
 		if (theme) {
 			const classList = document.documentElement.classList;
 			themeList.forEach((t) => classList.remove(t));
@@ -18,7 +18,7 @@
 	});
 
 	const onclick = () => {
-		if ($context.theme) {
+		if ($context) {
 			logger.debug("[event] click switch theme");
 			switchTheme();
 		} else {
@@ -33,7 +33,7 @@
 </script>
 
 <Button class="min-w-14 mx-1 text-center" {onclick}>
-	{#if $context.theme}
-		{themeMap[$context.theme]}
+	{#if $context}
+		{themeMap[$context]}
 	{/if}
 </Button>

@@ -2,7 +2,7 @@
 	import type { BaseProps, WithChildren } from "@core/types/svelte";
 	import type { LocaleName } from "@core/types";
 
-	import { context } from "@core/contexts";
+	import context from "@core/contexts/sidebar";
 	import { moleculeLogger } from "@core/constants/logger";
 	import Div from "@components/atoms/Div.svelte";
 
@@ -26,7 +26,7 @@
 		"text-on-secondary-light dark:text-on-secondary-dark black:text-on-secondary-black",
 		"transition-transform duration-100 sm:duration-250 ease-in",
 		"overflow-x-hidden",
-		$context.sidebar || "-translate-x-full",
+		$context || "-translate-x-full",
 	]}
 	onblur={() => logger.debug("on:blur")}
 >

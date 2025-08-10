@@ -1,8 +1,9 @@
 <script lang="ts">
 	import type { BaseProps } from "@core/types/svelte";
 	import type { ThemeName } from "@core/types";
-	import { context } from "@core/contexts";
+
 	import { atomLogger } from "@core/constants/logger";
+	import theme from "@core/contexts/theme";
 
 	type Props = BaseProps<{
 		base?: string;
@@ -22,11 +23,10 @@
 	};
 
 	let icon = $state(base);
-	context.subscribe(({ theme }) => {
-		const _icon = getIcon(theme);
+	theme.subscribe((t) => {
+		const _icon = getIcon(t);
 		if (icon === _icon) return;
-
-		logger.debug("switch icon: %s (theme=%s)", _icon, theme);
+		logger.debug("switch favicon for theme %s: %s", theme, _icon);
 		icon = _icon;
 	});
 </script>

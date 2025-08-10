@@ -7,16 +7,23 @@
 
 	type Props = BaseProps<{
 		reload?: boolean;
+		raw?: boolean;
 	}> &
 		WithElement<"a"> &
 		WithChildren;
-	let { class: className, reload = false, children, ...rest }: Props = $props();
+	let {
+		class: className,
+		reload = false,
+		raw = false,
+		children,
+		...rest
+	}: Props = $props();
 </script>
 
 <a
 	data-component-name="Link"
 	data-astro-reload={reload}
-	class={["px-3 py-2 rounded-lg", className]}
+	class={[{ "px-3 py-1 rounded-lg": !raw }, className]}
 	{...rest}
 >
 	{@render children()}

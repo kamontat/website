@@ -13,7 +13,9 @@ export default new MarkdownTagComponent(
 		},
 	},
 	{
-		render: component("./src/components/molecules/Testimonial.svelte"),
+		render: component(
+			"./src/components/molecules/Testimonial/Testimonial.svelte",
+		),
 		attributes: {
 			author: {
 				type: "String",

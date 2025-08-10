@@ -12,7 +12,9 @@
 			"@core/models/*": ["src/core/models/*"],
 			"@core/utils/*": ["./src/core/utils/*"],
 
-			"@core/contexts": ["./src/core/contexts"],
+			"@core/contexts/theme": ["./src/core/contexts/theme"],
+			"@core/contexts/locale": ["./src/core/contexts/locale"],
+			"@core/contexts/sidebar": ["./src/core/contexts/sidebar"],
 			"@core/contents": ["./src/core/contents"],
 			"@core/schemas": ["./src/core/schemas"],
 

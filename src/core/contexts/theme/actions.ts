@@ -1,14 +1,16 @@
 import type { ThemeName } from "@core/types";
-import { ctxLogger } from "@core/constants/logger";
-import { nextTheme } from "@core/utils/theme";
-import { context } from "./context";
+
 import { readStorage, writeStorage } from "@core/utils/storage";
+import { nextTheme } from "@core/utils/theme";
+
+import context from "./context";
+import logger from "./logger";
 
 /**
- * require client:load directive
+ * must run on svelte island with 'client:load' directive
  */
 export const setupTheme = () => {
-	context.subscribe(({ theme }) => {
+	context.subscribe((theme) => {
 		const previous = readStorage("theme");
 		if (previous === theme) return;
 		writeStorage("theme", theme);
@@ -21,10 +23,9 @@ export const setupTheme = () => {
 };
 
 export const switchTheme = (overrides?: ThemeName) => {
-	context.update((ctx) => {
-		const next = nextTheme(ctx.theme, overrides);
-		if (ctx.theme === next) return ctx;
-		ctxLogger.debug("switch '%s' to '%s'", ctx.theme, next);
-		return { ...ctx, theme: next };
+	context.update((theme) => {
+		const next = nextTheme(theme, overrides);
+		if (theme !== next) logger.debug("switch '%s' to '%s'", theme, next);
+		return next;
 	});
 };
