@@ -5,7 +5,7 @@
 		WithElement,
 		WithSnippet,
 	} from "@core/types/svelte";
-	import Div from "./Div.svelte";
+	import Div from "@components/atoms/Div/Div.svelte";
 
 	type Props = BaseProps<{
 		leftClass?: string;

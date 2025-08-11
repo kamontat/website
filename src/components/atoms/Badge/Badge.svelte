@@ -4,8 +4,8 @@
 		WithChildren,
 		WithComponent,
 	} from "@core/types/svelte";
-	import Div from "@components/atoms/Div.svelte";
-	import Icon from "@components/atoms/Icon.svelte";
+	import Div from "@components/atoms/Div/Div.svelte";
+	import Icon from "@components/atoms/Icon/Icon.svelte";
 
 	type Props = BaseProps<{
 		iconClass?: string;
