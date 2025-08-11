@@ -6,9 +6,9 @@ import { goToHome, goToMain } from "@core/models/route";
 
 import ThemeSwitch from "@components/molecules/ThemeSwitch/ThemeSwitch.svelte";
 import LocaleSwitch from "@components/molecules/LocaleSwitch/LocaleSwitch.svelte";
-import Navigation from "@components/atoms/Navigation.svelte";
-import Link from "@components/atoms/Link.svelte";
 import KcLogo from "@components/molecules/KcLogo/KcLogo.svelte";
+import Navigation from "@components/atoms/Navigation/Navigation.svelte";
+import Link from "@components/atoms/Link/Link.svelte";
 
 type Props = BaseProps &
 	Pick<WithComponent<typeof HeadMeta>, "locale" | "title">;

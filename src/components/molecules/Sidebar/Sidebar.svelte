@@ -4,7 +4,7 @@
 
 	import context from "@core/contexts/sidebar";
 	import { moleculeLogger } from "@core/constants/logger";
-	import Div from "@components/atoms/Div.svelte";
+	import Div from "@components/atoms/Div/Div.svelte";
 
 	type Props = BaseProps<{
 		currentLocale: LocaleName;

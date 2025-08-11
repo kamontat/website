@@ -3,7 +3,7 @@
 	import type { LocaleName } from "@core/types";
 
 	import { onMount } from "svelte";
-	import Link from "@components/atoms/Link.svelte";
+	import Link from "@components/atoms/Link/Link.svelte";
 
 	import { moleculeLogger } from "@core/constants/logger";
 	import { setupLocale, switchLocale } from "@core/contexts/locale";

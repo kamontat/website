@@ -352,5 +352,7 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/vim,node,linux,macos,vercel,windows,jetbrains+all,visualstudiocode,astro
 
+!Icon
+
 .env
 .env.production

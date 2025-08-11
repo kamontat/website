@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 
-	import Button from "@components/atoms/Button.svelte";
+	import Button from "@components/atoms/Button/Button.svelte";
 
 	import { themeList, themeMap } from "@core/constants/theme";
 	import { moleculeLogger } from "@core/constants/logger";
