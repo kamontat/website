@@ -8,6 +8,7 @@ import Caption from "@components/atoms/Caption.svelte";
 import Paragraph from "@components/atoms/Paragraph.svelte";
 import Div from "@components/atoms/Div.svelte";
 import Badge from "@components/atoms/Badge.svelte";
+import Link from "@components/atoms/Link.svelte";
 
 import { getStaticPathsWithLocale } from "@core/utils/path";
 import { getSingleton } from "@core/contents";
@@ -57,16 +58,44 @@ const name = `${information.must("firstName", locale)} ${information.must("lastN
 			class="mt-4 gap-5 items-center justify-center lg:flex-row lg:items-start"
 		>
 			<Div class="flex-row gap-5">
-				<Badge href="/go/facebook" iconClass="i-line-md:facebook">
-					Facebook
-				</Badge>
-				<Badge href="/go/x" iconClass="i-line-md:twitter-x"> X </Badge>
+				<Link
+					href="/go/facebook"
+					baseLink={Astro.site!.origin}
+					builtinStyles={false}
+					external={true}
+					prefetch={false}
+				>
+					<Badge iconClass="i-line-md:facebook"> Facebook </Badge>
+				</Link>
+				<Link
+					href="/go/x"
+					baseLink={Astro.site!.origin}
+					builtinStyles={false}
+					external={true}
+					prefetch={false}
+				>
+					<Badge iconClass="i-line-md:twitter-x"> X </Badge>
+				</Link>
 			</Div>
 			<Div class="flex-row gap-5">
-				<Badge href="/go/linkedin" iconClass="i-line-md:linkedin">
-					Linkedin
-				</Badge>
-				<Badge href="/go/github" iconClass="i-line-md:github"> GitHub </Badge>
+				<Link
+					href="/go/linkedin"
+					baseLink={Astro.site!.origin}
+					builtinStyles={false}
+					external={true}
+					prefetch={false}
+				>
+					<Badge iconClass="i-line-md:linkedin"> Linkedin </Badge>
+				</Link>
+				<Link
+					href="/go/github"
+					baseLink={Astro.site!.origin}
+					builtinStyles={false}
+					external={true}
+					prefetch={false}
+				>
+					<Badge iconClass="i-line-md:github"> GitHub </Badge>
+				</Link>
 			</Div>
 		</Div>
 	</Container>

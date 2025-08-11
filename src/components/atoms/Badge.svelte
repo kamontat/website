@@ -6,30 +6,16 @@
 	} from "@core/types/svelte";
 	import Div from "@components/atoms/Div.svelte";
 	import Icon from "@components/atoms/Icon.svelte";
-	import Link from "@components/atoms/Link.svelte";
 
-	type DefaultProps = BaseProps<{
+	type Props = BaseProps<{
 		iconClass?: string;
 	}> &
-		Partial<WithChildren>;
-
-	type LinkProps = DefaultProps & WithComponent<typeof Link>;
-	type DivProps = DefaultProps & WithComponent<typeof Div>;
-
-	type Props = LinkProps & DivProps;
-	let {
-		iconClass,
-		children,
-		class: className,
-		href,
-		...rest
-	}: Props = $props();
-
-	const Component = href ? Link : Div;
+		Partial<WithChildren> &
+		WithComponent<typeof Div>;
+	let { iconClass, children, class: className, ...rest }: Props = $props();
 </script>
 
-<Component
-	href={href!}
+<Div
 	class={[
 		className,
 		"flex flex-row w-fit border rounded-md items-center",
@@ -43,4 +29,4 @@
 	<span class="text-center text-lg font-mono">
 		{@render children?.()}
 	</span>
-</Component>
+</Div>

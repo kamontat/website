@@ -64,6 +64,7 @@
 			<Link
 				class="min-w-20 mx-1 text-center"
 				href={path.url}
+				baseLink={currentUrl.origin}
 				hreflang={path.locale}
 			>
 				{getLocaleName(path.locale)}
