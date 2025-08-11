@@ -1,0 +1,31 @@
+link:
+  - name:
+      en: Blog
+      th: บล๊อค
+    url:
+      en: /en/blog
+      th: /th/blog
+  - name:
+      en: Facebook
+      th: เฟสบุ๊ค
+    url:
+      en: /go/facebook
+      th: /go/facebook
+  - name:
+      en: X
+      th: X
+    url:
+      en: /go/x
+      th: /go/x
+  - name:
+      en: Linkedin
+      th: Linkedin
+    url:
+      en: /go/linkedin
+      th: /go/linkedin
+  - name:
+      en: GitHub
+      th: GitHub
+    url:
+      en: /go/github
+      th: /go/github
