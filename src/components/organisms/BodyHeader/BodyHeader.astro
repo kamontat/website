@@ -19,11 +19,12 @@ const { locale, title } = Astro.props;
 <Fragment>
 	<Navigation class="min-w-0" leftClass="min-w-0" rightClass="min-w-0">
 		<Fragment slot="left">
-			<Link href={goToHome(locale)}>
+			<Link href={goToHome(locale)} baseLink={Astro.site!.origin}>
 				<KcLogo client:load size="xs" auto="true" rounded="true" />
 			</Link>
 			<Link
 				href={goToMain(Astro.url.pathname)}
+				baseLink={Astro.site!.origin}
 				class="text-xl min-w-0 text-nowrap truncate uppercase"
 			>
 				{title}

@@ -1,68 +1,55 @@
 <script lang="ts">
-	import { atomLogger } from "@core/constants/logger";
+	import type { UTMQuery } from "@core/types";
 	import type {
 		BaseProps,
 		WithChildren,
 		WithElement,
 	} from "@core/types/svelte";
-
-	interface UTM {
-		source?: string;
-		medium: string;
-		campaign: string;
-		term?: string;
-		content?: string;
-	}
+	import { isExternal, toURL, buildUTM } from "@core/utils/url";
 
 	type Props = BaseProps<{
 		href: string;
-		reload?: boolean;
-		raw?: boolean;
-		utm?: UTM;
+		/** Set to Astro.site!.origin */
+		baseLink: string;
+		reload?: true;
+		builtinStyles?: boolean;
+		prefetch?: false | "hover" | "tap" | "viewport" | "load";
+		utm?: UTMQuery;
+		/** Force treat this as external */
 		external?: boolean;
 	}> &
 		Omit<WithElement<"a">, "href"> &
 		WithChildren;
 
 	let {
-		class: className,
-		reload = false,
-		raw = false,
+		href,
+		baseLink,
+		reload,
+		prefetch,
+		builtinStyles = true,
 		utm,
 		external,
-		href,
 		rel,
 		target,
+		class: className,
 		children,
 		...rest
 	}: Props = $props();
-	const logger = atomLogger.extend("Link");
-	const internalLinks = ["kc.in.th"];
-	if (typeof external !== "boolean") {
-		logger.debug("calculating is external link?");
-		if (href.startsWith("https://") || href.startsWith("http://")) {
-			const hostname = new URL(href).host.toLowerCase();
-			external = internalLinks.some((link) =>
-				hostname.endsWith(link.toLowerCase()),
-			);
-			if (external) logger.debug("treat current link as external");
-			else logger.debug("treat current link as internal");
-		} else {
-			external = false;
-			logger.debug("fallback current link as internal");
-		}
-	}
+	external = external ?? isExternal(href, baseLink);
+	const url = toURL(href, baseLink);
 
 	const finalRel = rel ?? (external ? "_blank" : undefined);
 	const finalTarget = target ?? (external ? "noopener" : undefined);
+	const finalHref = buildUTM(url, utm).toString();
 </script>
 
 <a
 	data-component-name="Link"
 	data-external={external ? "true" : undefined}
-	data-astro-reload={reload}
-	class={[{ "px-3 py-1 rounded-lg": !raw }, className]}
-	{href}
+	data-astro-reload={reload ? "true" : undefined}
+	data-astro-prefetch={prefetch}
+	class={[{ "px-3 py-1 rounded-lg": builtinStyles }, className]}
+	href={finalHref}
 	rel={finalRel}
 	target={finalTarget}
 	{...rest}
