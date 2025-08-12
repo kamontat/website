@@ -1,0 +1,22 @@
+---
+import { getCollections } from "@core/contents";
+
+import LinkBadge from "@components/molecules/LinkBadge/LinkBadge.astro";
+import Div from "@components/atoms/Div/Div.svelte";
+import type { BaseProps } from "@core/types/astro";
+import type { LocaleName } from "@core/types";
+
+type Props = BaseProps<{
+	locale: LocaleName;
+}>;
+
+const { locale } = Astro.props;
+const links = await getCollections("links");
+const quickAccess = links
+	.filter((l) => l.get("quickaccess") === true)
+	.sort((a, b) => (a.get("priority") ?? 0) - (b.get("priority") ?? 0));
+---
+
+<Div class="mt-4 flex-row flex-wrap gap-5 items-center justify-center">
+	{quickAccess.map((link) => <LinkBadge {locale} entry={link} />)}
+</Div>

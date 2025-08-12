@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry, LocaleName } from "@core/types";
+import type { BaseProps } from "@core/types/astro";
+
+import Link from "@components/atoms/Link/Link.svelte";
+import Badge from "@components/atoms/Badge/Badge.svelte";
+
+type Props = BaseProps<{
+	locale: LocaleName;
+	entry: CollectionEntry<"links">;
+}>;
+
+const { locale, entry } = Astro.props;
+---
+
+<Link
+	href={entry.must("url", locale)}
+	baseLink={Astro.site!.origin}
+	builtinStyles={false}
+	external={entry.get("external")}
+	prefetch={entry.get("prefetch")}
+	class="print:hidden"
+>
+	<Badge iconClass={entry.get("icon")}>
+		{entry.must("name", locale)}
+	</Badge>
+</Link>
