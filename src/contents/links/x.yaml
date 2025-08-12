@@ -1,0 +1,11 @@
+icon: i-line-md:twitter-x
+name:
+  en: X
+  th: X
+url:
+  en: /go/x
+  th: /go/x
+external: true
+prefetch: false
+quickaccess: true
+priority: 3

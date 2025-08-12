@@ -1,0 +1,11 @@
+icon: i-line-md:linkedin
+name:
+  en: Linkedin
+  th: Linkedin
+url:
+  en: /go/linkedin
+  th: /go/linkedin
+external: true
+prefetch: false
+quickaccess: true
+priority: 4

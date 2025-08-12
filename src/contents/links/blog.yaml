@@ -1,0 +1,11 @@
+icon: i-line-md:pencil-alt-twotone
+name:
+  en: Blog
+  th: บล๊อค
+url:
+  en: /en/blog
+  th: /th/blog
+external: false
+prefetch: true
+quickaccess: true
+priority: 1

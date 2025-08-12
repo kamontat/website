@@ -240,6 +240,13 @@ const config = defineConfig({
 		},
 	],
 	blocklist: [[/font-\d+/, { message: "use named weight instead" }]],
+	safelist: [
+		"i-line-md:pencil-alt-twotone",
+		"i-line-md:facebook",
+		"i-line-md:twitter-x",
+		"i-line-md:linkedin",
+		"i-line-md:github",
+	],
 });
 
 export default config;

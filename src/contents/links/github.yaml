@@ -1,0 +1,11 @@
+icon: i-line-md:github
+name:
+  en: GitHub
+  th: GitHub
+url:
+  en: /go/github
+  th: /go/github
+external: true
+prefetch: false
+quickaccess: true
+priority: 5

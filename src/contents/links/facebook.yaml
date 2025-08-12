@@ -1,0 +1,11 @@
+icon: i-line-md:facebook
+name:
+  en: Facebook
+  th: เฟสบุ๊ค
+url:
+  en: /go/facebook
+  th: /go/facebook
+external: true
+prefetch: false
+quickaccess: true
+priority: 2
