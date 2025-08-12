@@ -7,7 +7,7 @@ export type CollectionKey = keyof KeystaticCollections<SchemaMap, "collection">;
 
 export interface CollectionEntry<
 	Key extends CollectionKey,
-	Entry extends DataEntryMap[Key][string],
+	Entry extends DataEntryMap[Key][string] = DataEntryMap[Key][string],
 > {
 	readonly id: Entry["id"];
 	readonly collection: Entry["collection"];

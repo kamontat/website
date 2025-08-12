@@ -21,18 +21,36 @@ export default new FormCollectionDataSchema(
 			label: "Slug",
 			validation: { isRequired: true, pattern: { regex: /[a-z]+/ } },
 		}),
-		icon: fields.text({
-			label: "Icon class",
-			description: "Icon class from http://icon-sets.iconify.design/",
-			validation: { pattern: { regex: /[a-z-]+:[a-z-]+/ } },
-		}),
 		name: ksLocalised(fields.text, {
 			label: "Name",
 			validation: { isRequired: true },
 		}),
+		type: fields.select({
+			label: "Link type",
+			defaultValue: "website",
+			options: [
+				{
+					label: "Website",
+					value: "website",
+				},
+				{
+					label: "Social media",
+					value: "social-media",
+				},
+				{
+					label: "Tool",
+					value: "tool",
+				},
+			],
+		}),
 		url: ksLocalised(fields.url, {
 			label: "URL",
 			validation: { isRequired: true },
+		}),
+		icon: fields.text({
+			label: "Icon class",
+			description: "Icon class from http://icon-sets.iconify.design/",
+			validation: { pattern: { regex: /[a-z-]+:[a-z-]+/ } },
 		}),
 		external: fields.checkbox({
 			label: "External",
