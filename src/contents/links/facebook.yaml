@@ -1,10 +1,11 @@
-icon: i-line-md:facebook
 name:
   en: Facebook
   th: เฟสบุ๊ค
+type: social-media
 url:
   en: /go/facebook
   th: /go/facebook
+icon: i-line-md:facebook
 external: true
 prefetch: false
 quickaccess: true

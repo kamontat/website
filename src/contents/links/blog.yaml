@@ -1,10 +1,11 @@
-icon: i-line-md:pencil-alt-twotone
 name:
   en: Blog
   th: บล๊อค
+type: website
 url:
   en: /en/blog
   th: /th/blog
+icon: i-line-md:pencil-alt-twotone
 external: false
 prefetch: true
 quickaccess: true

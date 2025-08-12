@@ -1,10 +1,11 @@
-icon: i-line-md:github
 name:
   en: GitHub
   th: GitHub
+type: social-media
 url:
   en: /go/github
   th: /go/github
+icon: i-line-md:github
 external: true
 prefetch: false
 quickaccess: true

@@ -1,10 +1,11 @@
-icon: i-line-md:linkedin
 name:
   en: Linkedin
   th: Linkedin
+type: social-media
 url:
   en: /go/linkedin
   th: /go/linkedin
+icon: i-line-md:linkedin
 external: true
 prefetch: false
 quickaccess: true

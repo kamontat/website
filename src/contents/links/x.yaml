@@ -1,10 +1,11 @@
-icon: i-line-md:twitter-x
 name:
   en: X
   th: X
+type: social-media
 url:
   en: /go/x
   th: /go/x
+icon: i-line-md:twitter-x
 external: true
 prefetch: false
 quickaccess: true
