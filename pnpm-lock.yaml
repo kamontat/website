@@ -13,10 +13,10 @@ importers:
         version: 0.9.4(prettier-plugin-astro@0.14.1)(prettier@3.6.2)(typescript@5.8.3)
       '@astrojs/markdoc':
         specifier: 0.15.1
-        version: 0.15.1(@types/react@19.1.9)(astro@5.12.1(@types/node@24.0.13)(@vercel/blob@1.0.2)(idb-keyval@6.2.2)(jiti@2.4.2)(rollup@4.45.1)(typescript@5.8.3)(yaml@2.8.0))(react@19.1.0)
+        version: 0.15.1(@types/react@19.1.10)(astro@5.12.1(@types/node@24.0.13)(@vercel/blob@1.0.2)(idb-keyval@6.2.2)(jiti@2.4.2)(rollup@4.45.1)(typescript@5.8.3)(yaml@2.8.0))(react@19.1.0)
       '@astrojs/react':
         specifier: 4.3.0
-        version: 4.3.0(@types/node@24.0.13)(@types/react-dom@19.1.6(@types/react@19.1.9))(@types/react@19.1.9)(jiti@2.4.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(yaml@2.8.0)
+        version: 4.3.0(@types/node@24.0.13)(@types/react-dom@19.1.6(@types/react@19.1.10))(@types/react@19.1.10)(jiti@2.4.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(yaml@2.8.0)
       '@astrojs/sitemap':
         specifier: 3.4.2
         version: 3.4.2
@@ -73,8 +73,8 @@ importers:
         specifier: 1.2.4
         version: 1.2.4
       '@iconify-json/skill-icons':
-        specifier: 1.2.0
-        version: 1.2.0
+        specifier: 1.2.3
+        version: 1.2.3
       '@types/debug':
         specifier: 4.1.12
         version: 4.1.12
@@ -86,10 +86,10 @@ importers:
         version: 24.0.13
       '@types/react':
         specifier: latest
-        version: 19.1.9
+        version: 19.1.10
       '@types/react-dom':
         specifier: 19.1.6
-        version: 19.1.6(@types/react@19.1.9)
+        version: 19.1.6(@types/react@19.1.10)
       '@typescript-eslint/parser':
         specifier: 8.39.0
         version: 8.39.0(eslint@9.32.0(jiti@2.4.2))(typescript@5.8.3)
@@ -939,8 +939,8 @@ packages:
   '@iconify-json/lineicons@1.2.4':
     resolution: {integrity: sha512-OKvUL14Z7CgD027OWtse56GK0T8MDDMnFw75MjOlGAgleLJBR9Uue7nSEteF5K/fLjvSKtIhjnRLsN8BC3TpLg==}
 
-  '@iconify-json/skill-icons@1.2.0':
-    resolution: {integrity: sha512-5zlPrzF5pelV1wut7C88zmAiYONvGxvFw11dXW1Pr1oIhUOtYhC7x3zkErSTFkyZ3m5fEgcEUrcO1W3UhNJVpw==}
+  '@iconify-json/skill-icons@1.2.3':
+    resolution: {integrity: sha512-wyoP8uwox80jEi1ABZ3Z+I+ETtIr2brAERPPDzpJ9iALk8hyeg4/kdoC7M8HduhNkSkyq5kwBF8xvbqjNldnBQ==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -2103,8 +2103,8 @@ packages:
     peerDependencies:
       '@types/react': ^19.0.0
 
-  '@types/react@19.1.9':
-    resolution: {integrity: sha512-WmdoynAX8Stew/36uTSVMcLJJ1KRh6L3IZRx1PZ7qJtBqT3dYTgyDTx8H1qoRghErydW7xw9mSJ3wS//tCRpFA==}
+  '@types/react@19.1.10':
+    resolution: {integrity: sha512-EhBeSYX0Y6ye8pNebpKrwFJq7BoQ8J5SO6NlvNwwHjSj6adXJViPQrKlsyPw7hLBLvckEMO1yxeGdR82YBBlDg==}
 
   '@types/sax@1.2.7':
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
@@ -6158,12 +6158,12 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@astrojs/markdoc@0.15.1(@types/react@19.1.9)(astro@5.12.1(@types/node@24.0.13)(@vercel/blob@1.0.2)(idb-keyval@6.2.2)(jiti@2.4.2)(rollup@4.45.1)(typescript@5.8.3)(yaml@2.8.0))(react@19.1.0)':
+  '@astrojs/markdoc@0.15.1(@types/react@19.1.10)(astro@5.12.1(@types/node@24.0.13)(@vercel/blob@1.0.2)(idb-keyval@6.2.2)(jiti@2.4.2)(rollup@4.45.1)(typescript@5.8.3)(yaml@2.8.0))(react@19.1.0)':
     dependencies:
       '@astrojs/internal-helpers': 0.6.1
       '@astrojs/markdown-remark': 6.3.3
       '@astrojs/prism': 3.3.0
-      '@markdoc/markdoc': 0.5.2(@types/react@19.1.9)(react@19.1.0)
+      '@markdoc/markdoc': 0.5.2(@types/react@19.1.10)(react@19.1.0)
       astro: 5.12.1(@types/node@24.0.13)(@vercel/blob@1.0.2)(idb-keyval@6.2.2)(jiti@2.4.2)(rollup@4.45.1)(typescript@5.8.3)(yaml@2.8.0)
       esbuild: 0.25.8
       github-slugger: 2.0.0
@@ -6203,10 +6203,10 @@ snapshots:
     dependencies:
       prismjs: 1.30.0
 
-  '@astrojs/react@4.3.0(@types/node@24.0.13)(@types/react-dom@19.1.6(@types/react@19.1.9))(@types/react@19.1.9)(jiti@2.4.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(yaml@2.8.0)':
+  '@astrojs/react@4.3.0(@types/node@24.0.13)(@types/react-dom@19.1.6(@types/react@19.1.10))(@types/react@19.1.10)(jiti@2.4.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(yaml@2.8.0)':
     dependencies:
-      '@types/react': 19.1.9
-      '@types/react-dom': 19.1.6(@types/react@19.1.9)
+      '@types/react': 19.1.10
+      '@types/react-dom': 19.1.6(@types/react@19.1.10)
       '@vitejs/plugin-react': 4.6.0(vite@6.3.5(@types/node@24.0.13)(jiti@2.4.2)(yaml@2.8.0))
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -7011,7 +7011,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/skill-icons@1.2.0':
+  '@iconify-json/skill-icons@1.2.3':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -7333,7 +7333,7 @@ snapshots:
       '@react-types/switch': 3.5.13(react@19.1.0)
       '@react-types/table': 3.13.2(react@19.1.0)
       '@react-types/tabs': 3.3.17(react@19.1.0)
-      '@types/react': 19.1.9
+      '@types/react': 19.1.10
       emery: 1.4.4
       facepaint: 1.2.1
       react: 19.1.0
@@ -7345,7 +7345,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.27.6
       '@keystatic/core': 0.5.48(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@types/react': 19.1.9
+      '@types/react': 19.1.10
       astro: 5.12.1(@types/node@24.0.13)(@vercel/blob@1.0.2)(idb-keyval@6.2.2)(jiti@2.4.2)(rollup@4.45.1)(typescript@5.8.3)(yaml@2.8.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -7359,7 +7359,7 @@ snapshots:
       '@floating-ui/react': 0.24.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@internationalized/string': 3.2.7
       '@keystar/ui': 0.7.19(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@markdoc/markdoc': 0.4.0(@types/react@19.1.9)(react@19.1.0)
+      '@markdoc/markdoc': 0.4.0(@types/react@19.1.10)(react@19.1.0)
       '@react-aria/focus': 3.21.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-aria/i18n': 3.12.11(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-aria/interactions': 3.25.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -7376,7 +7376,7 @@ snapshots:
       '@sindresorhus/slugify': 1.1.2
       '@toeverything/y-indexeddb': 0.10.0-canary.9(yjs@13.6.27)
       '@ts-gql/tag': 0.7.3(graphql@16.11.0)
-      '@types/react': 19.1.9
+      '@types/react': 19.1.10
       '@urql/core': 5.2.0(graphql@16.11.0)
       '@urql/exchange-auth': 2.2.1(@urql/core@5.2.0(graphql@16.11.0))
       '@urql/exchange-graphcache': 7.2.4(@urql/core@5.2.0(graphql@16.11.0))(graphql@16.11.0)
@@ -7442,17 +7442,17 @@ snapshots:
       - encoding
       - supports-color
 
-  '@markdoc/markdoc@0.4.0(@types/react@19.1.9)(react@19.1.0)':
+  '@markdoc/markdoc@0.4.0(@types/react@19.1.10)(react@19.1.0)':
     optionalDependencies:
       '@types/markdown-it': 12.2.3
-      '@types/react': 19.1.9
+      '@types/react': 19.1.10
       react: 19.1.0
 
-  '@markdoc/markdoc@0.5.2(@types/react@19.1.9)(react@19.1.0)':
+  '@markdoc/markdoc@0.5.2(@types/react@19.1.10)(react@19.1.0)':
     optionalDependencies:
       '@types/linkify-it': 3.0.5
       '@types/markdown-it': 12.2.3
-      '@types/react': 19.1.9
+      '@types/react': 19.1.10
       react: 19.1.0
 
   '@nodelib/fs.scandir@2.1.5':
@@ -8661,11 +8661,11 @@ snapshots:
 
   '@types/parse-json@4.0.2': {}
 
-  '@types/react-dom@19.1.6(@types/react@19.1.9)':
+  '@types/react-dom@19.1.6(@types/react@19.1.10)':
     dependencies:
-      '@types/react': 19.1.9
+      '@types/react': 19.1.10
 
-  '@types/react@19.1.9':
+  '@types/react@19.1.10':
     dependencies:
       csstype: 3.1.3
 
