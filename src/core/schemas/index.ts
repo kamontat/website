@@ -6,15 +6,18 @@ import type {
 } from "@core/types";
 
 import information from "./information";
-import links from "./links";
-import posts from "./posts";
 import ui from "./ui";
 
+import posts from "./posts";
+import links from "./links";
+import authors from "./authors";
+
 const schemas = {
-	[posts.name]: posts,
 	[information.name]: information,
 	[links.name]: links,
 	[ui.name]: ui,
+	[posts.name]: posts,
+	[authors.name]: authors,
 } as const;
 
 export type SchemaMap = typeof schemas;

@@ -1,29 +1,13 @@
-import type { AstroSchema, KeystaticSlugSchema } from "@core/types";
-
 import { z } from "astro:schema";
 import { fields } from "@keystatic/core";
 
-import { AbstractCollectionDataSchema } from "./models";
 import { getLocales } from "@core/utils/locale";
+import { ContentCollectionDataSchema } from "./models";
 import { keystaticMarkdocConfig } from "./components";
 
-class PostsDataSchema<
-	AS extends AstroSchema,
-	KS extends KeystaticSlugSchema,
-> extends AbstractCollectionDataSchema<"posts", AS, KS> {
-	readonly layout = "content";
-	readonly contentField = "content";
-	readonly filePattern = "**/*.mdoc";
-
-	constructor(
-		readonly astroSchema: AS,
-		readonly keystaticSchema: KS,
-	) {
-		super("posts", "Posts", astroSchema, keystaticSchema);
-	}
-}
-
-export default new PostsDataSchema(
+export default new ContentCollectionDataSchema(
+	"posts",
+	"Posts",
 	z.object({
 		title: z.string(),
 		pubDate: z.coerce.date(),
@@ -38,6 +22,13 @@ export default new PostsDataSchema(
 					regex: new RegExp(`(${getLocales().join("|")})\\/[\\w\\d-]+`),
 				},
 			},
+		}),
+		coverImage: fields.image({
+			label: "Cover image",
+			description: "The cover post image",
+			directory: "src/assets/posts",
+			publicPath: "@assets/posts/",
+			validation: { isRequired: false },
 		}),
 		title: fields.text({
 			label: "Title",
