@@ -1,0 +1,9 @@
+username: test
+firstName:
+  en: test
+  th: test
+lastName:
+  en: test
+  th: test
+email: test@example.com
+gender: male
