@@ -48,7 +48,7 @@
 	data-external={external ? "true" : undefined}
 	data-astro-reload={reload ? "true" : undefined}
 	data-astro-prefetch={prefetch === true ? undefined : prefetch}
-	class={[{ "px-3 py-1 rounded-lg": builtinStyles }, className]}
+	class={[className, builtinStyles ? "px-3 py-1 rounded-lg" : undefined]}
 	href={finalHref}
 	rel={finalRel}
 	target={finalTarget}
