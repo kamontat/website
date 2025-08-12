@@ -13,7 +13,7 @@
 		baseLink: string;
 		reload?: true;
 		builtinStyles?: boolean;
-		prefetch?: false | "hover" | "tap" | "viewport" | "load";
+		prefetch?: true | false | "hover" | "tap" | "viewport" | "load";
 		utm?: UTMQuery;
 		/** Force treat this as external */
 		external?: boolean;
@@ -47,7 +47,7 @@
 	data-component-name="Link"
 	data-external={external ? "true" : undefined}
 	data-astro-reload={reload ? "true" : undefined}
-	data-astro-prefetch={prefetch}
+	data-astro-prefetch={prefetch === true ? undefined : prefetch}
 	class={[{ "px-3 py-1 rounded-lg": builtinStyles }, className]}
 	href={finalHref}
 	rel={finalRel}
