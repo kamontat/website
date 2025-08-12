@@ -1,4 +1,4 @@
-profilePicture: "@assets/data/profilePicture.png"
+profilePicture: '@assets/data/profilePicture.png'
 firstName:
   en: Kamontat
   th: กมนทัต
@@ -20,5 +20,5 @@ summary:
     significantly impacting business growth through innovative software
     solutions.
   th: >
-    ผมเป็น Full-Stack Developer และโดยทั่วไป ผมชอบที่จะ เขียน open-source
-    application ไว้ที่ Github
+    เป็นนักพัฒนาซอฟต์แวร์ประสบการณ์มากกว่า 7 ปี ทำงานกับ open-source โปรเจ็คใน
+    Github มากมาย เวลาว่างชอบเขียนโค๊ด อ่านการ์ตูน และดูซีรี่ส์
