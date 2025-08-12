@@ -32,7 +32,7 @@
 	});
 </script>
 
-<Button class="min-w-14 mx-1 text-center" {onclick}>
+<Button class="min-w-14 mx-1 text-center print:hidden" {onclick}>
 	{#if $context}
 		{themeMap[$context]}
 	{/if}

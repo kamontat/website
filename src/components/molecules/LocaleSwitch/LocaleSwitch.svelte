@@ -62,7 +62,7 @@
 	{#each paths as path}
 		{#if path.enabled}
 			<Link
-				class="min-w-20 mx-1 text-center"
+				class="min-w-20 mx-1 text-center print:hidden"
 				href={path.url}
 				baseLink={currentUrl.origin}
 				hreflang={path.locale}

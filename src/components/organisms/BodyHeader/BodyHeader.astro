@@ -25,7 +25,7 @@ const { locale, title } = Astro.props;
 			<Link
 				href={goToMain(Astro.url.pathname)}
 				baseLink={Astro.site!.origin}
-				class="text-xl min-w-0 text-nowrap truncate uppercase"
+				class="text-xl min-w-0 text-nowrap truncate uppercase print:hidden"
 			>
 				{title}
 			</Link>
