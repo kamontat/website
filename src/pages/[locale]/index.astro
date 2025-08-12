@@ -2,22 +2,23 @@
 import { Picture } from "astro:assets";
 
 import DefaultLayout from "@layouts/DefaultLayout/DefaultLayout.astro";
+import BodyExperiences from "@components/organisms/BodyExperiences/BodyExperiences.astro";
+import BodyProjects from "@components/organisms/BodyProjects/BodyProjects.astro";
+import BodyEducations from "@components/organisms/BodyEducations/BodyEducations.astro";
 import Container from "@components/molecules/Container/Container.astro";
+import LinkBadges from "@components/molecules/LinkBadge/LinkBadges.astro";
 import Heading from "@components/atoms/Heading/Heading.svelte";
 import Caption from "@components/atoms/Caption/Caption.svelte";
 import Paragraph from "@components/atoms/Paragraph/Paragraph.svelte";
 import Div from "@components/atoms/Div/Div.svelte";
-import Badge from "@components/atoms/Badge/Badge.svelte";
-import Link from "@components/atoms/Link/Link.svelte";
 
 import { getStaticPathsWithLocale } from "@core/utils/path";
-import { getCollections, getSingleton } from "@core/contents";
+import { getSingleton } from "@core/contents";
 
 export const getStaticPaths = getStaticPathsWithLocale();
 
 const { locale } = Astro.params;
 const information = await getSingleton("information");
-const links = await getCollections("links");
 const ui = await getSingleton("ui");
 
 const name = `${information.must("firstName", locale)} ${information.must("lastName", locale)}`;
@@ -55,25 +56,9 @@ const name = `${information.must("firstName", locale)} ${information.must("lastN
 				</Paragraph>
 			</Div>
 		</Div>
-		<Div class="mt-4 flex-row flex-wrap gap-5 items-center justify-center">
-			{
-				links
-					.filter((link) => link.get("quickaccess") === true)
-					.sort((a, b) => (a.get("priority") ?? 0) - (b.get("priority") ?? 0))
-					.map((link) => (
-						<Link
-							href={link.must("url", locale)}
-							baseLink={Astro.site!.origin}
-							builtinStyles={false}
-							external={link.get("external")}
-							prefetch={link.get("prefetch")}
-						>
-							<Badge iconClass={link.get("icon")}>
-								{link.must("name", locale)}
-							</Badge>
-						</Link>
-					))
-			}
-		</Div>
+		<LinkBadges {locale} />
+		<BodyExperiences />
+		<BodyProjects />
+		<BodyEducations />
 	</Container>
 </DefaultLayout>
