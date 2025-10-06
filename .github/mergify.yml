@@ -16,12 +16,33 @@ pull_request_rules:
       label:
         toggle:
           - status/conflict
-  - name: Queue the pull requests
+  - name: Label drafting pull requests
+    description: Toggle the draft label when got drafted
+    conditions:
+      - draft
+      - -closed
+    actions:
+      label:
+        toggle:
+          - status/draft
+  - name: Queue the pull requests for maintainers
     description: Queue pull requests when CI is success
     conditions:
-      - check-success=main
+      - -draft
       - -closed
       - -conflict
+      - author=kamontat
+      - check-success=main
+    actions:
+      queue:
+  - name: Queue the pull requests for contributors
+    description: Queue pull requests when CI is success and reviewed
+    conditions:
+      - -draft
+      - -closed
+      - -conflict
+      - approved-reviews-by=kamontat
+      - check-success=main
     actions:
       queue:
 
