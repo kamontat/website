@@ -71,6 +71,17 @@ export default defineConfig({
 			destination:
 				"https://github.com/kamontat/?utm_source=kc.in.th&utm_medium=golink&utm_campaign=direct",
 		},
+		// Use rewrite instead of redirect for cv and resume.
+		// "/go/cv": {
+		// 	status: 302,
+		// 	destination:
+		// 		"/pdfs/kamontat-cv-v4.2.pdf?utm_source=kc.in.th&utm_medium=golink&utm_campaign=direct",
+		// },
+		// "/go/resume": {
+		// 	status: 302,
+		// 	destination:
+		// 		"/pdfs/kamontat-resume-v2.2.pdf?utm_source=kc.in.th&utm_medium=golink&utm_campaign=direct",
+		// }
 	},
 	env: {
 		schema: {
