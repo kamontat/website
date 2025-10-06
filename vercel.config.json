@@ -1,8 +1,18 @@
 {
 	"beforeRoutes": [
 		{
-			"$comment": "when visit blog.kc.in.th/*, rewrite to kc.in.th/en/blog/*",
-			"src": "^\/(?<lang>en|th)[/]?(?<path>.*)$",
+			"$comment": "when visit /go/cv, rewrite to correct pdf file",
+			"src": "^/go/cv$",
+			"dest": "/pdfs/kamontat-cv-v4.2.pdf"
+		},
+		{
+			"$comment": "when visit /go/resume, rewrite to correct pdf file",
+			"src": "^/go/resume$",
+			"dest": "/pdfs/kamontat-resume-v2.2.pdf"
+		},
+		{
+			"$comment": "when visit blog.kc.in.th/*, redirect to kc.in.th/en/blog/*",
+			"src": "^/(?<lang>en|th)[/]?(?<path>.*)$",
 			"has": [
 				{
 					"type": "host",
@@ -15,8 +25,8 @@
 			"status": 301
 		},
 		{
-			"$comment": "when visit blog.kc.in.th/*, rewrite to kc.in.th/en/blog/*",
-			"src": "^\/(?<path>.*)$",
+			"$comment": "when visit blog.kc.in.th/*, redirect to kc.in.th/en/blog/*",
+			"src": "^/(?<path>.*)$",
 			"has": [
 				{
 					"type": "host",
@@ -32,7 +42,7 @@
 	"afterRoutes": [
 		{
 			"$comment": "when visit <domain>/*, redirect to /en/* version",
-			"src": "^/(?<path>(?:(?!th(\/|$)|en(\/|$)|blog(\/|$))).*)$",
+			"src": "^/(?<path>(?:(?!th(\/|$)|en(\/|$)|blog(\/|$)|pdfs\/)).*)$",
 			"headers": {
 				"Location": "/en/$path"
 			},
