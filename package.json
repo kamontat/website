@@ -59,7 +59,7 @@
 		"@iconify-json/skill-icons": "1.2.3",
 		"@types/debug": "4.1.12",
 		"@types/js-yaml": "4.0.9",
-		"@types/node": "24.0.13",
+		"@types/node": "24.7.0",
 		"@types/react": "latest",
 		"@types/react-dom": "19.1.6",
 		"@typescript-eslint/parser": "8.39.0",
