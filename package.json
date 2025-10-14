@@ -44,7 +44,7 @@
 		"@keystatic/core": "0.5.48",
 		"astro": "5.13.2",
 		"autoprefixer": "10.4.21",
-		"cssnano": "7.1.0",
+		"cssnano": "7.1.1",
 		"debug": "4.4.1",
 		"postcss-preset-env": "10.2.4",
 		"react": "19.2.0",
