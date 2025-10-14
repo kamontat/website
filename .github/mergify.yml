@@ -25,24 +25,43 @@ pull_request_rules:
       label:
         toggle:
           - status/draft
-  - name: Queue the pull requests for maintainers
-    description: Queue pull requests when CI is success
+  - name: Queue the maintainer pull requests
+    description: Automatically queue maintainer pull requests
     conditions:
       - -draft
       - -closed
       - -conflict
       - author=kamontat
-      - check-success=main
     actions:
       queue:
-  - name: Queue the pull requests for contributors
-    description: Queue pull requests when CI is success and reviewed
+  - name: Ask for review the dependabot pull requests
+    description: Automatically ask maintainer to review dependabot pull requests
+    conditions:
+      - -draft
+      - -closed
+      - -conflict
+      - author=dependabot[bot]
+    actions:
+      request_reviews:
+        users:
+          - kamontat
+  - name: Queue the dependabot pull requests
+    description: Automatically queue dependabot pull requests when reviewed
+    conditions:
+      - -draft
+      - -closed
+      - -conflict
+      - author=dependabot[bot]
+      - approved-reviews-by=kamontat
+    actions:
+      queue:
+  - name: Queue the contributors pull requests
+    description: Queue contributors pull requests when reviewed
     conditions:
       - -draft
       - -closed
       - -conflict
       - approved-reviews-by=kamontat
-      - check-success=main
     actions:
       queue:
 
