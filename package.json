@@ -53,7 +53,7 @@
 		"unocss": "66.3.3"
 	},
 	"devDependencies": {
-		"@eslint/js": "9.33.0",
+		"@eslint/js": "9.38.0",
 		"@iconify-json/line-md": "1.2.11",
 		"@iconify-json/lineicons": "1.2.6",
 		"@iconify-json/skill-icons": "1.2.3",
