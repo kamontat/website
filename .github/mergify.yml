@@ -1,72 +1,180 @@
+# $schema: https://docs.mergify.com/mergify-configuration-schema.json
+
+shared:
+  is_a_bot: &is_a_bot
+    - or:
+        - "author=github-actions[bot]"
+        - "author=dependabot[bot]"
+  not_a_bot: &not_a_bot
+    - and:
+        - "-author=kc-bot"
+        - "-author=github-actions[bot]"
+        - "-author=dependabot[bot]"
+  is_default_branch: &is_default_branch
+    - or:
+        - "base=main"
+        - "base=master"
+  is_open: &is_open
+    - and:
+        - -merged
+        - -draft
+        - -closed
+  is_wip: &is_wip
+    - or:
+        - "title~=^(wip|WIP)"
+        - "label~=(status/draft|stage/help)"
+        - "draft"
+  not_wip: &not_wip
+    - and:
+        - -title~=^(wip|WIP)
+        - -label~=(status/draft|stage/help|status/triage)
+        - -draft
+        - and: *is_open
+  is_maintainer: &is_maintainer
+    - author=kamontat
+  not_maintainer: &not_maintainer
+    - and:
+        - -author=kamontat
+
 pull_request_rules:
-  - name: Label queued pull requests
-    description: Toggle the queue label when a pull request is (un)queued.
+  - name: Label stale pull requests after 30 days
     conditions:
-      - queue-position > 0
+      - and: *is_open
+      - and: *is_default_branch
+      - updated-at < 30 days ago
+      - -label~=(status/stale|status/triage)
     actions:
       label:
         toggle:
-          - mergify/queued
-  - name: Label conflicting pull requests
-    description: Toggle the conflict label when got conflicted
+          - status/stale
+      comment:
+        message: >
+          Head Up! This pull request has been automatically marked as stale.
+          If this pull request is still relevant, please leave any comment (for example, "bump"), and we'll keep it open.
+  - name: Close stale pull requests after 90 days
     conditions:
-      - conflict
-      - -closed
+      - and: *is_open
+      - and: *is_default_branch
+      - updated-at < 90 days ago
+      - label~=(status/stale)
     actions:
-      label:
-        toggle:
-          - status/conflict
-  - name: Label drafting pull requests
-    description: Toggle the draft label when got drafted
+      close:
+        message: >
+          Closing this pull request after a prolonged period of inactivity.
+          If this issue is still present in the latest release, please ask for this pull request to be reopened. Thank you!
+
+  - name: Label draft pull requests
     conditions:
-      - draft
-      - -closed
+      - and: *is_wip
     actions:
       label:
         toggle:
           - status/draft
-  - name: Queue the maintainer pull requests
-    description: Automatically queue maintainer pull requests
+  - name: Label approve pull requests
     conditions:
-      - -draft
-      - -closed
-      - -conflict
-      - author=kamontat
+      - and: *is_open
+      - "#approved-reviews-by>0"
     actions:
-      queue:
-  - name: Ask for review the dependabot pull requests
-    description: Automatically ask maintainer to review dependabot pull requests
+      label:
+        add:
+          - status/approved
+  - name: Label conflict pull requests
     conditions:
-      - -draft
-      - -closed
-      - -conflict
-      - author=dependabot[bot]
+      - and: *is_open
+      - conflict
+    actions:
+      label:
+        toggle:
+          - status/conflict
+  - name: Label triage pull requests
+    conditions:
+      - and: *is_open
+      - and: *is_default_branch
+      - and: *not_wip
+      - and: *not_a_bot
+      - and: *not_maintainer
+      - "#approved-reviews-by=0"
+      - or:
+          - created-at > 5 minutes ago
+          - commits[*].date_committer > 5 minutes ago
+    actions:
+      label:
+        add:
+          - status/triage
+
+  - name: Add owner as reviewer
+    conditions:
+      - and: *is_open
+      - and: *not_wip
+      - "#review-requested=0"
     actions:
       request_reviews:
         users:
           - kamontat
-  - name: Queue the dependabot pull requests
-    description: Automatically queue dependabot pull requests when reviewed
+
+  - name: Label bot pull requests after 14 days for automerge
     conditions:
-      - -draft
-      - -closed
-      - -conflict
-      - author=dependabot[bot]
-      - approved-reviews-by=kamontat
+      - and: *is_open
+      - and: *not_wip
+      - and: *is_default_branch
+      - and: *is_a_bot
+      - updated-at < 14 days ago
+    actions:
+      label:
+        add:
+          - trigger/merge
+      review:
+        bot_account: kc-bot
+        type: APPROVE
+        message: Automatically approving bot pull request
+
+  - name: Queue pull requests on merge label
+    conditions:
+      - and: *is_open
+      - and: *not_wip
+      - label=trigger/merge
     actions:
       queue:
-  - name: Queue the contributors pull requests
-    description: Queue contributors pull requests when reviewed
+        name: default
+  - name: Queue pull requests after approved
     conditions:
-      - -draft
-      - -closed
-      - -conflict
-      - approved-reviews-by=kamontat
+      - and: *is_open
+      - and: *not_wip
+      - and: *is_default_branch
+      - label=status/approved
     actions:
       queue:
+        name: default
+  - name: Queue the maintainer pull requests
+    conditions:
+      - and: *is_open
+      - and: *not_wip
+      - and: *is_default_branch
+      - and: *is_maintainer
+    actions:
+      queue:
+        name: default
+
+  - name: Trigger rebase on label
+    conditions:
+      - and: *is_open
+      - label=trigger/rebase
+    actions:
+      rebase:
+        bot_account: kc-bot
+      label:
+        remove:
+          - trigger/rebase
+
+merge_queue:
+  max_parallel_checks: 1
+  queued_label: status/queued
+  dequeued_label: status/dequeued
 
 queue_rules:
   - name: default
+    batch_size: 1
     merge_method: squash
+    branch_protection_injection_mode: merge
     update_method: rebase
-    branch_protection_injection_mode: queue
+    update_bot_account: kc-bot
