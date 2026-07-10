@@ -1,23 +1,51 @@
+## https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference
 version: 2
 updates:
-  - package-ecosystem: npm
-    directory: /
-    schedule:
-      interval: cron
-      ## https://crontab.guru/#0_0_*_*_2
-      cronjob: "0 0 * * 2"
-    groups:
-      astrojs:
-        patterns:
-          - astro
-          - "@astrojs/*"
-      react:
-        patterns:
-          - react
-          - react-dom
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: cron
-      ## https://crontab.guru/#0_0_*_*_2
-      cronjob: "0 0 * * 2"
+      interval: weekly
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: perf
+      include: scope
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: saturday
+      time: "01:00" ## UTC
+    cooldown:
+      default-days: 14
+      semver-major-days: 60
+    commit-message:
+      prefix: perf
+      include: scope
+    groups:
+      astrojs:
+        patterns:
+          - "@astrojs/*"
+          - "astro"
+      iconify:
+        patterns:
+          - "@iconify-json/*"
+      keystatic:
+        patterns:
+          - "@keystatic/*"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      eslint:
+        patterns:
+          - "eslint"
+          - "@eslint/*"
+          - "typescript-eslint"
+          - "@typescript-eslint/*"
+      unocss:
+        patterns:
+          - "unocss"
+          - "@unocss/*"
