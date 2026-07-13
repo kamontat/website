@@ -1,5 +1,6 @@
 ---
-import type { BaseProps, WithChildren, WithComponent } from "@core/types/astro";
+import type { BaseProps, WithChildren } from "@core/types/astro";
+import type { WithComponent } from "@core/types/svelte";
 import Div from "@components/atoms/Div/Div.svelte";
 
 type Props = BaseProps & WithChildren & WithComponent<typeof Div>;
