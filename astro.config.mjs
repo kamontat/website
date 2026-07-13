@@ -29,7 +29,7 @@ export default defineConfig({
 		}),
 		keystatic(),
 		react(),
-		UnoCSS({ injectReset: "@kcws/reset.css" }),
+		UnoCSS({ injectReset: "@kcstyles/reset.css" }),
 	],
 	adapter: vercel({
 		imageService: true,
