@@ -1,4 +1,4 @@
-import { z } from "astro:schema";
+import { z } from "astro/zod";
 import { fields } from "@keystatic/core";
 
 import { SingletonDataSchema } from "./models";
