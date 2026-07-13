@@ -1,12 +1,12 @@
 // @ts-check
 
 import eslint from "@eslint/js";
-import { globalIgnores } from "eslint/config";
+import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 import eslintPluginAstro from "eslint-plugin-astro";
 import unocss from "@unocss/eslint-config/flat";
 
-export default tseslint.config(
+const config = defineConfig(
 	globalIgnores([
 		"node_modules",
 		"dist",
@@ -21,3 +21,5 @@ export default tseslint.config(
 	eslintPluginAstro.configs["jsx-a11y-recommended"],
 	unocss,
 );
+
+export default config;
