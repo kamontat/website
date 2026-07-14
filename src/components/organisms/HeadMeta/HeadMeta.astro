@@ -43,6 +43,7 @@ const url = Astro.url;
 
 const ui = await getSingleton("ui");
 const localePaths = getLocaleRoutes(url.pathname, locale);
+const now = new Date().toISOString();
 ---
 
 <!-- Default -->
@@ -89,11 +90,12 @@ const localePaths = getLocaleRoutes(url.pathname, locale);
 <meta name="twitter:creator" content={author?.twitter ?? pkg.author.twitter} />
 
 <!-- Custom -->
-<meta name="git:repo" content={GITHUB_REPOSITORY} />
-<meta name="git:url" content={pkg.repository.url} />
-<meta name="git:ref" content={GITHUB_REF} />
-<meta name="git:sha" content={GITHUB_SHA} />
-<meta name="git:version" content={pkg.version} />
+<meta name="build:git-repo" content={GITHUB_REPOSITORY} />
+<meta name="build:git-url" content={pkg.repository.url} />
+<meta name="build:git-ref" content={GITHUB_REF} />
+<meta name="build:sha" content={GITHUB_SHA} />
+<meta name="build:time" content={now} />
+<meta name="version" content={pkg.version} />
 <meta name="author:name" content={author?.name ?? pkg.author.name} />
 <meta name="author:email" content={author?.email ?? pkg.author.email} />
 <meta name="copyright" content={pkg.license} />
