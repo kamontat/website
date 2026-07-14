@@ -54,8 +54,10 @@ export type WithElement<Tag extends HTMLTag> = Omit<
 	"children"
 >;
 
-export type WithComponent<Component extends AnyComponent> =
-	SvelteComponentProps<Component>;
+export type WithComponent<Component extends AnyComponent> = Omit<
+	SvelteComponentProps<Component>,
+	"children"
+>;
 
 export type WithPolymorphic<Tag extends HTMLTag> = {
 	as: Tag;

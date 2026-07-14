@@ -12,6 +12,7 @@
 		rightClass?: string;
 	}> &
 		WithSnippet<{
+			children: HTMLSnippet;
 			left?: HTMLSnippet;
 			right?: HTMLSnippet;
 		}> &
