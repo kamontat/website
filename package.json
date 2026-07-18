@@ -54,9 +54,9 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "9.38.0",
-		"@iconify-json/line-md": "1.2.11",
+		"@iconify-json/line-md": "1.2.16",
 		"@iconify-json/lineicons": "1.2.6",
-		"@iconify-json/skill-icons": "1.2.3",
+		"@iconify-json/skill-icons": "1.2.4",
 		"@types/debug": "4.1.13",
 		"@types/js-yaml": "4.0.9",
 		"@types/node": "24.0.13",
